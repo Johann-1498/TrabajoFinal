@@ -8,7 +8,39 @@
 </head>
 
 <body>
-    hola
+    <p></p>
+    <script>
+        let p = document.querySelector("p");
+        let tokenSesion = obtenerTokenDeSesion();
+        console.log(tokenSesion);
+
+        let rutaArchivo = 'cgi-bin/sesion.pl?token=' + tokenSesion;
+        fetch(rutaArchivo)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al verificar la sesión');
+                }
+                return response.text();
+            })
+            .then(data => {
+                // Maneja los datos del usuario
+                p.innerHTML = data;
+
+                // Aquí puedes realizar acciones con los datos obtenidos
+            })
+            .catch(error => console.error('Error:', error));
+        function obtenerTokenDeSesion() {
+            let cookies = document.cookie.split(';');
+            for (let cookie of cookies) {
+                let [nombre, valor] = cookie.split('=');
+                if (nombre.trim() === 'token_sesion') {
+                    return valor.trim();
+                }
+            }
+            return null;
+        }
+        obtenerTokenDeSesion();
+    </script>
 </body>
 
 </html>
