@@ -1,14 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <title>Supermercado XYZ - Contacto</title>
+    </head>
+    <body>
+        <header>
+            <img src="img/celtic_6043595.png" alt height="70px">
+            <h1>Supermercado XYZ</h1>
+        </header>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="clientes.html">clientes</a>
+            <a href="tarjetas.html">tarjetas</a>
+            <a href="cuentas.html">cuentas</a>
+            <a href="banca.html">banca</a>
+            <a href="movimientos.html">movimientos</a>
+        </nav>
 
-<body>
+        <section id="CLIENTES">
+            <h2>CLIENTES </h2>
+            <p>¡Contáctanos para obtener más información!</p>
 
-</body>
+            <form action="/register" method="post">
+                <label for="name">Nombre:</label><br>
+                <input type="text" id="name" name="name"><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email"><br>
+                <input type="submit" value="Registrar">
+            </form>
+        </section>
 
+        <footer>
+            <p>&copy; 2024 Supermercado XYZ</p>
+        </footer>
+    </body>
 </html>
