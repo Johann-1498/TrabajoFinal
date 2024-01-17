@@ -13,7 +13,7 @@ my $db_host   = 'localhost';
 my $table     = 'users';
 sub generar_token_sesion {
     my $tiempo_actual = time();
-    my $token = sha1_hex($tiempo_actual, rand());  # Usando sha1_hex de Digest::SHA
+    my $token = sha1_hex($tiempo_actual, rand());
 
     return $token;
 }
@@ -35,4 +35,5 @@ my $cookie = CGI::Cookie->new(
     -value   => $token_sesion,
     -expires => '+1d',
 );
-print $cgi->header(-cookie => $cookie, -type => 'text/html', -status => '302 Found', -location => '../index.html');
+print $cgi->header(-cookie => $cookie, -type => 'application/json');
+print '{"success": true}';
