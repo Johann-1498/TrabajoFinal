@@ -20,5 +20,4 @@ my $sql = "INSERT INTO $table (name, email, password, telefono, cui) VALUES (?, 
 my $sth = $dbh->prepare($sql);
 $sth->execute($name, $email, $password, $telefono, $cui);
 $dbh->disconnect;
-print $cgi->header('text/html');
-print "¡Datos almacenados correctamente en la base de datos!\n";
+print $cgi->redirect("../index.html");
