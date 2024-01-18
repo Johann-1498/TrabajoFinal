@@ -1,13 +1,13 @@
 let p = document.querySelector("p");
 let closeSession = document.querySelector("#closeSession");
-function eliminarCookie(){
+function eliminarCookie() {
     var fechaExpiracion = new Date();
     fechaExpiracion.setFullYear(fechaExpiracion.getFullYear() - 1);
     document.cookie = "token_sesion" + "=; expires=" + fechaExpiracion.toUTCString() + "; path=/";
-    window.location.href = "login_Register.html"
 }
 closeSession.addEventListener("click", () => {
-eliminarCookie();
+    eliminarCookie();
+    window.location.href = "login_Register.html"
 });
 let tokenSesion = obtenerTokenDeSesion();
 if (tokenSesion == null) {
