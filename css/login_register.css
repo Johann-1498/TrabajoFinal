@@ -59,7 +59,7 @@ main {
 
 }
 
-.containers h1 {
+.containers .front h1 {
     text-align: center;
     margin-bottom: 50px;
     margin-top: 50px;
@@ -73,36 +73,45 @@ main {
     flex-direction: column;
 }
 
-.containers form input {
+.front,
+.back {
+    backface-visibility: hidden;
+    transition: transform 0.5s ease;
+
+}
+
+.containers .front form input {
     display: block;
 
 }
 
 label {
+    margin-bottom: 10px;
     display: block;
-    width: 10px;
-    height: 10px;
-    background-color: black;
+    font-size: 24px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
     border-radius: 50%;
+    transform: translateX(-35px);
+    transition: transform .5s ease;
 }
 
-.containers .back {
-    display: none;
-}
 
-.login__field {
+
+.containers .front form .login-field {
     width: 70%;
     padding: 20px 0px;
     position: relative;
 }
 
-.login__icon {
+.containers .front form .login-icon {
     position: absolute;
     top: 30px;
     color: #75b5a0;
 }
 
-.login__input {
+.login-input {
     border: none;
     border-bottom: 2px solid #d3e8db;
     background: none;
@@ -113,14 +122,14 @@ label {
     transition: .2s;
 }
 
-.login__input:active,
-.login__input:focus,
-.login__input:hover {
+.login-input:active,
+.login-input:focus,
+.login-input:hover {
     outline: none;
     border-bottom-color: #56967b;
 }
 
-.login__submit {
+.login-submit {
     background: #fff;
     font-size: 14px;
     margin-top: 30px;
@@ -138,15 +147,66 @@ label {
     transition: .2s;
 }
 
-.login__submit:active,
-.login__submit:focus,
-.login__submit:hover {
+.login-submit:active,
+.login-submit:focus,
+.login-submit:hover {
     border-color: #679e81;
     outline: none;
 }
 
-.button__icon {
+.button-icon {
     font-size: 24px;
     margin-left: auto;
     color: #75b5a0;
+}
+
+.containers .back {
+    transform: rotateY(180deg);
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: -395px;
+}
+
+.containers .back h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.containers .back input {
+    display: block;
+}
+
+.containers .back form .login-field {
+    width: 70%;
+    padding: 10px 0px;
+    position: relative;
+}
+
+.containers .back form .login-icon {
+    position: absolute;
+    top: 20px;
+    color: #75b5a0;
+}
+
+#checkbox:checked~.containers .front {
+    transform: rotateY(180deg);
+}
+
+#checkbox:checked~.containers .back {
+    transform: rotateY(0deg);
+}
+
+#checkbox:checked+label {
+    transform: translateX(20px) rotateY(180deg);
+
+}
+
+main p {
+    margin: 10px;
+}
+
+main p span {
+    margin: 20px;
 }

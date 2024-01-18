@@ -13,36 +13,57 @@
 
     <nav><img src="img/celtic_6044192.png" alt=""></nav>
     <main>
+        <p><span>Login</span><span>Register</span></p>
         <input hidden type="checkbox" id="checkbox">
-        <label for="checkbox"></label>
+        <label for="checkbox"><i class='bx bx-left-top-arrow-circle'></i></label>
         <div class="containers">
-
             <div class="front">
-                <h1>Login</h1>
+                <h1>Log In</h1>
                 <form action="#" id="loginForm">
-                    <div class="login__field">
-                        <i class="login__icon bx bx-user-circle"></i>
-                        <input name="email" type="text" class="login__input" placeholder="User name / Email">
+                    <div class="login-field">
+                        <i class="login-icon bx bx-user-circle"></i>
+                        <input name="email" type="text" class="login-input" placeholder="User name / Email">
                     </div>
-                    <div class="login__field">
-                        <i class="login__icon bx bxs-lock-alt"></i>
-                        <input name="password" type="password" class="login__input" placeholder="Password">
+                    <div class="login-field">
+                        <i class="login-icon bx bxs-lock-alt"></i>
+                        <input name="password" type="password" class="login-input" placeholder="Password">
                     </div>
-                    <button id="loginButton" class="button login__submit">
-                        <span class="button__text">Log In Now</span>
-                        <i class="button__icon bx bx-chevron-right "></i>
+                    <button id="loginButton" class="button login-submit">
+                        <span class="button-text">Log In</span>
+                        <i class="button-icon bx bx-chevron-right "></i>
                     </button>
                 </form>
             </div>
             <div class="back">
                 <h1>Registro</h1>
                 <form action="#" id="registerForm">
-                    <input type="text" name="name" id="registerName">
-                    <input type="email" name="email" id="registerEmail">
-                    <input type="password" name="password" id="registerPassword">
-                    <input type="text" name="telefono" id="registerTelefono">
-                    <input type="text" name="cui" id="registerCui">
-                    <button type="submit" id="registerButton">Register</button>
+                    <div class="login-field">
+                        <i class="login-icon bx bx-user-circle"></i>
+                        <input type="text" name="name" id="registerName" class="login-input" placeholder="Nombre">
+                    </div>
+                    <div class="login-field">
+                        <i class="login-icon bx bx-at"></i>
+                        <input type="email" name="email" id="registerEmail" class="login-input"
+                            placeholder="Correo Electrónico">
+                    </div>
+                    <div class="login-field">
+                        <i class="login-icon bx bxs-lock-alt"></i>
+                        <input type="password" name="password" id="registerPassword" class="login-input"
+                            placeholder="Contraseña">
+                    </div>
+                    <div class="login-field">
+                        <i class="login-icon bx bx-phone"></i>
+                        <input type="text" name="telefono" id="registerTelefono" class="login-input"
+                            placeholder="Teléfono">
+                    </div>
+                    <div class="login-field">
+                        <i class="login-icon bx bx-id-card"></i>
+                        <input type="text" name="cui" id="registerCui" class="login-input" placeholder="CUI">
+                    </div>
+                    <button type="submit" id="registerButton" class="button login-submit">
+                        <span class="button-text">Registrar</span>
+                        <i class="button-icon bx bx-chevron-right"></i>
+                    </button>
                 </form>
             </div>
 
