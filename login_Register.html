@@ -5,26 +5,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login or Register</title>
+    <link rel="stylesheet" href="css/login_register.css">
 </head>
 
 <body>
 
-    <h1>Login</h1>
-    <form action="#" id="loginForm">
-        <input type="email" id="loginEmail" name="email">
-        <input type="password" id="loginPassword" name="password">
-        <button id="loginButton">Login</button>
-    </form>
+    <nav><img src="img/celtic_6044192.png" alt=""></nav>
+    <main>
+        <div class="containers">
+            <input hidden type="checkbox" id="checkbox">
+            <label for="checkbox"></label>
+            <div class="front">
+                <h1>Login</h1>
 
-    <h1>Registro</h1>
-    <form action="#" id="registerForm">
-        <input type="text" name="name" id="registerName">
-        <input type="email" name="email" id="registerEmail">
-        <input type="password" name="password" id="registerPassword">
-        <input type="text" name="telefono" id="registerTelefono">
-        <input type="text" name="cui" id="registerCui">
-        <button type="submit" id="registerButton">Register</button>
-    </form>
+                <form action="#" id="loginForm">
+                    <input type="email" id="loginEmail" name="email">
+                    <input type="password" id="loginPassword" name="password">
+                    <button id="loginButton">Login</button>
+                </form>
+            </div>
+            <div class="back">
+                <h1>Registro</h1>
+                <form action="#" id="registerForm">
+                    <input type="text" name="name" id="registerName">
+                    <input type="email" name="email" id="registerEmail">
+                    <input type="password" name="password" id="registerPassword">
+                    <input type="text" name="telefono" id="registerTelefono">
+                    <input type="text" name="cui" id="registerCui">
+                    <button type="submit" id="registerButton">Register</button>
+                </form>
+            </div>
+
+
+        </div>
+    </main>
 
     <script src="js/login_register.js"></script>
 </body>
