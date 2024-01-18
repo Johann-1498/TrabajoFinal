@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login or Register</title>
@@ -12,16 +13,25 @@
 
     <nav><img src="img/celtic_6044192.png" alt=""></nav>
     <main>
+        <input hidden type="checkbox" id="checkbox">
+        <label for="checkbox"></label>
         <div class="containers">
-            <input hidden type="checkbox" id="checkbox">
-            <label for="checkbox"></label>
+
             <div class="front">
                 <h1>Login</h1>
-
                 <form action="#" id="loginForm">
-                    <input type="email" id="loginEmail" name="email">
-                    <input type="password" id="loginPassword" name="password">
-                    <button id="loginButton">Login</button>
+                    <div class="login__field">
+                        <i class="login__icon bx bx-user-circle"></i>
+                        <input name="email" type="text" class="login__input" placeholder="User name / Email">
+                    </div>
+                    <div class="login__field">
+                        <i class="login__icon bx bxs-lock-alt"></i>
+                        <input name="password" type="password" class="login__input" placeholder="Password">
+                    </div>
+                    <button id="loginButton" class="button login__submit">
+                        <span class="button__text">Log In Now</span>
+                        <i class="button__icon bx bx-chevron-right "></i>
+                    </button>
                 </form>
             </div>
             <div class="back">
