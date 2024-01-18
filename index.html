@@ -21,7 +21,9 @@
         <a href="cuentas.html">cuentas</a>
         <a href="banca.html">banca</a>
         <a href="movimientos.html">movimientos</a>
-        <a href="login_Register.html">Registrate o Inicia Sesion</a>
+        <span id="iniciarSesion"></span>
+        <span id="miPerfil"></span>
+
     </nav>
 
     <section id="bienvenida">
@@ -31,22 +33,21 @@
                 <div class="contenido-slide">
                     <div class="slide-text">
 
-                        <p>PUTO</p>
+                        <p>Imagen</p>
                     </div>
 
                 </div>
                 <div class="contenido-slide">
                     <div class="slide-text">
 
-                        <p>EL Q</p>
+                        <p>Imagen</p>
                     </div>
 
                 </div>
                 <div class="contenido-slide">
                     <div class="slide-text">
 
-                        <p>LEA
-                        </p>
+                        <p>Imagen</p>
                     </div>
 
                 </div>
@@ -80,6 +81,19 @@
         <p>&copy; 2024 Supermercado XYZ</p>
     </footer>
     <script src="js/scriptIndex.js"></script>
+    <script src="js/validateSession.js"></script>
+    <script>
+        let miPerfil = document.querySelector("#miPerfil");
+        let iniciarSesionP = document.querySelector("#iniciarSesion");
+        let value = "<a href='login_Register.html'>Registrate o Inicia Sesion</a>";
+        var datos;
+        if (document.cookie.split("=")[0] == "token_sesion") {
+            console.log(validarSesion());
+            miPerfil.innerHTML = "Bienvenido " + validarSesion();
+        } else {
+            iniciarSesionP.innerHTML = value;
+        }
+    </script>
 </body>
 
 </html>

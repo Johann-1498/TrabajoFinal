@@ -1,4 +1,3 @@
-let p = document.querySelector("p");
 let closeSession = document.querySelector("#closeSession");
 function eliminarCookie() {
     var fechaExpiracion = new Date();
@@ -7,26 +6,31 @@ function eliminarCookie() {
 }
 closeSession.addEventListener("click", () => {
     eliminarCookie();
-    window.location.href = "login_Register.html"
+    window.location.reload();
 });
-let tokenSesion = obtenerTokenDeSesion();
-if (tokenSesion == null) {
-    window.location.href = "login_Register.html"
+function ifPageIsNecesaryValidate() {
+    if (tokenSesion == null) {
+        window.location.href = "login_Register.html"
+    }
+    validarSesion();
 }
-console.log(tokenSesion);
-
-let rutaArchivo = 'cgi-bin/sesion.pl?token=' + tokenSesion;
-fetch(rutaArchivo)
-    .then(response => {
-        if (!response.ok) {
-            eliminarCookie();
-            window.location.href = "login_Register.html";
-        }
-        return response.text();
-    })
-    .then(data => {
-        p.innerHTML = data;
-    });
+function validarSesion() {
+    let datos;
+    let tokenSesion = obtenerTokenDeSesion();
+    let rutaArchivo = 'cgi-bin/sesion.pl?token=' + tokenSesion;
+    fetch(rutaArchivo)
+        .then(response => {
+            if (!response.ok) {
+                eliminarCookie();
+                alert("Hubo un problema al verificar tu sesion");
+            }
+            return response.json();
+        })
+        .then(data => {
+            datos = data;
+        });
+    return datos;
+}
 function obtenerTokenDeSesion() {
     let cookies = document.cookie;
     let [nombre, valor] = cookies.split('=');
@@ -35,4 +39,3 @@ function obtenerTokenDeSesion() {
     }
     return null;
 }
-obtenerTokenDeSesion();
