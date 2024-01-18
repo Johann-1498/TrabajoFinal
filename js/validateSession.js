@@ -1,14 +1,17 @@
 let p = document.querySelector("p");
 let closeSession = document.querySelector("#closeSession");
-closeSession.addEventListener("click", () => {
+function eliminarCookie(){
     var fechaExpiracion = new Date();
     fechaExpiracion.setFullYear(fechaExpiracion.getFullYear() - 1);
     document.cookie = "token_sesion" + "=; expires=" + fechaExpiracion.toUTCString() + "; path=/";
     window.location.href = "login_Register.html"
+}
+closeSession.addEventListener("click", () => {
+eliminarCookie();
 });
 let tokenSesion = obtenerTokenDeSesion();
-if (tokenSesion === null) {
-
+if (tokenSesion == null) {
+    window.location.href = "login_Register.html"
 }
 console.log(tokenSesion);
 
@@ -16,14 +19,14 @@ let rutaArchivo = 'cgi-bin/sesion.pl?token=' + tokenSesion;
 fetch(rutaArchivo)
     .then(response => {
         if (!response.ok) {
-            throw new Error('Error al verificar la sesión');
+            eliminarCookie();
+            window.location.href = "login_Register.html";
         }
         return response.text();
     })
     .then(data => {
         p.innerHTML = data;
-    })
-    .catch(error => console.error('Error:', error));
+    });
 function obtenerTokenDeSesion() {
     let cookies = document.cookie;
     let [nombre, valor] = cookies.split('=');
