@@ -26,7 +26,7 @@ if ($token_sesion) {
 sub cargar_datos_de_tabla {
     my ($token) = @_;
     my $dbh = DBI->connect("DBI:mysql:database=trabajofinal;host=localhost", "root", "", { RaiseError => 1 });
-    my $query = "SELECT name, email FROM users WHERE token_sesion = ?";
+    my $query = "SELECT * FROM users WHERE token_sesion = ?";
     my $sth = $dbh->prepare($query);
     $sth->execute($token);
     my $datos_usuario = $sth->fetchrow_hashref;

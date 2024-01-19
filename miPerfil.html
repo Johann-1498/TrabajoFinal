@@ -20,23 +20,10 @@
         <span id="iniciarSesion"></span>
         <span id="miPerfil"></span>
     </nav>
+    <section class="sidebar">
+        <button>Account Information</button>
+    </section>
     <section id="perfil">
-        <div class="contenedor-perfil">
-            <div class="head-perfil">
-                <p>Nombre de usuario</p>
-                <input type="submit" value="Editar">
-            </div>
-
-            <div class="info">
-                <li>Nombre:</li><span id="nombre"></span>
-                <li>Correo:</li><span id="correo"></span>
-                <li>Numero:</li><span id="numero"></span>
-
-            </div>
-            <div class="change-password">
-                <input type="submit" value="Cambiar contraseña">
-            </div>
-        </div>
 
     </section>
     <button id="closeSession"></button>
@@ -44,14 +31,15 @@
     <footer>
         <p>&copy; 2024 Supermercado XYZ</p>
     </footer>
-    <script src="js/validateSession.js">
-        let datos;
-        validarSesion().then(responde => {
-            datos = response;
-        });
-        console.log(datos);
+    <script src="js/validateSession.js"></script>
+    <!-- <script>
         ifPageIsNecesaryValidate();
-    </script>
+        let datos;
+        validarSesion().then(response => {
+            datos = response;
+            console.log(datos);
+        });
+    </script> -->
 </body>
 
 </html>

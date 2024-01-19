@@ -16,11 +16,9 @@
 
     <nav>
         <a href="index.html">Inicio</a>
-        <a href="clientes.html">clientes</a>
-        <a href="tarjetas.html">tarjetas</a>
-        <a href="cuentas.html">cuentas</a>
-        <a href="banca.html">banca</a>
-        <a href="movimientos.html">movimientos</a>
+        <a href="clientes.html">Catálogos de ofertas</a>
+        <a href="tarjetas.html">Nuestras ofertas</a>
+        <a href="cuentas.html">Productos</a>
         <span id="iniciarSesion"></span>
         <span id="miPerfil"></span>
 
@@ -89,7 +87,7 @@
         let datos;
         if (document.cookie.split("=")[0] == "token_sesion") {
             validarSesion().then(data => {
-                miPerfil.innerHTML = "<a href='miPerfil.html'>Bienvenido " + data.name + "</a>";
+                miPerfil.innerHTML = "<a href='miPerfil.html'>Mi Perfil</a >";
             });
         } else {
             iniciarSesionP.innerHTML = value;
