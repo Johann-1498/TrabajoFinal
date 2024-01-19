@@ -38,7 +38,6 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
 }
 
 
@@ -87,6 +86,7 @@ main {
 }
 
 label {
+    margin-left: 50%;
     margin-bottom: 10px;
     display: block;
     font-size: 24px;
@@ -206,8 +206,13 @@ label {
 
 main p {
     margin: 10px;
+    text-align: center;
 }
 
 main p span {
     margin: 20px;
+}
+
+section {
+    margin: 40px;
 }

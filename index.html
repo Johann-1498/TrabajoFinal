@@ -1,88 +1,88 @@
 <!DOCTYPE html>
 <html lang="es">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/styles.css">
-        <title>Supermercado XYZ</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Supermercado XYZ</title>
+</head>
 
-    <body>
-        <header>
-            <img src="img/celtic_6043595.png" alt height="70px">
-            <h1>Supermercado XYZ</h1>
-        </header>
+<body>
+    <header>
+        <img src="img/celtic_6043595.png" alt height="70px">
+        <h1>Supermercado XYZ</h1>
+    </header>
 
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="clientes.html">clientes</a>
-            <a href="tarjetas.html">tarjetas</a>
-            <a href="cuentas.html">cuentas</a>
-            <a href="banca.html">banca</a>
-            <a href="movimientos.html">movimientos</a>
-            <span id="iniciarSesion"></span>
-            <span id="miPerfil"></span>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="clientes.html">clientes</a>
+        <a href="tarjetas.html">tarjetas</a>
+        <a href="cuentas.html">cuentas</a>
+        <a href="banca.html">banca</a>
+        <a href="movimientos.html">movimientos</a>
+        <span id="iniciarSesion"></span>
+        <span id="miPerfil"></span>
 
-        </nav>
+    </nav>
 
-        <section id="bienvenida">
-            <h2>Bienvenido a nuestro supermercado</h2>
-            <div class="contenedor">
-                <section class="slider-contenedor">
-                    <div class="contenido-slide">
-                        <div class="slide-text">
+    <section id="bienvenida">
+        <h2>Bienvenido a nuestro supermercado</h2>
+        <div class="contenedor">
+            <section class="slider-contenedor">
+                <div class="contenido-slide">
+                    <div class="slide-text">
 
-                            <p>Imagen</p>
-                        </div>
-
+                        <p>Imagen</p>
                     </div>
-                    <div class="contenido-slide">
-                        <div class="slide-text">
 
-                            <p>Imagen</p>
-                        </div>
+                </div>
+                <div class="contenido-slide">
+                    <div class="slide-text">
 
+                        <p>Imagen</p>
                     </div>
-                    <div class="contenido-slide">
-                        <div class="slide-text">
 
-                            <p>Imagen</p>
-                        </div>
+                </div>
+                <div class="contenido-slide">
+                    <div class="slide-text">
 
+                        <p>Imagen</p>
                     </div>
-                </section>
+
+                </div>
+            </section>
+        </div>
+
+    </section>
+
+    <section class="productos">
+        <div class="precios">
+            <div class="item">
+                <img src="img/manzana.webp" alt>
+                <p>10% dscto.</p>
             </div>
-
-        </section>
-
-        <section class="productos">
-            <div class="precios">
-                <div class="item">
-                    <img src="img/manzana.webp" alt>
-                    <p>10% dscto.</p>
-                </div>
-                <div class="item">
-                    <img src="img/manzana.webp" alt>
-                    <p>10% dscto.</p>
-                </div>
-                <div class="item">
-                    <img src="img/manzana.webp" alt>
-                    <p>10% dscto.</p>
-                </div>
-                <div class="item">
-                    <img src="img/manzana.webp" alt>
-                    <p>10% dscto.</p>
-                </div>
+            <div class="item">
+                <img src="img/manzana.webp" alt>
+                <p>10% dscto.</p>
             </div>
-        </section>
-        <button id="closeSession"></button>
-        <footer>
-            <p>&copy; 2024 Supermercado XYZ</p>
-        </footer>
-        <script src="js/scriptIndex.js"></script>
-        <script src="js/validateSession.js"></script>
-        <script>
+            <div class="item">
+                <img src="img/manzana.webp" alt>
+                <p>10% dscto.</p>
+            </div>
+            <div class="item">
+                <img src="img/manzana.webp" alt>
+                <p>10% dscto.</p>
+            </div>
+        </div>
+    </section>
+    <button id="closeSession"></button>
+    <footer>
+        <p>&copy; 2024 Supermercado XYZ</p>
+    </footer>
+    <script src="js/scriptIndex.js"></script>
+    <script src="js/validateSession.js"></script>
+    <script>
         let miPerfil = document.querySelector("#miPerfil");
         let iniciarSesionP = document.querySelector("#iniciarSesion");
         let value = "<a href='login_Register.html'>Registrate o Inicia Sesion</a>";
@@ -90,12 +90,11 @@
         if (document.cookie.split("=")[0] == "token_sesion") {
             validarSesion().then(data => {
                 miPerfil.innerHTML = "<a href='miPerfil.html'>Bienvenido " + data.name + "</a>";
-
             });
         } else {
             iniciarSesionP.innerHTML = value;
         }
     </script>
-    </body>
+</body>
 
 </html>
