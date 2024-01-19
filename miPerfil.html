@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/miPerfil.css">
     <title>Document</title>
 </head>
 
@@ -20,12 +20,61 @@
         <span id="iniciarSesion"></span>
         <span id="miPerfil"></span>
     </nav>
-    <section class="sidebar">
-        <button>Account Information</button>
-    </section>
-    <section id="perfil">
+    <main>
+        <div class="control">
+            <span style="display: inline-block; margin: 20px;" id="changeSettingAccount" class="selected">Account
+                Settings</span>
+            <span style="display: inline-block; margin: 20px;" id="changeSettingBilling">Billing Settings</span>
+        </div>
 
-    </section>
+        <section id="accountSettings" class="container fade-in-out">
+            <div class="informationContainer">
+                <h4>Email Adress:</h4>
+                <p id="userEmail">xd@gmail.com</p>
+            </div>
+            <hr>
+            <div class="informationContainer">
+                <h4>Name:</h4>
+                <p id="userName">Juan</p>
+            </div>
+            <hr>
+
+            <div class="informationContainer">
+                <h4>Phone Number:</h4>
+                <p id="userPhone">123456789</p>
+            </div>
+            <hr>
+
+            <div class="informationContainer">
+                <h4>Cui:</h4>
+                <p id="userCui">123456789</p>
+            </div>
+        </section>
+        <section id="billingSettings" class="container fade-in-out hidden">
+            <div class="informationContainer">
+                <h4>EBilling:</h4>
+                <p id="userEmail">xd@gmail.com</p>
+            </div>
+            <hr>
+            <div class="informationContainer">
+                <h4>Name:</h4>
+                <p id="userName">Juan</p>
+            </div>
+            <hr>
+
+            <div class="informationContainer">
+                <h4>Phone Number:</h4>
+                <p id="userPhone">123456789</p>
+            </div>
+            <hr>
+
+            <div class="informationContainer">
+                <h4>Cui:</h4>
+                <p id="userCui">123456789</p>
+            </div>
+        </section>
+    </main>
+
     <button id="closeSession"></button>
 
     <footer>
@@ -40,6 +89,40 @@
             console.log(datos);
         });
     </script> -->
+    <script>
+        let accountSettings = document.querySelector("#accountSettings");
+        let billingSettings = document.querySelector("#billingSettings");
+        let changeSettingAccount = document.querySelector("#changeSettingAccount");
+        let changeSettingBilling = document.querySelector("#changeSettingBilling");
+        changeSettingAccount.addEventListener("click", () => {
+            changeSettingAccount.classList.add("selected");
+            changeSettingBilling.classList.remove("selected");
+
+            billingSettings.classList.add("hidden");
+            billingSettings.style.transform = "translateX(50px)";
+            setTimeout(function () {
+                accountSettings.classList.remove("hidden");
+                console.log(accountSettings.style.transform);
+                if (accountSettings.style.transform) {
+                    accountSettings.style.transform = "translateX(50px)";
+                }
+
+
+            }, 500);
+        })
+        changeSettingBilling.addEventListener("click", () => {
+            changeSettingBilling.classList.add("selected");
+            changeSettingAccount.classList.remove("selected");
+            accountSettings.classList.add("hidden");
+            accountSettings.style.transform = "translateX(-50px)";
+            setTimeout(function () {
+                billingSettings.classList.remove("hidden");
+                if (billingSettings.style.transform) {
+                    billingSettings.style.transform = "translateX(-50px)";
+                }
+            }, 500);
+        })
+    </script>
 </body>
 
 </html>
