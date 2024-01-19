@@ -115,7 +115,7 @@ h2 {
 }
 .contenedor-perfil {
     display: block;
-    margin: 10%;
+    margin: 40px 20px 40px 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px 0 rgba(0,0,0, .5);
     background-color:#fff
@@ -123,11 +123,22 @@ h2 {
 .head-perfil {
     border: 2px solid black;
     display: flex;
+    position: relative;
+    
 }
+.name-perfil {
+    position: relative;
+    left: 10px;
+}
+.edit-perfil {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+}
+
 .info {
-    margin: 10%;
-    align-items: start;
-    justify-content: start;
+    margin: 20px 200px 20px 20px;
+    display: flex;
     box-shadow: 0 0 10px 0 rgba(0,0,0, .5);
 }
 footer {
@@ -138,6 +149,6 @@ footer {
     font-size: 14px;
 }
 #perfil {
-    background-color: #fff
+    background-color: #e0e0e0;
 }
 
