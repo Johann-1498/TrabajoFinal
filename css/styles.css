@@ -2,7 +2,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f9f4;
+    background-color: #fff;
 }
 
 header {
@@ -33,7 +33,6 @@ nav a:hover {
 
 section {
     text-align: center;
-    
     background-color: #fff;
     border-bottom: 1px solid #ddd;
 }
@@ -114,12 +113,31 @@ h2 {
     width: 40%;
     height: auto;
 }
-
+.contenedor-perfil {
+    display: block;
+    margin: 10%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0, .5);
+    background-color:#fff
+}
+.head-perfil {
+    border: 2px solid black;
+    display: flex;
+}
+.info {
+    margin: 10%;
+    align-items: start;
+    justify-content: start;
+    box-shadow: 0 0 10px 0 rgba(0,0,0, .5);
+}
 footer {
     background-color: #00843d;
     color: #fff;
     text-align: center;
     padding: 1em 0;
     font-size: 14px;
+}
+#perfil {
+    background-color: #fff
 }
 
