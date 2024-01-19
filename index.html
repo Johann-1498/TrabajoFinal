@@ -86,10 +86,12 @@
         let miPerfil = document.querySelector("#miPerfil");
         let iniciarSesionP = document.querySelector("#iniciarSesion");
         let value = "<a href='login_Register.html'>Registrate o Inicia Sesion</a>";
-        var datos;
+        let datos;
         if (document.cookie.split("=")[0] == "token_sesion") {
-            console.log(validarSesion());
-            miPerfil.innerHTML = "Bienvenido " + validarSesion();
+            validarSesion().then(data => {
+                miPerfil.innerHTML = "<a href='miPerfil.html'>Bienvenido " + data.name + "</a>";
+
+            });
         } else {
             iniciarSesionP.innerHTML = value;
         }

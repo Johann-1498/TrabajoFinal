@@ -9,28 +9,34 @@ closeSession.addEventListener("click", () => {
     window.location.reload();
 });
 function ifPageIsNecesaryValidate() {
+    let tokenSesion = obtenerTokenDeSesion();
     if (tokenSesion == null) {
         window.location.href = "login_Register.html"
     }
     validarSesion();
 }
 function validarSesion() {
-    let datos;
-    let tokenSesion = obtenerTokenDeSesion();
-    let rutaArchivo = 'cgi-bin/sesion.pl?token=' + tokenSesion;
-    fetch(rutaArchivo)
-        .then(response => {
-            if (!response.ok) {
-                eliminarCookie();
-                alert("Hubo un problema al verificar tu sesion");
-            }
-            return response.json();
-        })
-        .then(data => {
-            datos = data;
-        });
-    return datos;
+    return new Promise((resolve, reject) => {
+        let tokenSesion = obtenerTokenDeSesion();
+        let rutaArchivo = 'cgi-bin/sesion.pl?token=' + tokenSesion;
+
+        fetch(rutaArchivo)
+            .then(response => {
+                if (!response.ok) {
+                    eliminarCookie();
+                    reject("Hubo un problema al verificar tu sesion");
+                }
+                return response.json();
+            })
+            .then(data => {
+                resolve(data);
+            })
+            .catch(error => {
+                reject(error);
+            });
+    });
 }
+
 function obtenerTokenDeSesion() {
     let cookies = document.cookie;
     let [nombre, valor] = cookies.split('=');
