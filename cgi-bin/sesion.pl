@@ -2,7 +2,6 @@
 use strict;
 use warnings;
 use CGI;
-use CGI::Cookie;
 use JSON;
 use DBI;
 

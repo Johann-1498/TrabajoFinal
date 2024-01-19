@@ -90,8 +90,9 @@ main h2 {
 
 .informationContainer {
     text-align: start;
-    width: 60%;
+    width: 100%;
     padding: 15px;
+    position: relative;
 }
 
 .informationContainer h4 {
@@ -120,4 +121,12 @@ main .control span {
 
 .selected {
     border-bottom: 2px rgb(0, 140, 255) solid;
+}
+
+.editInformation {
+    all: unset;
+    cursor: pointer;
+    position: absolute;
+    top: 30px;
+    right: 30px;
 }
