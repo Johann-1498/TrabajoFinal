@@ -107,18 +107,16 @@
                     p[i].style.display = "none";
                 });
                 saveButtons[i].addEventListener("click", () => {
-                    const data = {
-                        columna: inputs[i].name,
-                        valor: inputs[i].value,
-                        token_sesion: obtenerTokenDeSesion(),
-                    };
+                    const form = new FormData();
+                    form.append("columna", inputs[i].name);
+                    form.append("valor", inputs[i].value);
                     console.log(data);
                     fetch("cgi-bin/editInformation.pl", {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify(data),
+                        body: form
                     }).then(response => response.json())
                         .then(data => {
                             if (data.success) {
