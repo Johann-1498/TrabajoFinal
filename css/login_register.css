@@ -216,3 +216,23 @@ main p span {
 section {
     margin: 40px;
 }
+
+@media screen and (max-width: 767px) {
+    main {
+        width: 100vw;
+        flex-direction: column;
+    }
+
+    main section .containers {
+        width: 100%;
+    }
+
+    section {
+        width: 90%;
+        margin: 0;
+    }
+
+    section img {
+        display: none;
+    }
+}
