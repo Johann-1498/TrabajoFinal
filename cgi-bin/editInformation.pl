@@ -28,7 +28,7 @@ if ($token_sesion, $clave, $valor) {
 
 }
 sub cargar_datos_a_tabla {
-    my ($token, $columa, $valor) = @_;
+    my ($token, $columna, $valor) = @_;
     my $dbh = DBI->connect("DBI:mysql:database=trabajofinal;host=localhost", "root", "753159", { RaiseError => 1 });
     my $query = "UPDATE users SET $columna = ? WHERE token_sesion = ?";
     my $sth = $dbh->prepare($query);
