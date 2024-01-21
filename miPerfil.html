@@ -108,7 +108,8 @@
                 });
                 saveButtons[i].addEventListener("click", () => {
                     const data = {
-                        [inputs[i].name]: inputs[i].value,
+                        columna: inputs[i].name,
+                        valor: inputs[i].value,
                         token_sesion: obtenerTokenDeSesion(),
                     };
                     console.log(data);
@@ -117,7 +118,7 @@
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify({ newData: data }),
+                        body: JSON.stringify(data),
                     }).then(response => response.json())
                         .then(data => {
                             if (data.success) {

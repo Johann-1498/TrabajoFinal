@@ -7,15 +7,11 @@ use DBI;
 use Data::Dumper;
 
 my $cgi = CGI->new;
-
-my $token_sesion = $cgi->param('token');
-my $new_data = $cgi->param('newData');
-print STDERR "Contenido del JSON recibido: " . Dumper($new_data);
-my $decoded_json = decode_json($new_data);
-my @claves = keys %$decoded_json;
-my @valores = values %$decoded_json;
-if ($token_sesion && @claves && @valores) {
-    my $datos_usuario = cargar_datos_a_tabla($token_sesion, \@claves, \@valores);
+my $token_sesion = $cgi->param("token_sesion");
+my $columna = $cgi->param("columna");
+my $valor = $cgi->param("valor");
+if ($token_sesion && $columna && $valor) {
+    my $datos_usuario = cargar_datos_a_tabla($token_sesion, $columna, $valor);
     if ($datos_usuario) {
         print $cgi->header(-type => 'application/json', -status => '200 OK');
         print '{"success": true}';
@@ -29,11 +25,11 @@ if ($token_sesion && @claves && @valores) {
 }
 
 sub cargar_datos_a_tabla {
-    my ($token, $claves, $valores) = @_;
+    my ($token, $columna, $valor) = @_;
     my $dbh = DBI->connect("DBI:mysql:database=trabajofinal;host=localhost", "root", "753159", { RaiseError => 1 });
-    my $query = "UPDATE users SET $claves[0] = ? WHERE token_sesion = ?";
+    my $query = "UPDATE users SET $columna = ? WHERE token_sesion = ?";
     my $sth = $dbh->prepare($query);
-    my $filas_afectadas = $sth->execute($valores[0], $token);
+    my $filas_afectadas = $sth->execute($valor, $token);
     $dbh->disconnect();
     return $filas_afectadas;
 }
