@@ -1,4 +1,4 @@
-//ifPageIsNecesaryValidate();
+ifPageIsNecesaryValidate();
 var userEmail = document.getElementById("userEmail");
 var userName = document.getElementById("userName");
 var userPhone = document.getElementById("userPhone");
