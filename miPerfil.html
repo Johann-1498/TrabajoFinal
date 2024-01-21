@@ -111,7 +111,7 @@
                         [inputs[i].name]: inputs[i].value,
                         token_sesion: obtenerTokenDeSesion(),
                     };
-                    fetch("cgi-bin/sesion.pl", {
+                    fetch("cgi-bin/editInformation.pl", {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
