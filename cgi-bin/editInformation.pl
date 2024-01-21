@@ -9,6 +9,7 @@ my $cgi = CGI->new;
 
 my $token_sesion = $cgi->param('token');
 my $new_data = $cgi->param('newData');
+print STDERR "Contenido del JSON recibido: " . Dumper($new_data);
 my $decoded_json = decode_json($new_data);
 my @claves = keys %$decoded_json;
 my @valores = values %$decoded_json;
