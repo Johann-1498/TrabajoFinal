@@ -8,7 +8,7 @@ use DBI;
 my $cgi = CGI->new;
 
 my $token_sesion = $cgi->param('token');
-my &new_data = $cgi->param('newData');
+my $new_data = $cgi->param('newData');
 my $decoded_json = decode_json($new_data);
 my @claves = keys %$decoded_json;
 my @valores = values %$decoded_json;
