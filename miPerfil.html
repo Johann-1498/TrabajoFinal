@@ -30,51 +30,51 @@
         <section id="accountSettings" class="container fade-in-out">
             <div class="informationContainer">
                 <h4>Email Adress:</h4>
-                <p id="userEmail">xd@gmail.com</p>
-                <button class="editInformation" id="editEmail">Editar</button>
+                <p id="userEmail"></p>
+                <button class="editInformationButton" id="editEmail">Editar</button>
             </div>
             <hr>
             <div class="informationContainer">
                 <h4>Name:</h4>
-                <p id="userName">Juan</p>
-                <button class="editInformation" id="editName">Editar</button>
+                <p id="userName"></p>
+                <button class="editInformationButton" id="editName">Editar</button>
             </div>
             <hr>
 
             <div class="informationContainer">
                 <h4>Phone Number:</h4>
-                <p id="userPhone">123456789</p>
-                <button class="editInformation" id="editPhone">Editar</button>
+                <p id="userPhone"></p>
+                <button class="editInformationButton" id="editPhone">Editar</button>
             </div>
             <hr>
 
             <div class="informationContainer">
                 <h4>Cui:</h4>
-                <p id="userCui">123456789</p>
-                <button class="editInformation" id="editCui">Editar</button>
+                <p id="userCui"></p>
+                <button class="editInformationButton" id="editCui">Editar</button>
             </div>
         </section>
         <section id="billingSettings" class="container fade-in-out hidden">
             <div class="informationContainer">
                 <h4>Billing Card:</h4>
-                <p id="userCard">xd@gmail.com</p>
+                <p id="userCard"></p>
             </div>
             <hr>
             <div class="informationContainer">
                 <h4>Titular:</h4>
-                <p id="userName">Juan</p>
+                <p id="userName"></p>
             </div>
             <hr>
 
             <div class="informationContainer">
                 <h4>Phone Number:</h4>
-                <p id="userPhone">123456789</p>
+                <p id="userPhone"></p>
             </div>
             <hr>
 
             <div class="informationContainer">
                 <h4>Cui:</h4>
-                <p id="userCui">123456789</p>
+                <p id="userCui"></p>
             </div>
         </section>
     </main>
@@ -85,57 +85,22 @@
         <p>&copy; 2024 Supermercado XYZ</p>
     </footer>
     <script src="js/validateSession.js"></script>
+    <script src="js/miPerfil.js"></script>
     <script>
-        ifPageIsNecesaryValidate();
-        var userEmail = document.getElementById("userEmail");
-        var userName = document.getElementById("userName");
-        var userPhone = document.getElementById("userPhone");
-        var userCui = document.getElementById("userCui");
-        let datos;
-        validarSesion().then(response => {
-            datos = response;
-            userEmail.innerHTML = datos.email;
-            userName.innerHTML = datos.name;
-            userPhone.innerHTML = datos.telefono;
-            userCui.innerHTML = datos.cui;
-        });
-        let accountSettings = document.querySelector("#accountSettings");
-        accountSettings.style.zIndex = "1";
-        let billingSettings = document.querySelector("#billingSettings");
-        let changeSettingAccount = document.querySelector("#changeSettingAccount");
-        let changeSettingBilling = document.querySelector("#changeSettingBilling");
-        changeSettingAccount.addEventListener("click", () => {
-            accountSettings.style.zIndex = "1";
-            billingSettings.style.zIndex = "0";
-
-            changeSettingAccount.classList.add("selected");
-            changeSettingBilling.classList.remove("selected");
-            billingSettings.classList.add("hidden");
-            billingSettings.style.transform = "translateX(50px)";
-            setTimeout(function () {
-                accountSettings.classList.remove("hidden");
-                console.log(accountSettings.style.transform);
-                if (accountSettings.style.transform) {
-                    accountSettings.style.transform = "translateX(50px)";
-                }
-
-
-            }, 500);
-        })
-        changeSettingBilling.addEventListener("click", () => {
-            billingSettings.style.zIndex = "1";
-            accountSettings.style.zIndex = "0";
-            changeSettingBilling.classList.add("selected");
-            changeSettingAccount.classList.remove("selected");
-            accountSettings.classList.add("hidden");
-            accountSettings.style.transform = "translateX(-50px)";
-            setTimeout(function () {
-                billingSettings.classList.remove("hidden");
-                if (billingSettings.style.transform) {
-                    billingSettings.style.transform = "translateX(-50px)";
-                }
-            }, 500);
-        })
+        let editButtons = document.querySelectorAll(".editInformationButton");
+        let informationContainer = document.querySelectorAll(".informationContainer");
+        let inputs = [];
+        function buttonsEventListener() {
+            for (let i = 0; i < editButtons.length; i++) {
+                inputs.push(document.createElement("input"));
+                inputs[i].name = editButtons[i].id.substring(4).toLowerCase();
+                console.log(inputs[i].name);
+                editButtons[i].addEventListener("click", () => {
+                    informationContainer[i].append(inputs[i]);
+                    inputs[i].value = datos[inputs[i].id];
+                });
+            }
+        }
     </script>
 </body>
 

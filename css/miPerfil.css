@@ -123,7 +123,7 @@ main .control span {
     border-bottom: 2px rgb(0, 140, 255) solid;
 }
 
-.editInformation {
+.editInformationButton {
     all: unset;
     cursor: pointer;
     position: absolute;
