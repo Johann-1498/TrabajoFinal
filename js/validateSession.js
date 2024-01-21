@@ -18,7 +18,7 @@ function ifPageIsNecesaryValidate() {
 function validarSesion() {
     return new Promise((resolve, reject) => {
         let tokenSesion = obtenerTokenDeSesion();
-        let rutaArchivo = 'cgi-bin/sesion.pl?token=' + tokenSesion;
+        let rutaArchivo = 'cgi-bin/editInformation.pl?token=' + tokenSesion;
 
         fetch(rutaArchivo)
             .then(response => {
