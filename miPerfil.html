@@ -111,6 +111,7 @@
                         [inputs[i].name]: inputs[i].value,
                         token_sesion: obtenerTokenDeSesion(),
                     };
+                    console.log(data);
                     fetch("cgi-bin/editInformation.pl", {
                         method: 'POST',
                         headers: {
