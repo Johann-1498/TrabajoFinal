@@ -8,7 +8,7 @@ validarSesion().then(response => {
     datos = response;
     userEmail.innerHTML = datos.email;
     userName.innerHTML = datos.name;
-    userPhone.innerHTML = datos.telefono;
+    userPhone.innerHTML = datos.phone;
     userCui.innerHTML = datos.cui;
     buttonsEventListener();
 });
