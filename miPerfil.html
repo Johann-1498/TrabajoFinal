@@ -116,13 +116,7 @@
                         body: form
                     }).then(response => response.json())
                         .then(data => {
-                            if (data.success) {
-                                alert("Datos Actualizados Correctamente!");
-                                window.location.reload();
-                            } else {
-                                alert("Hubo Un Problema Al Actualizar Sus Datos");
-                                window.location.reload();
-                            }
+                            console.log(data.success);
                         });
                 });
             }

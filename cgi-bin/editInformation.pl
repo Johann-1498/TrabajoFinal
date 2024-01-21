@@ -17,11 +17,11 @@ if ($token_sesion && $columna && $valor) {
         print '{"success": true}';
     } else {
         print $cgi->header(-type => 'text/plain', -status => '500 Internal Server Error');
-        print '{"success": false}';
+        print '{"success": "error en la conexion a bd"}';
     }
 } else {
     print $cgi->header(-type => 'text/plain', -status => '500 Internal Server Error');
-    print '{"success": false}';
+    print '{"success": "error al rcibir los datos"}';
 }
 
 sub cargar_datos_a_tabla {
