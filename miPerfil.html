@@ -110,7 +110,7 @@
                     const form = new FormData();
                     form.append("columna", inputs[i].name);
                     form.append("valor", inputs[i].value);
-                    form.append("token_Sesion", obetenerTokenDeSesion());
+                    form.append("token_sesion", obetenerTokenDeSesion());
                     console.log(form);
                     fetch("cgi-bin/editInformation.pl", {
                         method: 'POST',
