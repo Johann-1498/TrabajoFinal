@@ -116,7 +116,7 @@
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify(data),
+                        body: JSON.stringify({ newData: data }),
                     }).then(response => response.json())
                         .then(data => {
                             if (data.success) {

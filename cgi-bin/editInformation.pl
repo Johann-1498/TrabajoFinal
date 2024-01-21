@@ -8,16 +8,8 @@ use DBI;
 my $cgi = CGI->new;
 
 my $token_sesion = $cgi->param('token');
-my $new_data = $cgi->param('newdata');
-
-# Agrega líneas de depuración para imprimir el contenido del JSON
-print STDERR "Contenido del JSON recibido: $new_data\n";
-
-my $decoded_json = eval { decode_json($new_data) };
-if ($@) {
-    # Imprime mensajes de error si hay un problema con el JSON
-    print STDERR "Error al decodificar JSON: $@\n";
-}
+my &new_data = $cgi->param('newData');
+my $decoded_json = decode_json($new_data);
 my @claves = keys %$decoded_json;
 my @valores = values %$decoded_json;
 if ($token_sesion && @claves && @valores) {
