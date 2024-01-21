@@ -110,12 +110,9 @@
                     const form = new FormData();
                     form.append("columna", inputs[i].name);
                     form.append("valor", inputs[i].value);
-                    console.log(data);
+                    console.log(form);
                     fetch("cgi-bin/editInformation.pl", {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
                         body: form
                     }).then(response => response.json())
                         .then(data => {
@@ -130,7 +127,6 @@
                 });
             }
         }
-
     </script>
 </body>
 
