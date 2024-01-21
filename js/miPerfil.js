@@ -24,12 +24,12 @@ changeSettingAccount.addEventListener("click", () => {
     changeSettingAccount.classList.add("selected");
     changeSettingBilling.classList.remove("selected");
     billingSettings.classList.add("hidden");
-    billingSettings.style.transform = "translateX(50px)";
+    // billingSettings.style.transform = "translateX(50px)";
     setTimeout(function () {
         accountSettings.classList.remove("hidden");
         console.log(accountSettings.style.transform);
         if (accountSettings.style.transform) {
-            accountSettings.style.transform = "translateX(50px)";
+            // accountSettings.style.transform = "translateX(50px)";
         }
 
 
@@ -41,11 +41,11 @@ changeSettingBilling.addEventListener("click", () => {
     changeSettingBilling.classList.add("selected");
     changeSettingAccount.classList.remove("selected");
     accountSettings.classList.add("hidden");
-    accountSettings.style.transform = "translateX(-50px)";
+    // accountSettings.style.transform = "translateX(-50px)";
     setTimeout(function () {
         billingSettings.classList.remove("hidden");
         if (billingSettings.style.transform) {
-            billingSettings.style.transform = "translateX(-50px)";
+            // billingSettings.style.transform = "translateX(-50px)";
         }
     }, 500);
 })
