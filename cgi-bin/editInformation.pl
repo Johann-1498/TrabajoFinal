@@ -10,7 +10,6 @@ my $cgi = CGI->new;
 my $token_sesion = $cgi->param("token_sesion");
 my $columna = $cgi->param("columna");
 my $valor = $cgi->param("valor");
-print '{"token_sesion":"' . $token_sesion . '","columna":"' . $columna . '","valor":"' . $valor . '"}';
 if ($token_sesion && $columna && $valor) {
     my $datos_usuario = cargar_datos_a_tabla($token_sesion, $columna, $valor);
     if ($datos_usuario) {
@@ -18,11 +17,11 @@ if ($token_sesion && $columna && $valor) {
         print '{"success": true}';
     } else {
         print $cgi->header(-type => 'text/plain', -status => '500 Internal Server Error');
-        print '{"success": "error en la conexion a bd"}';
+        print '{"success": "Error en la conexion a bd"}';
     }
 } else {
     print $cgi->header(-type => 'text/plain', -status => '500 Internal Server Error');
-    print '{"success": "error al rcibir los datos"}';
+    print '{"success": "error al recibir los datos"}';
 }
 
 sub cargar_datos_a_tabla {

@@ -110,14 +110,18 @@
                     const form = new FormData();
                     form.append("columna", inputs[i].name);
                     form.append("valor", inputs[i].value);
-                    form.append("token_sesion", obetenerTokenDeSesion());
+                    form.append("token_sesion", obtenerTokenDeSesion());
                     console.log(form);
                     fetch("cgi-bin/editInformation.pl", {
                         method: 'POST',
                         body: form
                     }).then(response => response.json())
                         .then(data => {
-                            console.log(data);
+                            if (data.success != true) {
+                                alert(data.success)
+                            } else {
+                                alert("Datos Actualizados Correctamente");
+                            }
                         });
                 });
             }
