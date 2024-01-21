@@ -10,6 +10,7 @@ my $cgi = CGI->new;
 my $token_sesion = $cgi->param("token_sesion");
 my $columna = $cgi->param("columna");
 my $valor = $cgi->param("valor");
+print '{"token_sesion":"' . $token_sesion . '","columna":"' . $columna . '","valor":"' . $valor . '"}';
 if ($token_sesion && $columna && $valor) {
     my $datos_usuario = cargar_datos_a_tabla($token_sesion, $columna, $valor);
     if ($datos_usuario) {
