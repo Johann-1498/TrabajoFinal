@@ -130,3 +130,9 @@ main .control span {
     top: 30px;
     right: 30px;
 }
+
+@media screen and (max-width: 767px) {
+    .container {
+        width: 90%;
+    }
+}
