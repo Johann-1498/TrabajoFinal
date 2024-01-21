@@ -10,8 +10,8 @@ my $cgi = CGI->new;
 my $token_sesion = $cgi->param('token');
 my $new_data = $cgi->param('newdata');
 my $decoded_json = decode_json($new_data);
-my $clave = keys %$decode_json;
-my $valor = values %$decode_json;
+my $clave = keys %$decoded_json;
+my $valor = values %$decoded_json;
 if ($token_sesion, $clave, $valor) {
         my $datos_usuario = cargar_datos_a_tabla($token_sesion);
         if ($datos_usuario) {

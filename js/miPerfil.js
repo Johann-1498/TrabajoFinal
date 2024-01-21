@@ -1,4 +1,4 @@
-ifPageIsNecesaryValidate();
+//ifPageIsNecesaryValidate();
 var userEmail = document.getElementById("userEmail");
 var userName = document.getElementById("userName");
 var userPhone = document.getElementById("userPhone");
@@ -10,7 +10,7 @@ validarSesion().then(response => {
     userName.innerHTML = datos.name;
     userPhone.innerHTML = datos.telefono;
     userCui.innerHTML = datos.cui;
-    buttonsEventListener();
+    //buttonsEventListener();
 });
 let accountSettings = document.querySelector("#accountSettings");
 accountSettings.style.zIndex = "1";
