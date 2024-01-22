@@ -61,13 +61,20 @@ for (let i = 0; i < listItem.length; i++) {
 //Codigo de la agregacion de items al carrito
 let buttonsAddItem = document.querySelectorAll(".listItems .item button");
 let items = document.querySelectorAll(".listItems .item");
-let idAux;
+let carrito = {};
 for (let i = 0; i < items.length; i++) {
     buttonsAddItem[i].addEventListener("click", () => {
         if (esValidaLaSesion) {
             alert("Porducto añadido al carrito: " + items[i].id);
+            if (carrito[items[i].id]) {
+                carrito[items[i].id]++;
+            } else {
+                carrito[items[i].id] = 0;
+            }
+            localStorage.setItem("Carrito", JSON.stringify(carrito));
+            console.log(localStorage.getItem("Carrito"));
         } else {
-            alert("Inicia la Sesion antes de Continuar");
+            alert("Inicia Sesion antes de Continuar");
         }
     });
 }
