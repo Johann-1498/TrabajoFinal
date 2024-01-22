@@ -49,6 +49,24 @@ nav a:hover {
     color: #e74c3c;
 }
 
+#carrito {
+    position: relative;
+    font-size: 30px;
+}
+
+#carritoNum {
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-color: greenyellow;
+    font-size: 13px;
+    color: black;
+    border-radius: 50%;
+    top: 0px;
+    right: 0px;
+}
+
 section {
     text-align: center;
     background-color: #fff;

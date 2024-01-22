@@ -23,6 +23,7 @@ let miPerfil = document.querySelector("#miPerfil");
 let iniciarSesionP = document.querySelector("#iniciarSesion");
 let value = "<a href='login_Register.html'>Registrate o Inicia Sesion</a>";
 let bienvenida = document.querySelector("#bienvenidaH2");
+let carritoDom = document.querySelector("#carrito");
 let datos;
 let esValidaLaSesion;
 if (document.cookie.split("=")[0] == "token_sesion") {
@@ -33,6 +34,7 @@ if (document.cookie.split("=")[0] == "token_sesion") {
         esValidaLaSesion = true;
     });
 } else {
+    //carritoDom.style.display = "none";
     esValidaLaSesion = false;
     iniciarSesionP.innerHTML = value;
 }
@@ -61,11 +63,13 @@ for (let i = 0; i < listItem.length; i++) {
 //Codigo de la agregacion de items al carrito
 let buttonsAddItem = document.querySelectorAll(".listItems .item button");
 let items = document.querySelectorAll(".listItems .item");
+let carritoNum = document.querySelector("#carritoNum");
+carritoNum.textContent = 0;
 let carrito = {};
 for (let i = 0; i < items.length; i++) {
     buttonsAddItem[i].addEventListener("click", () => {
         if (esValidaLaSesion) {
-            alert("Porducto añadido al carrito: " + items[i].id);
+            carritoNum.textContent++;
             if (carrito[items[i].id]) {
                 carrito[items[i].id]++;
             } else {
