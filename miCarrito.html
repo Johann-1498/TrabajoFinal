@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/miCarrito.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <img src="img/celtic_6043595.png" alt height="70px">
+        <h1>Supermercado XYZ</h1>
+    </header>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="clientes.html">Catálogos de ofertas</a>
+        <a href="tarjetas.html">Nuestras ofertas</a>
+        <a href="cuentas.html">Productos</a>
+        <a href='miPerfil.html'>Mi Perfil</a>
+
+    </nav>
+    <main>
+        <section id="miCarrito" class="container">
+        </section>
+
+    </main>
+
+    <button id="closeSession">XDDD</button>
+
+    <footer>
+        <p>&copy; 2024 Supermercado XYZ</p>
+    </footer>
+    <script type="module">
+        import Item from './js/Item.js';
+        let miCarrito = document.querySelector("#miCarrito");
+        let items = [];
+        let itemContainers = [];
+        let optionForPurchaseArray = [];
+        class OptionsForPurchase {
+            constructor(id, amount, price) {
+                this.id = id;
+                this.amount = amount;
+                this.price = price
+            }
+            getOptionsHtmlObject() {
+                let htmlObject = document.createElement("div");
+            }
+        }
+        for (let i = 0; i < 5; i++) {
+            itemContainers.push(document.createElement("div"));
+            items.push(new Item("fresa", "9.00", "fresarica", "https://media.freshmart.pe/__sized__/products/10613-Fresa_454g-thumbnail-255x255-70.jpg"
+            ));
+            itemContainers[i].className = "itemContainer";
+            itemContainers[i].append(items[i].getItemHtmlObject());
+            optionForPurchaseArray.push(document.createElement("div"));
+            optionForPurchaseArray[i].className = "optionsForPurchase";
+            optionForPurchaseArray[i].append()
+
+            itemContainers[i].append(optionForPurchaseArray[i]);
+            miCarrito.append(itemContainers[i]);
+        }
+
+    </script>
+</body>
+
+</html>

@@ -34,7 +34,7 @@ if (document.cookie.split("=")[0] == "token_sesion") {
         esValidaLaSesion = true;
     });
 } else {
-    //carritoDom.style.display = "none";
+    carritoDom.style.display = "none";
     esValidaLaSesion = false;
     iniciarSesionP.innerHTML = value;
 }
