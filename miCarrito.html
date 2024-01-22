@@ -65,8 +65,8 @@
         let carritoInfo = JSON.parse(localStorage.getItem("Carrito"));
         console.log(carritoInfo);
         let miCarrito = document.querySelector("#miCarrito");
-        let items = [];
-        let itemContainers = [];
+        let items;
+        let itemContainers;
         let precioTotal = 0
         let carritoInfoKeys = Object.keys(carritoInfo);
         carritoInfoKeys.forEach(clave => {
@@ -74,14 +74,14 @@
             imprimiDatos(clave, valor);
         });
         function imprimiDatos(nombre, amount) {
-            itemContainers.push(document.createElement("div"));
-            items.push(new Item(nombre, "9.00", amount, "fresarica", "https://media.freshmart.pe/__sized__/products/10613-Fresa_454g-thumbnail-255x255-70.jpg"
-            ));
-            itemContainers[i].className = "itemContainer";
-            itemContainers[i].append(items[i].getItemHtmlObject());
-            itemContainers[i].append(new OptionsForPurchase(items[i].id, items[i].amount, items[i].price).getOptionsHtmlObject());
-            miCarrito.append(itemContainers[i]);
-            precioTotal += items[i].getPrecioTotal();
+            itemContainers = (document.createElement("div"))
+            items = new Item(nombre, "9.00", amount, "fresarica", "https://media.freshmart.pe/__sized__/products/10613-Fresa_454g-thumbnail-255x255-70.jpg"
+            );
+            itemContainers.className = "itemContainer";
+            itemContainers.append(items.getItemHtmlObject());
+            itemContainers.append(new OptionsForPurchase(items.id, items.amount, items.price).getOptionsHtmlObject());
+            miCarrito.append(itemContainers);
+            precioTotal += items.getPrecioTotal();
         }
         let finalPriceDiv = document.querySelector("#finalPrice");
         finalPriceDiv.innerHTML = "<p>PRECIO TOTAL: S/." + precioTotal + "</p>"
