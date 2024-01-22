@@ -73,7 +73,7 @@ for (let i = 0; i < items.length; i++) {
             if (carrito[items[i].id]) {
                 carrito[items[i].id]++;
             } else {
-                carrito[items[i].id] = 0;
+                carrito[items[i].id] = 1;
             }
             localStorage.setItem("Carrito", JSON.stringify(carrito));
             console.log(localStorage.getItem("Carrito"));
