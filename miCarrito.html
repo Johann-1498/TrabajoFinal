@@ -24,7 +24,12 @@
 
     </nav>
     <main>
-        <section id="miCarrito" class="container">
+        <section class="container">
+            <div id="miCarrito">
+            </div>
+            <div id="finalPrice">
+
+            </div>
         </section>
 
     </main>
@@ -36,10 +41,6 @@
     </footer>
     <script type="module">
         import Item from './js/Item.js';
-        let miCarrito = document.querySelector("#miCarrito");
-        let items = [];
-        let itemContainers = [];
-        let optionForPurchaseArray = [];
         class OptionsForPurchase {
             constructor(id, amount, price) {
                 this.id = id;
@@ -48,21 +49,35 @@
             }
             getOptionsHtmlObject() {
                 let htmlObject = document.createElement("div");
+                htmlObject.className = "optionsForPurchase";
+                htmlObject.id = this.id;
+                let finalPrice = document.createElement("p");
+                finalPrice.textContent = "Precio final : " + this.getPrecioTotal();
+                let amount = document.createElement("p");
+                amount.textContent = "Cantidad de " + this.id + " : " + this.amount;
+                htmlObject.append(amount, finalPrice);
+                return htmlObject;
+            }
+            getPrecioTotal() {
+                return this.amount * this.price
             }
         }
+        let miCarrito = document.querySelector("#miCarrito");
+        let items = [];
+        let itemContainers = [];
+        let precioTotal = 0
         for (let i = 0; i < 5; i++) {
             itemContainers.push(document.createElement("div"));
-            items.push(new Item("fresa", "9.00", "fresarica", "https://media.freshmart.pe/__sized__/products/10613-Fresa_454g-thumbnail-255x255-70.jpg"
+            items.push(new Item("pera", "9.00", 10, "fresarica", "https://media.freshmart.pe/__sized__/products/10613-Fresa_454g-thumbnail-255x255-70.jpg"
             ));
             itemContainers[i].className = "itemContainer";
             itemContainers[i].append(items[i].getItemHtmlObject());
-            optionForPurchaseArray.push(document.createElement("div"));
-            optionForPurchaseArray[i].className = "optionsForPurchase";
-            optionForPurchaseArray[i].append()
-
-            itemContainers[i].append(optionForPurchaseArray[i]);
+            itemContainers[i].append(new OptionsForPurchase(items[i].id, items[i].amount, items[i].price).getOptionsHtmlObject());
             miCarrito.append(itemContainers[i]);
+            precioTotal += items[i].getPrecioTotal();
         }
+        let finalPriceDiv = document.querySelector("#finalPrice");
+        finalPriceDiv.innerHTML = "<p>PRECIO TOTAL: S/." + precioTotal + "</p>"
 
     </script>
 </body>

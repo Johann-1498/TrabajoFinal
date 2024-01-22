@@ -1,9 +1,10 @@
 export default class Item {
-    constructor(id, precio, desc, imgSrc) {
+    constructor(id, price, amount, desc, imgSrc) {
         this.id = id;
-        this.precio = precio;
+        this.price = price;
         this.desc = desc;
         this.imgSrc = imgSrc;
+        this.amount = amount;
     }
     getItemHtmlObject(llevaBoton) {
         let htmlObject = document.createElement("div");
@@ -17,11 +18,14 @@ export default class Item {
         }
         let img = new Image();
         img.src = this.imgSrc;
-        let precio = document.createElement("p");
-        precio.innerHTML = `S/&nbsp;${this.precio} /kg`;
+        let price = document.createElement("p");
+        price.innerHTML = `S/&nbsp;${this.price} /kg`;
         let desc = document.createElement("p");
         desc.innerHTML = this.desc;
-        htmlObject.append(img, precio, desc);
+        htmlObject.append(img, price, desc);
         return htmlObject;
+    }
+    getPrecioTotal() {
+        return this.amount * this.price
     }
 }

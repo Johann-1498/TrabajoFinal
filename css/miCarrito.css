@@ -85,7 +85,8 @@ footer {
 }
 
 .optionsForPurchase {
-    width: 150px;
+    margin: 20px;
+    width: auto;
     height: auto;
 }
 
