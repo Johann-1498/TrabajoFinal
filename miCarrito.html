@@ -62,7 +62,7 @@
                 return this.amount * this.price
             }
         }
-        let carritoInfo = JSON.parse.getItem("Carrito");
+        let carritoInfo = JSON.parse(localStorage.getItem("Carrito"));
         console.logs(carritoInfo);
         let miCarrito = document.querySelector("#miCarrito");
         let items = [];
