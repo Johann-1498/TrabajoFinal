@@ -16,7 +16,7 @@ function ifPageIsNecesaryValidate() {
     validarSesion();
 }
 function validarSesion() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         let tokenSesion = obtenerTokenDeSesion();
         let rutaArchivo = 'cgi-bin/sesion.pl?token=' + tokenSesion;
 
@@ -24,15 +24,11 @@ function validarSesion() {
             .then(response => {
                 if (!response.ok) {
                     eliminarCookie();
-                    reject("Hubo un problema al verificar tu sesion");
                 }
                 return response.json();
             })
             .then(data => {
                 resolve(data);
-            })
-            .catch(error => {
-                reject(error);
             });
     });
 }

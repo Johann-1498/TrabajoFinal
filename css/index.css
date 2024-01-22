@@ -118,6 +118,7 @@ main {
     max-width: 44%;
     font-size: 30px;
     cursor: pointer;
+    position: relative;
 }
 
 .item:hover {
@@ -132,6 +133,17 @@ main {
 
 .item p {
     font-size: 12px;
+}
+
+.item .agregarItemAlCarrito {
+    all: unset;
+    position: absolute;
+    height: 30px;
+}
+
+.item .agregarItemAlCarrito:hover {
+    outline: 2px solid rgb(178, 169, 169);
+
 }
 
 .gruposDeCosas {
