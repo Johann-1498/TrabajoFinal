@@ -66,6 +66,9 @@ let items = document.querySelectorAll(".listItems .item");
 let carritoNum = document.querySelector("#carritoNum");
 carritoNum.textContent = 0;
 let carrito = {};
+if (localStorage.getItem("Carrito")) {
+    carrito = JSON.parse(localStorage.getItem("Carrito"));
+}
 for (let i = 0; i < items.length; i++) {
     buttonsAddItem[i].addEventListener("click", () => {
         if (esValidaLaSesion) {
