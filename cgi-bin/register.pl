@@ -14,7 +14,6 @@ my $table     = 'users';
 sub generar_token_sesion {
     my $tiempo_actual = time();
     my $token = sha1_hex($tiempo_actual, rand());
-
     return $token;
 }
 my $token_sesion = generar_token_sesion();

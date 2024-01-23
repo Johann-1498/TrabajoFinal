@@ -1,8 +1,8 @@
 ifPageIsNecesaryValidate();
-var userEmail = document.getElementById("userEmail");
-var userName = document.getElementById("userName");
-var userPhone = document.getElementById("userPhone");
-var userCui = document.getElementById("userCui");
+let userEmail = document.getElementById("userEmail");
+let userName = document.getElementById("userName");
+let userPhone = document.getElementById("userPhone");
+let userCui = document.getElementById("userCui");
 let datos;
 validarSesion().then(response => {
     datos = response;
@@ -61,7 +61,6 @@ function buttonsEventListener() {
         saveButtons[i].classList.add("editInformationButton");
         saveButtons[i].innerHTML = "Guardar";
         inputs[i].name = editButtons[i].id.substring(4).toLowerCase();
-        console.log(inputs[i].name);
         editButtons[i].addEventListener("click", () => {
             editButtons[i].style.display = "none";
             informationContainer[i].append(inputs[i], saveButtons[i]);
@@ -73,7 +72,6 @@ function buttonsEventListener() {
             form.append("columna", inputs[i].name);
             form.append("valor", inputs[i].value);
             form.append("token_sesion", obtenerTokenDeSesion());
-            console.log(form);
             fetch("cgi-bin/editInformation.pl", {
                 method: 'POST',
                 body: form

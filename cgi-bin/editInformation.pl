@@ -5,7 +5,6 @@ use CGI;
 use JSON;
 use DBI;
 use Data::Dumper;
-
 my $cgi = CGI->new;
 my $token_sesion = $cgi->param("token_sesion");
 my $columna = $cgi->param("columna");

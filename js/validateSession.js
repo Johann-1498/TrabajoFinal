@@ -19,7 +19,6 @@ function validarSesion() {
     return new Promise((resolve) => {
         let tokenSesion = obtenerTokenDeSesion();
         let rutaArchivo = 'cgi-bin/sesion.pl?token=' + tokenSesion;
-
         fetch(rutaArchivo)
             .then(response => {
                 if (!response.ok) {

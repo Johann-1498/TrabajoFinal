@@ -7,9 +7,6 @@ loginForm.addEventListener("submit", function (event) {
         method: 'POST',
         body: formData
     }).then(response => {
-        if (!response.ok) {
-            throw new Error("Error en la solicitud");
-        }
         return response.json();
     }).then(data => {
         console.log(data);
@@ -18,9 +15,8 @@ loginForm.addEventListener("submit", function (event) {
         } else {
             alert("Uusario o contraseña incorrectos")
         }
-    }).catch(error => {
-        console.error(error);
     });
+
 });
 registerForm.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -29,18 +25,12 @@ registerForm.addEventListener("submit", function (event) {
         method: 'POST',
         body: formDataReg
     }).then(response => {
-        if (!response.ok) {
-            throw new Error("Error en la solicitud");
-        }
         return response.json();
     }).then(data => {
-        console.log(data);
         if (data.success) {
             window.location.href = 'index.html';
         } else {
             alert("Ocurrio un error al crear el Usuario")
         }
-    }).catch(error => {
-        console.error(error);
     });
 });

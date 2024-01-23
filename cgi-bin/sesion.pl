@@ -4,11 +4,8 @@ use warnings;
 use CGI;
 use JSON;
 use DBI;
-
 my $cgi = CGI->new;
-
 my $token_sesion = $cgi->param('token');
-
 if ($token_sesion) {
         my $datos_usuario = cargar_datos_de_tabla($token_sesion);
         if ($datos_usuario) {
@@ -20,7 +17,7 @@ if ($token_sesion) {
         }
 }else{
     print $cgi->header(-type => 'text/plain', -status => '500 Internal Server Error');
-    print "Error al cargar datos del usuario";
+    print "Error al obtener el token";
 }
 sub cargar_datos_de_tabla {
     my ($token) = @_;
