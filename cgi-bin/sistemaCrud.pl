@@ -23,7 +23,7 @@ if ($token_sesion) {
 sub autenticar_usuario {
     my ($token) = @_;
     my $dbh = DBI->connect("DBI:mysql:database=trabajofinal;host=localhost", "root", "753159", { RaiseError => 1 });
-    my $query = "SELECT * FROM users WHERE token_sesion = ? AND rol = superAdmin OR rol = admin";
+   my $query = "SELECT * FROM users WHERE token_sesion = ? AND (rol = 'superAdmin' OR rol = 'admin')";
     my $sth = $dbh->prepare($query);
     $sth->execute($token);
     my $consulta_validada = $sth->fetchrow_hashref;
