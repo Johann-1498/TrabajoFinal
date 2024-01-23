@@ -79,7 +79,7 @@
                         tdCui.textContent = this.cui;
                         let tdTokenSesion = document.createElement("td");
                         tdTokenSesion.textContent =  this.tokenSesion;
-                        htmlObject.append(tdId, tdName, tdEmail, tdPassword, tdPhone, tdTokenSesion);
+                        htmlObject.append(tdId, tdName, tdEmail, tdPassword, tdPhone, tdCui, tdTokenSesion);
                         return htmlObject;
                     }
                 }
@@ -92,7 +92,7 @@
             for(let index in data){
                 json = data[index];
                     console.log(json);
-                    user = new trUser(json["id"], json["name"], json["email"], json["password"], json["phone"], json["cui"], json["tokenSesion"]);
+                    user = new trUser(json["id"], json["name"], json["email"], json["password"], json["phone"], json["cui"], json["token_sesion"]);
                     users.push(user);
                     tabla.append(user.getTrHtmlObject());
                     
