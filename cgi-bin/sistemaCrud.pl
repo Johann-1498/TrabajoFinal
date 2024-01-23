@@ -39,10 +39,9 @@ sub getTable {
     $sth->execute();
     my @users;
     
-    while(my $fila = $sth->fetchrow_arrayref) {
+    while(my $fila = $sth->fetchrow_hashref) {
         push @users, $fila;
     }
-    
     $sth->finish;
     $dbh->disconnect;
     return @users; 
