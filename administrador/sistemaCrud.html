@@ -13,38 +13,93 @@
 
     <body>
         <header>
-            <img src="img/celtic_6043595.png" alt height="70px">
+            <img src="i../mg/celtic_6043595.png" alt height="70px">
             <h1>Supermercado XYZ</h1>
         </header>
         <nav>
-            <a href="index.html">Inicio</a>
-            <a href="clientes.html">Catálogos de ofertas</a>
-            <a href="tarjetas.html">Nuestras ofertas</a>
-            <a href="cuentas.html">Productos</a>
-            <a href='miPerfil.html'>Mi Perfil</a>
+            <a href="../index.html">Inicio</a>
+            <a href="../clientes.html">Catálogos de ofertas</a>
+            <a href="../tarjetas.html">Nuestras ofertas</a>
+            <a href="../cuentas.html">Productos</a>
+            <a href='../miPerfil.html'>Mi Perfil</a>
 
         </nav>
 
         <main>
-            <section class="container">
-                <div id="miCarrito">
+            <div class="content">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Phone</th>
+                            <th>CUI</th>
+                            <th>TokenSesion/th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla">
+                        </tbody>
+                    </table>
                 </div>
-                <div id="finalPrice">
-                </div>
-            </section>
 
-        </main>
+            </main>
 
-        <button id="closeSession">XDDD</button>
+            <button id="closeSession">XDDD</button>
 
-        <footer>
-            <p>&copy; 2024 Supermercado XYZ</p>
-        </footer>
-        <script src="../js/validateSession.js"></script>
-        <script>
-        fetch("../cgi-bin/sistemaCrud.pl?token=" + obtenerTokenDeSesion()).then(response => response.json()).then(data => console.log(data));
+            <footer>
+                <p>&copy; 2024 Supermercado XYZ</p>
+            </footer>
+            <script src="../js/validateSession.js"></script>
+            <script>
+            class trUser {
+                    constructor(id,name,email,password,phone,cui,tokenSesion) {
+                        this.id = id;
+                        this.name = name;
+                        this.email = email;
+                        this.password = password;
+                        this.phone = phone;
+                        this.cui = cui;
+                        this.tokenSesion = tokenSesion;
+                    }
+                    getTrHtmlObject(){
+                        let htmlObject = document.createElement("tr");
+                        let tdId = document.createElement("td");
+                        tdId.textContent = this.id;
+                        let tdName = document.createElement("td");
+                        tdName.textContent = this.name;
+                        let tdEmail = document.createElement("td");
+                        tdEmail.textContent = this.email;
+                        let tdPassword = document.createElement("td");
+                        tdPassword.textContent = this.password;
+                        let tdPhone= document.createElement("td");
+                        tdPhone.textContent = this.phone;
+                        let tdCui = document.createElement("td");
+                        tdCui.textContent = this.cui;
+                        let tdTokenSesion = document.createElement("td");
+                        tdTokenSesion.textContent =  this.tokenSesion;
+                        htmlObject.append(tdId, tdName, tdEmail, tdPassword, tdPhone, tdTokenSesion);
+                        return htmlObject;
+                    }
+                }
+        fetch("../cgi-bin/sistemaCrud.pl?token=" + obtenerTokenDeSesion())
+        .then(response => response.json())
+        .then((data) =>{
+            let tabla = document.querySelector("#tabla");
+            let users = [];
+            let user;
+            for(let index in data){
+                valor = data[index];
+                for(let json in valor){
+                    user = new User(json[id], json[name], json[email], json[password], json[phone], json[cui], json[tokenSesion]);
+                    users.push(user);
+                    tabla.append(user.getTrHtmlObject());
+                    
+                }
+        }});
 
-    </script>
-    </body>
+        </script>
+        </body>
 
-</html>
+    </html>
