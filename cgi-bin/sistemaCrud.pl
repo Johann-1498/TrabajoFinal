@@ -47,5 +47,5 @@ sub getTable {
     }
     $sth->finish;
     $dbh->disconnect;
-    return @users; 
+    return \@users; 
 }
