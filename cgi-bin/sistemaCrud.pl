@@ -4,14 +4,17 @@ use warnings;
 use CGI;
 use JSON;
 use DBI;
+use Data::Dumper;
 my $cgi = CGI->new;
 my $token_sesion = $cgi->param('token');
 
 if ($token_sesion) {
         my $consulta_validada = autenticar_usuario($token_sesion);
         if ($consulta_validada) {
+            my $table_data = getTable();
+            print Dumper($table_data);
             print $cgi->header(-type => 'application/json', -status => '200 OK');
-            print encode_json(getTable());
+            print encode_json($table_data);
         } else {
             print $cgi->header(-type => 'text/plain', -status => '500 Internal Server Error');
             print "Error al cargar datos de la tabla" ;
@@ -44,5 +47,5 @@ sub getTable {
     }
     $sth->finish;
     $dbh->disconnect;
-    return /@users; 
+    return @users; 
 }
