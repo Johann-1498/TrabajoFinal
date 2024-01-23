@@ -34,13 +34,13 @@ sub autenticar_usuario {
 
 sub getTable {
     my $dbh = DBI->connect("DBI:mysql:database=trabajofinal;host=localhost", "root", "753159", { RaiseError => 1 });
-    my $query = "SELECT * FROM users ";
+    my $query = "SELECT * FROM users";
     my $sth = $dbh->prepare($query);
     $sth->execute();
     my @users;
     
     while(my $fila = $sth->fetchrow_arrayref) {
-        push @users, $fila->[0];
+        push @users, $fila;
     }
     
     $sth->finish;
