@@ -62,64 +62,6 @@ footer {
     font-size: 14px;
 }
 
-.container {
-    top: 70px;
-    padding: 5px 20px;
-    height: auto;
-    width: 60%;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 0 0 1px rgba(56, 60, 67, .05), 0 1px 3px 0 rgba(56, 60, 67, .15);
-    margin: 20px;
-
-}
-
-.itemContainer {
-    width: 100%;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 0 0 1px rgba(56, 60, 67, .05), 0 1px 3px 0 rgba(56, 60, 67, .15);
-    margin: 10px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.optionsForPurchase {
-    margin: 20px;
-    width: auto;
-    height: auto;
-}
-
-.item {
-    width: 150px;
-    padding: 10px;
-    max-width: 44%;
-    font-size: 30px;
-    cursor: pointer;
-    position: relative;
-}
-
-.item img {
-    border-radius: 6px;
-    width: 120px;
-    height: auto;
-}
-
-.item p {
-    font-size: 12px;
-}
-
-.item .agregarItemAlCarrito {
-    all: unset;
-    position: absolute;
-    height: 30px;
-}
-
-.item .agregarItemAlCarrito:hover {
-    outline: 2px solid rgb(178, 169, 169);
-
-}
-
 main {
     height: calc(100vh - 259px);
     position: relative;
