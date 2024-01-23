@@ -12,8 +12,8 @@ if ($token_sesion) {
         my $consulta_validada = autenticar_usuario($token_sesion);
         if ($consulta_validada) {
             my $table_data = getTable();
-            print Dumper($table_data);
             print $cgi->header(-type => 'application/json', -status => '200 OK');
+            print Dumper($table_data);
             print encode_json($table_data);
         } else {
             print $cgi->header(-type => 'text/plain', -status => '500 Internal Server Error');
