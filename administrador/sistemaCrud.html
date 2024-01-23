@@ -92,7 +92,7 @@
             for(let index in data){
                 valor = data[index];
                 for(let json in valor){
-                    user = new trUser(json[id], json[name], json[email], json[password], json[phone], json[cui], json[tokenSesion]);
+                    user = new trUser(json["id"], json["name"], json["email"], json["password"], json["phone"], json["cui"], json["tokenSesion"]);
                     users.push(user);
                     tabla.append(user.getTrHtmlObject());
                     
