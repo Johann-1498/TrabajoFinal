@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
+            rel='stylesheet'>
+        <link rel="stylesheet" href="../css/sistemaCrud.css">
+
+        <title>Document</title>
+    </head>
+
+    <body>
+        <header>
+            <img src="img/celtic_6043595.png" alt height="70px">
+            <h1>Supermercado XYZ</h1>
+        </header>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="clientes.html">Catálogos de ofertas</a>
+            <a href="tarjetas.html">Nuestras ofertas</a>
+            <a href="cuentas.html">Productos</a>
+            <a href='miPerfil.html'>Mi Perfil</a>
+
+        </nav>
+
+        <main>
+            <section class="container">
+                <div id="miCarrito">
+                </div>
+                <div id="finalPrice">
+                </div>
+            </section>
+
+        </main>
+
+        <button id="closeSession">XDDD</button>
+
+        <footer>
+            <p>&copy; 2024 Supermercado XYZ</p>
+        </footer>
+        <script src="../js/validateSession.js"></script>
+        <script>
+        fetch("../cgi-bin/sistemaCrud.pl?token=" + obtenerTokenDeSesion()).then(response => response.json()).then(data => console.log(data));
+
+    </script>
+    </body>
+
+</html>
