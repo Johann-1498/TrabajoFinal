@@ -90,13 +90,15 @@
             let users = [];
             let user;
             for(let index in data){
-                json = data[index];
-                console.log(json);
+                valor = data[index];
+                console.log(valor);
+                for(let json in valor){
                     console.log(json);
                     user = new trUser(json["id"], json["name"], json["email"], json["password"], json["phone"], json["cui"], json["tokenSesion"]);
                     users.push(user);
                     tabla.append(user.getTrHtmlObject());
                     
+                }
         }});
 
         </script>
