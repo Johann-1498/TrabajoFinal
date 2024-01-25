@@ -86,14 +86,15 @@
                         console.log(inputs[i]);
                         inputs[i].value = this[value];
                         inputs[i].style.display = "none";
-                        i++;
                         td[i].append(inputs[i]);
+                        i++;
 
                     }
                     if (value == "id") {
                         let input = document.createElement("input");
+                        input.style.display = "none";
                         input.name = value;
-                        inputs.value = this[value];
+                        inputs.value = this.id;
                         td[i].append(input);
 
                     }
