@@ -27,15 +27,15 @@ if ($token_sesion) {
                 my $rol = $cgi->param("rol");
                 updateUser($id,$name,$email,$password,$phone,$cui,$rol);
                 print $cgi->header(-type => 'application/json', -status => '200 OK');
-                print "{'success' : 'Usuario Actualizado Exitosamente'}";
+                print ;
             }
         } else {
-            print $cgi->header(-type => 'text/plain', -status => '500 Internal Server Error');
-            print "Usted no tiene permisos de hacer esta operacion" ;
+            print $cgi->header(-type => 'application/json', -status => '500 Internal Server Error');
+            print "{'success' : 'Usted no tiene permisos de hacer esta operacion'}";
         }
 }else{
     print $cgi->header(-type => 'text/plain', -status => '500 Internal Server Error');
-    print "Error al obtener el token";
+    print  "{'success' : 'Error al obtener el token'}";
 }
 sub autenticar_usuario {
     my ($token) = @_;
@@ -57,7 +57,7 @@ sub deleteUser {
     $sth->finish;
     $dbh->disconnect;
 }
-sub updateUser{
+sub updateUser {
     my ($id,$name,$email,$password,$phone,$cui,$rol) = @_;
     my $dbh = DBI->connect("DBI:mysql:database=trabajofinal;host=localhost", "root", "753159", { RaiseError => 1 });
     my $query = "UPDATE users SET name = ?, email = ?, password = ?, phone = ?, cui = ?, rol = ? WHERE id = ?";
