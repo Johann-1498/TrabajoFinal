@@ -86,8 +86,9 @@
                         inputs[i].style.display = "none";
                     }
                     if (value == "id") {
-                        inputs[i].name = value;
-                        inputs[i].value = this[value];
+                        let input = document.createElement("input");
+                        input.name = value;
+                        inputs.value = this[value];
                     }
                     td[i].append(p[i], inputs[i]);
                     i++;
