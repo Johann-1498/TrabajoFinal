@@ -84,6 +84,7 @@
                         inputs[i].name = value;
                         inputs[i].value = this[value];
                         inputs[i].style.display = "none";
+                        i++;
                     }
                     if (value == "id") {
                         let input = document.createElement("input");
@@ -91,7 +92,6 @@
                         inputs.value = this[value];
                     }
                     td[i].append(p[i], inputs[i]);
-                    i++;
                 });
                 buttonEdit.addEventListener("click", () => {
                     inputs.forEach(value => value.style.display = "block");
