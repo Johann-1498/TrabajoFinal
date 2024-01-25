@@ -125,7 +125,7 @@
                             window.location.reload();
                         })
                 });
-                htmlObject.append(tdId, tdName, tdEmail, tdPassword, tdPhone, tdCui, tdRol, tdTokenSesion);
+                td.forEach(value => htmlObject.append(value));
                 return htmlObject;
             }
         }
