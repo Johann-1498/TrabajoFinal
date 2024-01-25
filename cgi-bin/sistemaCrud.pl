@@ -5,17 +5,33 @@ use CGI;
 use JSON;
 use DBI;
 my $cgi = CGI->new;
-my $token_sesion = $cgi->param('token');
+my $token_sesion = $cgi->param('token_sesion');
+my $operation = $cgi->param("operation");
+
 
 if ($token_sesion) {
         my $consulta_validada = autenticar_usuario($token_sesion);
         if ($consulta_validada) {
-            my $table_data = getTable();
-            print $cgi->header(-type => 'application/json', -status => '200 OK');
-            print encode_json($table_data);
+            if($operation == "delete"){
+                my $email = $cgi->param("email");
+                deleteUser($email);
+                print $cgi->header(-type => 'application/json', -status => '200 OK');
+                print "{'success' : 'Usuario Eliminado Exitosamente'}";
+            }else{
+                my $id = $cgi->param("id");
+                my $name = $cgi->param("name");
+                my $email = $cgi->param("email");
+                my $password = $cgi->param("password");
+                my $phone = $cgi->param("phone");
+                my $cui = $cgi->param("cui");
+                my $rol = $cgi->param("rol");
+                updateUser($id,$name,$email,$password,$phone,$cui,$rol);
+                print $cgi->header(-type => 'application/json', -status => '200 OK');
+                print "{'success' : 'Usuario Actualizado Exitosamente'}";
+            }
         } else {
             print $cgi->header(-type => 'text/plain', -status => '500 Internal Server Error');
-            print "Error al cargar datos de la tabla" ;
+            print "Usted no tiene permisos de hacer esta operacion" ;
         }
 }else{
     print $cgi->header(-type => 'text/plain', -status => '500 Internal Server Error');
@@ -24,7 +40,7 @@ if ($token_sesion) {
 sub autenticar_usuario {
     my ($token) = @_;
     my $dbh = DBI->connect("DBI:mysql:database=trabajofinal;host=localhost", "root", "753159", { RaiseError => 1 });
-   my $query = "SELECT * FROM users WHERE token_sesion = ? AND (rol = 'superAdmin' OR rol = 'admin')";
+    my $query = "SELECT * FROM users WHERE token_sesion = ? AND (rol = 'superAdmin' OR rol = 'admin')";
     my $sth = $dbh->prepare($query);
     $sth->execute($token);
     my $consulta_validada = $sth->fetchrow_hashref;
@@ -32,18 +48,21 @@ sub autenticar_usuario {
     $dbh->disconnect;
     return $consulta_validada;
 }
-
-sub getTable {
+sub deleteUser {
+    my ($email) = @_;
     my $dbh = DBI->connect("DBI:mysql:database=trabajofinal;host=localhost", "root", "753159", { RaiseError => 1 });
-    my $query = "SELECT * FROM users";
+    my $query = "DELETE FROM users WHERE email = ?";
     my $sth = $dbh->prepare($query);
-    $sth->execute();
-    my @users;
-    
-    while(my $fila = $sth->fetchrow_hashref) {
-        push @users, $fila;
-    }
+    $sth->execute($email);
     $sth->finish;
     $dbh->disconnect;
-    return \@users; 
+}
+sub updateUser{
+    my ($id,$name,$email,$password,$phone,$cui,$rol) = @_;
+    my $dbh = DBI->connect("DBI:mysql:database=trabajofinal;host=localhost", "root", "753159", { RaiseError => 1 });
+    my $query = "UPDATE users SET name = ?, email = ?, password = ?, phone = ?, cui = ?, rol = ? WHERE id = ?";
+    my $sth = $dbh->prepare($query);
+    $sth->execute($name, $email, $password, $phone, $cui, $rol, $id);
+    $sth->finish;
+    $dbh->disconnect;
 }

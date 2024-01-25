@@ -1,104 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
-            rel='stylesheet'>
-        <link rel="stylesheet" href="../css/sistemaCrud.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/sistemaCrud.css">
 
-        <title>Document</title>
-    </head>
+    <title>Document</title>
+</head>
 
-    <body>
-        <header>
-            <img src="i../mg/celtic_6043595.png" alt height="70px">
-            <h1>Supermercado XYZ</h1>
-        </header>
-        <nav>
-            <a href="../index.html">Inicio</a>
-            <a href="../clientes.html">Catálogos de ofertas</a>
-            <a href="../tarjetas.html">Nuestras ofertas</a>
-            <a href="../cuentas.html">Productos</a>
-            <a href='../miPerfil.html'>Mi Perfil</a>
+<body>
+    <header>
+        <img src="i../mg/celtic_6043595.png" alt height="70px">
+        <h1>Supermercado XYZ</h1>
+    </header>
+    <nav>
+        <a href="../index.html">Inicio</a>
+        <a href="../clientes.html">Catálogos de ofertas</a>
+        <a href="../tarjetas.html">Nuestras ofertas</a>
+        <a href="../cuentas.html">Productos</a>
+        <a href='../miPerfil.html'>Mi Perfil</a>
 
-        </nav>
+    </nav>
 
-        <main>
-            <div class="content">
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Password</th>
-                            <th>Phone</th>
-                            <th>CUI</th>
-                            <th>TokenSesion</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabla">
-                    </tbody>
-                </table>
-            </div>
+    <main>
+        <div class="content">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Phone</th>
+                        <th>CUI</th>
+                        <th>TokenSesion</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla">
+                </tbody>
+            </table>
+        </div>
 
-        </main>
+    </main>
 
-        <button id="closeSession">XDDD</button>
+    <button id="closeSession">XDDD</button>
 
-        <footer>
-            <p>&copy; 2024 Supermercado XYZ</p>
-        </footer>
-        <script src="../js/validateSession.js"></script>
-        <script>
-            class trUser {
-                    constructor(id,name,email,password,phone,cui,tokenSesion) {
-                        this.id = id;
-                        this.name = name;
-                        this.email = email;
-                        this.password = password;
-                        this.phone = phone;
-                        this.cui = cui;
-                        this.tokenSesion = tokenSesion;
+    <footer>
+        <p>&copy; 2024 Supermercado XYZ</p>
+    </footer>
+    <script src="../js/validateSession.js"></script>
+    <script>
+        class trUser {
+            constructor(id, name, email, password, phone, cui, rol, tokenSesion) {
+                this.id = id;
+                this.name = name;
+                this.email = email;
+                this.password = password;
+                this.phone = phone;
+                this.cui = cui;
+                this.rol = rol;
+                this.tokenSesion = tokenSesion;
+            }
+            getTrHtmlObject() {
+                let htmlObject = document.createElement("tr");
+                let td = [];
+                let inputs = [];
+                let p = [];
+                let form = new FormData();
+                let tdButtons = document.createElement("td");
+                let buttonEdit = document.createElement("button");
+                let buttonDelete = document.createElement("button");
+                let buttonSave = document.createElement("button");
+                tdButtons.append(buttonEdit, buttonDelete, buttonSave);
+                Object.keys(this).forEach((value, index) => {
+                    td.push(document.createElement("td"));
+                    p.push(document.createElement("p"));
+                    p[index].textContent = this[value];
+                    if (value !== "id" && value !== "tokenSesion") {
+                        inputs.push(document.createElement("input"));
+                        inputs[index].name = value;
+                        inputs[index].value = this[value];
+                        inputs[index].style.display = "none";
                     }
-                    getTrHtmlObject(){
-                        let htmlObject = document.createElement("tr");
-                        let tdId = document.createElement("td");
-                        tdId.textContent = this.id;
-                        let tdName = document.createElement("td");
-                        tdName.textContent = this.name;
-                        let tdEmail = document.createElement("td");
-                        tdEmail.textContent = this.email;
-                        let tdPassword = document.createElement("td");
-                        tdPassword.textContent = this.password;
-                        let tdPhone= document.createElement("td");
-                        tdPhone.textContent = this.phone;
-                        let tdCui = document.createElement("td");
-                        tdCui.textContent = this.cui;
-                        let tdTokenSesion = document.createElement("td");
-                        tdTokenSesion.textContent =  this.tokenSesion;
-                        htmlObject.append(tdId, tdName, tdEmail, tdPassword, tdPhone, tdCui, tdTokenSesion);
-                        return htmlObject;
+                    if (value == id) {
+                        inputs[index].name = value;
+                        inputs[index].value = this[value];
                     }
-                }
-        fetch("../cgi-bin/sistemaCrud.pl?token=" + obtenerTokenDeSesion())
-        .then(response => response.json())
-        .then((data) =>{
-            let tabla = document.querySelector("#tabla");
-            let users = [];
-            let user;
-            for(let index in data){
-                json = data[index];
+                    td[index].append(p[index], inputs[index]);
+                });
+                buttonEdit.addEventListener("click", () => {
+                    inputs.forEach(value => value.style.display = "block");
+                    p.forEach(value => value.style.display = "none");
+                });
+                buttonDelete.addEventListener("click", () => {
+                    form.append("token_sesion", obtenerTokenDeSesion());
+                    form.append("email", this.email);
+                    form.append("operation", "delete");
+                    fetch("../cgi-bin/sistemaCrud.pl", {
+                        method: "POST",
+                        body: form
+                    })
+                        .then(response => response.json()).then((data) => {
+                            alert(data.succes);
+                            window.location.reload();
+                        });
+                });
+                buttonSave.addEventListener("click", () => {
+                    form.append("token_sesion", obtenerTokenDeSesion());
+                    inputs.forEach((value, index) => {
+                        form.append(value.name, value.value);
+                    });
+                    form.append("operation", "Save");
+                    fetch("../cgi-bin/sistemaCrud.pl", {
+                        method: "POST",
+                        body: form
+                    })
+                        .then(response => response.json()).then((data) => {
+                            alert(data.succes);
+                            window.location.reload();
+                        })
+                });
+                htmlObject.append(tdId, tdName, tdEmail, tdPassword, tdPhone, tdCui, tdRol, tdTokenSesion);
+                return htmlObject;
+            }
+        }
+        fetch("../cgi-bin/adminTabla.pl?token=" + obtenerTokenDeSesion())
+            .then(response => response.json())
+            .then((data) => {
+                let tabla = document.querySelector("#tabla");
+                let users = [];
+                let user;
+                for (let index in data) {
+                    json = data[index];
                     console.log(json);
-                    user = new trUser(json["id"], json["name"], json["email"], json["password"], json["phone"], json["cui"], json["token_sesion"]);
+                    user = new trUser(json["id"], json["name"], json["email"], json["password"], json["phone"], json["cui"], json["rol"], json["token_sesion"]);
                     users.push(user);
                     tabla.append(user.getTrHtmlObject());
-                    
-        }});
+                }
+            });
 
-        </script>
-    </body>
+    </script>
+</body>
 
 </html>
