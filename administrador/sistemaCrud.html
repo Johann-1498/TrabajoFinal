@@ -12,7 +12,7 @@
 
 <body>
     <header>
-        <img src="i../mg/celtic_6043595.png" alt height="70px">
+        <img src="../mg/celtic_6043595.png" alt height="70px">
         <h1>Supermercado XYZ</h1>
     </header>
     <nav>
@@ -26,8 +26,8 @@
 
     <main>
         <div class="content">
-            <table border="1">
-                <thead>
+            <table class="tabla">
+                <thead class="tabla-head">
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
@@ -37,9 +37,10 @@
                         <th>CUI</th>
                         <th>Rol</th>
                         <th>TokenSesion</th>
+                        <th>Accion</th>
                     </tr>
                 </thead>
-                <tbody id="tabla">
+                <tbody id="tabla-content">
                 </tbody>
             </table>
         </div>
@@ -72,28 +73,35 @@
                 let form = new FormData();
                 let tdButtons = document.createElement("td");
                 let buttonEdit = document.createElement("button");
+                buttonEdit.className = "buttonEdit";
+                buttonEdit.innerHTML = "<i class='bx bxs-edit-alt'></i>";
                 let buttonDelete = document.createElement("button");
+                buttonDelete.className = "buttonDelete";
+                buttonDelete.innerHTML = "<i class='bx bx-trash' ></i>";
                 let buttonSave = document.createElement("button");
-                tdButtons.append(buttonEdit, buttonDelete, buttonSave);
+                buttonSave.innerHTML = "<i class='bx bxs-save' ></i>";
+                buttonEdit.className = "buttonEdit";
+                tdButtons.append(buttonEdit, buttonSave, buttonDelete);
                 let array = Object.keys(this);
                 for (let i = 0; i < array.length; i++) {
                     td.push(document.createElement("td"));
-                    p.push(document.createElement("p"));
-                    p[i].textContent = this[array[i]];
-                    console.log(p[i]);
-                    td[i].append(p[i]);
                     if (i !== 0 && i !== array.length - 1) {
+                        p.push(document.createElement("p"));
+                        p[i - 1].textContent = this[array[i]];
                         inputs.push(document.createElement("input"));
                         inputs[i - 1].name = array[i];
                         inputs[i - 1].value = this[array[i]];
                         inputs[i - 1].style.display = "none";
+                        td[i].append(p[i - 1]);
                         td[i].append(inputs[i - 1]);
                     } else {
+                        let p = document.createElement("p");
                         let input = document.createElement("input");
+                        p.textContent = this.id;
                         input.style.display = "none";
                         input.name = "id";
                         input.value = this.id;
-                        td[i].append(input);
+                        td[i].append(input, p);
                     }
                 }
                 Object.keys(this).forEach((value) => {
@@ -139,7 +147,7 @@
         fetch("../cgi-bin/adminTabla.pl?token=" + obtenerTokenDeSesion())
             .then(response => response.json())
             .then((data) => {
-                let tabla = document.querySelector("#tabla");
+                let tabla = document.querySelector("#tabla-content");
                 let users = [];
                 let user;
                 for (let index in data) {

@@ -77,6 +77,50 @@ main h2 {
 
 }
 
+
+.content .tabla .tabla-head th,
+.content .tabla #tabla-content tr td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #b6b1b1;
+    min-width: 175px;
+}
+
+main .content {
+    margin: 25px;
+}
+
+.content .tabla {
+    border-collapse: collapse;
+    width: 100%;
+    box-shadow: 0 0 0 1px rgba(56, 60, 67, .05), 0 1px 3px 0 rgba(56, 60, 67, .15);
+
+}
+
+.content .tabla .tabla-head th {
+    background-color: #333333;
+    color: white;
+}
+
+tr {}
+
+input {
+    all: unset;
+    border-bottom: 1px solid black;
+    max-width: 150px;
+}
+
+button {
+    all: unset;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+button:hover {
+    outline: 1px solid #333333;
+}
+
 @media screen and (max-width: 767px) {
     .container {
         width: 90%;
