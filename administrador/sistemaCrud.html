@@ -84,10 +84,10 @@
                     td[i].append(p[i]);
                     if (i !== 0 && i !== array.length - 1) {
                         inputs.push(document.createElement("input"));
-                        inputs[i].name = array[i];
-                        inputs[i].array[i] = this[array[i]];
-                        inputs[i].style.display = "none";
-                        td[i].append(inputs[i]);
+                        inputs[i - 1].name = array[i - 1];
+                        inputs[i - 1].array[i - 1] = this[array[i - 1]];
+                        inputs[i - 1].style.display = "none";
+                        td[i].append(inputs[i - 1]);
                     } else {
                         let input = document.createElement("input");
                         input.style.display = "none";
