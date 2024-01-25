@@ -80,6 +80,7 @@
                     td.push(document.createElement("td"));
                     p.push(document.createElement("p"));
                     p[i].textContent = this[value];
+                    console.log(p[i]);
                     td[i].append(p[i]);
                     if (value !== "id" && value !== "tokenSesion") {
                         inputs.push(document.createElement("input"));
@@ -95,7 +96,6 @@
                         input.name = value;
                         inputs.value = this.id;
                         td[i].append(input);
-
                     }
                     console.log(td[i]);
                 });
