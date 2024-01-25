@@ -82,7 +82,7 @@
                     p[i].textContent = this[array[i]];
                     console.log(p[i]);
                     td[i].append(p[i]);
-                    if (i !== 0 || i !== array.length - 1) {
+                    if (i !== 0 && i !== array.length - 1) {
                         inputs.push(document.createElement("input"));
                         inputs[i].name = array[i];
                         inputs[i].array[i] = this[array[i]];
