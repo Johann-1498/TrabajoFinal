@@ -79,19 +79,25 @@
                     td.push(document.createElement("td"));
                     p.push(document.createElement("p"));
                     p[i].textContent = this[value];
+                    console.log(p[i]);
                     if (value !== "id" && value !== "tokenSesion") {
                         inputs.push(document.createElement("input"));
                         inputs[i].name = value;
+                        console.log(inputs[i]);
                         inputs[i].value = this[value];
                         inputs[i].style.display = "none";
                         i++;
+                        td[i].append(inputs[i]);
+
                     }
                     if (value == "id") {
                         let input = document.createElement("input");
                         input.name = value;
                         inputs.value = this[value];
+                        td[i].append(input);
+
                     }
-                    td[i].append(p[i], inputs[i]);
+                    td[i].append(p[i]);
                 });
                 buttonEdit.addEventListener("click", () => {
                     inputs.forEach(value => value.style.display = "block");
