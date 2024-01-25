@@ -16,7 +16,7 @@ if ($token_sesion) {
                 my $email = $cgi->param("email");
                 deleteUser($email);
                 print $cgi->header(-type => 'application/json', -status => '200 OK');
-                print "{'success' : 'Usuario Eliminado Exitosamente'}";
+                print '{"success" : "Usuario Eliminado Exitosamente"}';
             }else{
                 my $id = $cgi->param("id");
                 my $name = $cgi->param("name");
@@ -31,11 +31,11 @@ if ($token_sesion) {
             }
         } else {
             print $cgi->header(-type => 'application/json', -status => '500 Internal Server Error');
-            print "{'success' : 'Usted no tiene permisos de hacer esta operacion'}";
+            print '{"success" : "Usted no tiene permisos de hacer esta operacion"}';
         }
 }else{
     print $cgi->header(-type => 'text/plain', -status => '500 Internal Server Error');
-    print  "{'success' : 'Error al obtener el token'}";
+    print  '{"success" : "Error al obtener el token"}';
 }
 sub autenticar_usuario {
     my ($token) = @_;

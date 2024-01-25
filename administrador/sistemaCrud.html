@@ -130,7 +130,8 @@
                         method: "POST",
                         body: form
                     })
-                        .then(response => response.json()).then((data) => {
+                        .then(response => response.json())
+                        .then((data) => {
                             console.log(data);
                         })
                 });
