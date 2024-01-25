@@ -74,21 +74,23 @@
                 let buttonDelete = document.createElement("button");
                 let buttonSave = document.createElement("button");
                 tdButtons.append(buttonEdit, buttonDelete, buttonSave);
-                Object.keys(this).forEach((value, index) => {
+                let i = 0;
+                Object.keys(this).forEach((value) => {
                     td.push(document.createElement("td"));
                     p.push(document.createElement("p"));
-                    p[index].textContent = this[value];
+                    p[i].textContent = this[value];
                     if (value !== "id" && value !== "tokenSesion") {
                         inputs.push(document.createElement("input"));
-                        inputs[index].name = value;
-                        inputs[index].value = this[value];
-                        inputs[index].style.display = "none";
+                        inputs[i].name = value;
+                        inputs[i].value = this[value];
+                        inputs[i].style.display = "none";
                     }
                     if (value == "id") {
-                        inputs[index].name = value;
-                        inputs[index].value = this[value];
+                        inputs[i].name = value;
+                        inputs[i].value = this[value];
                     }
-                    td[index].append(p[index], inputs[index]);
+                    td[i].append(p[i], inputs[i]);
+                    i++;
                 });
                 buttonEdit.addEventListener("click", () => {
                     inputs.forEach(value => value.style.display = "block");
