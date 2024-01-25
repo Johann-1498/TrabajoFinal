@@ -85,7 +85,7 @@
                     if (i !== 0 && i !== array.length - 1) {
                         inputs.push(document.createElement("input"));
                         inputs[i - 1].name = array[i];
-                        inputs[i - 1].array[i] = this[array[i]];
+                        inputs[i - 1].value = this[array[i]];
                         inputs[i - 1].style.display = "none";
                         td[i].append(inputs[i - 1]);
                     } else {
