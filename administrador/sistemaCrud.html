@@ -76,6 +76,7 @@
                 let buttonSave = document.createElement("button");
                 tdButtons.append(buttonEdit, buttonDelete, buttonSave);
                 let i = 0;
+                console.log(Object.keys(this));
                 Object.keys(this).forEach((value) => {
                     td.push(document.createElement("td"));
                     p.push(document.createElement("p"));
@@ -97,7 +98,6 @@
                         inputs.value = this.id;
                         td[i].append(input);
                     }
-                    console.log(td[i]);
                 });
                 buttonEdit.addEventListener("click", () => {
                     inputs.forEach(value => value.style.display = "block");
