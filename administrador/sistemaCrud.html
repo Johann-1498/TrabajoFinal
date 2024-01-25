@@ -75,29 +75,30 @@
                 let buttonDelete = document.createElement("button");
                 let buttonSave = document.createElement("button");
                 tdButtons.append(buttonEdit, buttonDelete, buttonSave);
-                let i = 0;
-                console.log(Object.keys(this));
-                Object.keys(this).forEach((value) => {
+                let array = Object.keys(this);
+                for (let i = 0; i < array.length; i++) {
                     td.push(document.createElement("td"));
                     p.push(document.createElement("p"));
-                    p[i].textContent = this[value];
+                    p[i].textContent = this[array[i]];
                     console.log(p[i]);
                     td[i].append(p[i]);
-                    if (value !== "id" && value !== "tokenSesion") {
+                    if (array[i] !== "id" || array[i] !== "tokenSesion") {
                         inputs.push(document.createElement("input"));
-                        inputs[i].name = value;
-                        inputs[i].value = this[value];
+                        inputs[i].name = array[i];
+                        inputs[i].array[i] = this[array[i]];
                         inputs[i].style.display = "none";
                         td[i].append(inputs[i]);
-                        i++;
                     }
-                    if (value == "id") {
+                    if (array[i] == "id") {
                         let input = document.createElement("input");
                         input.style.display = "none";
-                        input.name = value;
-                        inputs.value = this.id;
+                        input.name = array[i];
+                        input.array[i] = this.id;
                         td[i].append(input);
                     }
+                }
+                Object.keys(this).forEach((value) => {
+
                 });
                 buttonEdit.addEventListener("click", () => {
                     inputs.forEach(value => value.style.display = "block");
