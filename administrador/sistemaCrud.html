@@ -82,14 +82,13 @@
                     p[i].textContent = this[array[i]];
                     console.log(p[i]);
                     td[i].append(p[i]);
-                    if (array[i] !== "id" || array[i] !== "tokenSesion") {
+                    if (i === 0 || i == array.length - 1) {
                         inputs.push(document.createElement("input"));
                         inputs[i].name = array[i];
                         inputs[i].array[i] = this[array[i]];
                         inputs[i].style.display = "none";
                         td[i].append(inputs[i]);
-                    }
-                    if (array[i] == "id") {
+                    } else {
                         let input = document.createElement("input");
                         input.style.display = "none";
                         input.name = array[i];
