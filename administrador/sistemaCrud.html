@@ -79,6 +79,7 @@
                     td.push(document.createElement("td"));
                     p.push(document.createElement("p"));
                     p[i].textContent = this[value];
+                    td[i].append(p[i]);
                     console.log(p[i]);
                     if (value !== "id" && value !== "tokenSesion") {
                         inputs.push(document.createElement("input"));
@@ -88,7 +89,6 @@
                         inputs[i].style.display = "none";
                         td[i].append(inputs[i]);
                         i++;
-
                     }
                     if (value == "id") {
                         let input = document.createElement("input");
@@ -98,7 +98,6 @@
                         td[i].append(input);
 
                     }
-                    td[i].append(p[i]);
                 });
                 buttonEdit.addEventListener("click", () => {
                     inputs.forEach(value => value.style.display = "block");
