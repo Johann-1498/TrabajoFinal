@@ -35,6 +35,7 @@
                         <th>Password</th>
                         <th>Phone</th>
                         <th>CUI</th>
+                        <th>Rol</th>
                         <th>TokenSesion</th>
                     </tr>
                 </thead>
@@ -80,11 +81,9 @@
                     p.push(document.createElement("p"));
                     p[i].textContent = this[value];
                     td[i].append(p[i]);
-                    console.log(p[i]);
                     if (value !== "id" && value !== "tokenSesion") {
                         inputs.push(document.createElement("input"));
                         inputs[i].name = value;
-                        console.log(inputs[i]);
                         inputs[i].value = this[value];
                         inputs[i].style.display = "none";
                         td[i].append(inputs[i]);
@@ -98,6 +97,7 @@
                         td[i].append(input);
 
                     }
+                    console.log(td[i]);
                 });
                 buttonEdit.addEventListener("click", () => {
                     inputs.forEach(value => value.style.display = "block");
