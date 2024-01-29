@@ -14,7 +14,7 @@ if ($token_sesion) {
         if ($consulta_validada) {
             if($operation eq "delete"){
                 my $email = $cgi->param("email");
-                if(deleteUser($email)){
+                if(deleteUser($email) > 0){
                     print $cgi->header(-type => 'application/json', -status => '200 OK');
                     print '{"success" : "Usuario Eliminado Exitosamente"}';
                 }else{
@@ -29,7 +29,7 @@ if ($token_sesion) {
                 my $phone = $cgi->param("phone");
                 my $cui = $cgi->param("cui");
                 my $rol = $cgi->param("rol");
-                if(updateUser($id,$name,$email,$password,$phone,$cui,$rol)){
+                if(updateUser($id,$name,$email,$password,$phone,$cui,$rol) > 0){
                     print $cgi->header(-type => 'application/json', -status => '200 OK');
                     print '{"success" : "Usuario Actualizado Exitosamente"}';
                 }else{
@@ -62,7 +62,7 @@ sub deleteUser {
     my $query = "DELETE FROM users WHERE email = ?";
     my $sth = $dbh->prepare($query);
     my $filaAfectada = $sth->execute($email);
-    $dbh->disconnect;
+    $dbh->disconnect();
     return $filaAfectada;
 }
 sub updateUser {
@@ -71,6 +71,6 @@ sub updateUser {
     my $query = "UPDATE users SET name = ?, email = ?, password = ?, phone = ?, cui = ?, rol = ? WHERE id = ?";
     my $sth = $dbh->prepare($query);
     my $filaAfectada = $sth->execute($name, $email, $password, $phone, $cui, $rol, $id);
-    $dbh->disconnect;
+    $dbh->disconnect();
     return $filaAfectada;
 }
