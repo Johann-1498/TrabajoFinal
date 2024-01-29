@@ -122,9 +122,9 @@
                 });
                 buttonSave.addEventListener("click", () => {
                     form.append("token_sesion", obtenerTokenDeSesion());
-                    inputs.forEach((value, index) => {
-                        form.append(value.name, value.value);
-                    });
+                    for (let i = 0; i < inputs.length; i++) {
+                        form.append(inputs[i].name, inputs[i].value);
+                    }
                     form.append("operation", "save");
                     fetch("../cgi-bin/sistemaCrud.pl", {
                         method: "POST",
