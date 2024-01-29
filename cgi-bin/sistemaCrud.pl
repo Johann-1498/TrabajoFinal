@@ -66,11 +66,18 @@ sub deleteUser {
     return $filaAfectada;
 }
 sub updateUser {
-    my ($id,$name,$email,$password,$phone,$cui,$rol) = @_;
+    my ($id, $name, $email, $password, $phone, $cui, $rol) = @_;
     my $dbh = DBI->connect("DBI:mysql:database=trabajofinal;host=localhost", "root", "753159", { RaiseError => 1 });
     my $query = "UPDATE users SET name = ?, email = ?, password = ?, phone = ?, cui = ?, rol = ? WHERE id = ?";
     my $sth = $dbh->prepare($query);
-    my $filaAfectada = $sth->execute($name, $email, $password, $phone, $cui, $rol, $id);
+    $sth->bind_param(1, $name);
+    $sth->bind_param(2, $email);
+    $sth->bind_param(3, $password);
+    $sth->bind_param(4, $phone);
+    $sth->bind_param(5, $cui);
+    $sth->bind_param(6, $rol);
+    $sth->bind_param(7, $id);
+    my $filas_afectadas = $sth->execute();
     $dbh->disconnect();
-    return $filaAfectada;
+    return $filas_afectadas;
 }
