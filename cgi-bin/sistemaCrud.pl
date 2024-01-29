@@ -22,12 +22,12 @@ if ($token_sesion) {
                     print '{"success" : "Hubo Un Error al Borrar Al Usuario"}';
                 }
             }else{
-                my $id = $cgi->param("id");
+                my $id = int($cgi->param("id"));
                 my $name = $cgi->param("name");
                 my $email = $cgi->param("email");
                 my $password = $cgi->param("password");
-                my $phone = $cgi->param("phone");
-                my $cui = $cgi->param("cui");
+                my $phone = int($cgi->param("phone"));
+                my $cui = int($cgi->param("cui"));
                 my $rol = $cgi->param("rol");
                 if(updateUser($id,$name,$email,$password,$phone,$cui,$rol) > 0){
                     print $cgi->header(-type => 'application/json', -status => '200 OK');
@@ -68,10 +68,8 @@ sub deleteUser {
 sub updateUser {
     my ($id, $name, $email, $password, $phone, $cui, $rol) = @_;
     my $dbh = DBI->connect("DBI:mysql:database=trabajofinal;host=localhost", "root", "753159", { RaiseError => 1 });
-
     my $query = "UPDATE users SET name = ?, email = ?, password = ?, phone = ?, cui = ?, rol = ? WHERE id = ?";
     my $sth = $dbh->prepare($query);
-
     $sth->bind_param(1, $name);
     $sth->bind_param(2, $email);
     $sth->bind_param(3, $password);
@@ -79,18 +77,7 @@ sub updateUser {
     $sth->bind_param(5, $cui);
     $sth->bind_param(6, $rol);
     $sth->bind_param(7, $id);
-
-    # Ejecutar la consulta y manejar errores
-    unless ($sth->execute()) {
-        my $error_message = $DBI::errstr;
-        warn "Error en la ejecución de la consulta: $error_message\n";
-        $dbh->disconnect();
-        return 0;  # Devolver 0 para indicar error
-    }
-
-    # Obtener la cantidad de filas afectadas
-    my $filas_afectadas = $sth->rows;
-
+    my $filas_afectadas = $sth->execute();
     $dbh->disconnect();
     return $filas_afectadas;
 }
