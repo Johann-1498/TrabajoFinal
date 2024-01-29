@@ -27,7 +27,7 @@ if ($token_sesion) {
                 my $rol = $cgi->param("rol");
                 updateUser($id,$name,$email,$password,$phone,$cui,$rol);
                 print $cgi->header(-type => 'application/json', -status => '200 OK');
-                print ;
+                print '{"success" : "Usuario Actualizado Exitosamente"}';
             }
         } else {
             print $cgi->header(-type => 'application/json', -status => '500 Internal Server Error');
