@@ -43,36 +43,35 @@ import Item from './Item.js';
                 vegatlCarrusel.append(items[index].getItemHtmlObject());
                 console.log(items[index]);
             });
-        }
-    });
-    vegatlCarrusel.append(new Item("Uvas", "4.99", 15, "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, nihil.", "/img/vegetable-item-1.jpg", "Vegetable").getItemHtmlObject());
-    $(".vegetable-carousel").owlCarousel({
-        autoplay: true,
-        smartSpeed: 1500,
-        center: false,
-        loop: true,
-        margin: 25,
-        nav: true,
-        navText: [
-            '<i class="bi bi-arrow-right"></i>',
-            '<i class="bi bi-arrow-left"></i>'
-        ],
-        responsive: {
-            0: {
-                items: 1
-            },
-            576: {
-                items: 1
-            },
-            768: {
-                items: 2
-            },
-            992: {
-                items: 3
-            },
-            1200: {
-                items: 4
-            }
+            $(".vegetable-carousel").owlCarousel({
+                autoplay: true,
+                smartSpeed: 1500,
+                center: false,
+                loop: true,
+                margin: 25,
+                nav: true,
+                navText: [
+                    '<i class="bi bi-arrow-right"></i>',
+                    '<i class="bi bi-arrow-left"></i>'
+                ],
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    576: {
+                        items: 1
+                    },
+                    768: {
+                        items: 2
+                    },
+                    992: {
+                        items: 3
+                    },
+                    1200: {
+                        items: 4
+                    }
+                }
+            });
         }
     });
     // Product Quantity
