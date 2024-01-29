@@ -40,10 +40,9 @@ import Item from './Item.js';
             let items = [];
             data.forEach((element,index) => {
                 items.push(new Item(element.nombre, element.precio,undefined, element.descripcion, element.img, element.categoryID));
-            vegatlCarrusel.append(items[index]);
-
+                vegatlCarrusel.append(items[index]);
+                console.log(items[index]);
             });
-            console.log(data);
         }
     });
     vegatlCarrusel.append(new Item("Uvas", "4.99", 15, "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, nihil.", "/img/vegetable-item-1.jpg", "Vegetable").getItemHtmlObject());
