@@ -37,6 +37,11 @@ import Item from './Item.js';
         if(data.error){
             alert(data.error)
         }else{
+            let items = [];
+            data.forEach((element,index) => {
+                items.push(new Item(element.nombre, element.precio,undefined, element.descripcion, element.img, element.categoryID));
+            });
+            vegatlCarrusel.append(items[index]);
             console.log(data);
         }
     });
