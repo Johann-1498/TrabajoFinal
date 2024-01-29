@@ -4,7 +4,9 @@ import Item from "./Item.js";
   //Verificando la sesion
   let esValidaLaSesion = false;
   validarSesion()
-    .then(response => response.json())
+    .then((response) =>{
+        return response.json();
+    })
     .then((data) => {
       if (data.name) {
         esValidaLaSesion = true;
