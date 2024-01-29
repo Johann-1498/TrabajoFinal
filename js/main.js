@@ -51,8 +51,8 @@ import Item from './Item.js';
                 margin: 25,
                 nav: true,
                 navText: [
-                    '<i class="bi bi-arrow-right"></i>',
-                    '<i class="bi bi-arrow-left"></i>'
+                    '<i class="bi bi-arrow-left"></i>',
+                    '<i class="bi bi-arrow-right"></i>'
                 ],
                 responsive: {
                     0: {
