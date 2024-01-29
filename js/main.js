@@ -5,12 +5,9 @@ import Item from "./Item.js";
   let esValidaLaSesion = false;
   validarSesion()
     .then((response) =>{
-        return response.json();
-    })
-    .then((data) => {
-      if (data.name) {
-        esValidaLaSesion = true;
-      }
+        if (response.name) {
+            esValidaLaSesion = true;
+          }
     });
   // Spinner
   var spinner = function () {
