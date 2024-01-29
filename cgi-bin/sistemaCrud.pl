@@ -77,7 +77,7 @@ sub updateUser {
     $sth->bind_param(5, $cui);
     $sth->bind_param(6, $rol);
     $sth->bind_param(7, $id);
-    my $filas_afectadas = $sth->execute();
+    my $filas_afectadas = $sth->execute()|| die $sth->errstr;;
     $dbh->disconnect();
     return $filas_afectadas;
 }
