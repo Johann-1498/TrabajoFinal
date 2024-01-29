@@ -14,7 +14,7 @@ if ($token_sesion) {
         if ($consulta_validada) {
             if($operation eq "delete"){
                 my $email = $cgi->param("email");
-                if(deleteUser($email) != -1){
+                if(deleteUser($email)){
                     print $cgi->header(-type => 'application/json', -status => '200 OK');
                     print '{"success" : "Usuario Eliminado Exitosamente"}';
                 }else{
@@ -29,7 +29,7 @@ if ($token_sesion) {
                 my $phone = $cgi->param("phone");
                 my $cui = $cgi->param("cui");
                 my $rol = $cgi->param("rol");
-                if(updateUser($id,$name,$email,$password,$phone,$cui,$rol) != -1){
+                if(updateUser($id,$name,$email,$password,$phone,$cui,$rol)){
                     print $cgi->header(-type => 'application/json', -status => '200 OK');
                     print '{"success" : "Usuario Actualizado Exitosamente"}';
                 }else{
@@ -60,16 +60,17 @@ sub deleteUser {
     my ($email) = @_;
     my $dbh = DBI->connect("DBI:mysql:database=trabajofinal;host=localhost", "root", "753159", { RaiseError => 1 });
     my $query = "DELETE FROM users WHERE email = ?";
-    my $filas_afectadas = $dbh->do($query, undef, $email); 
+    my $sth = $dbh->prepare($query);
+    my $filaAfectada = $sth->execute($email);
     $dbh->disconnect;
-    return $filas_afectadas; 
+    return $filaAfectada;
 }
-
 sub updateUser {
-    my ($id, $name, $email, $password, $phone, $cui, $rol) = @_;
+    my ($id,$name,$email,$password,$phone,$cui,$rol) = @_;
     my $dbh = DBI->connect("DBI:mysql:database=trabajofinal;host=localhost", "root", "753159", { RaiseError => 1 });
     my $query = "UPDATE users SET name = ?, email = ?, password = ?, phone = ?, cui = ?, rol = ? WHERE id = ?";
-    my $filas_afectadas = $dbh->do($query, undef, $name, $email, $password, $phone, $cui, $rol, $id); 
+    my $sth = $dbh->prepare($query);
+    my $filaAfectada = $sth->execute($name, $email, $password, $phone, $cui, $rol, $id);
     $dbh->disconnect;
-    return $filas_afectadas; 
+    return $filaAfectada;
 }
