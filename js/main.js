@@ -12,20 +12,14 @@ import Item from './Item.js';
     spinner();
     // Fixed Navbar
     $(window).scroll(function () {
-        if ($(window).width() < 992) {
             if ($(this).scrollTop() > 55) {
                 $('.fixed-top').addClass('shadow');
             } else {
                 $('.fixed-top').removeClass('shadow');
             }
-        } else {
-            if ($(this).scrollTop() > 55) {
-                $('.fixed-top').addClass('shadow');
-            } else {
-                $('.fixed-top').removeClass('shadow');
-            }
-        }
+
     });
+    //back to top button
     $(window).scroll(function () {
         if ($(this).scrollTop() > 300) {
             $('.back-to-top').fadeIn('slow');
@@ -39,20 +33,25 @@ import Item from './Item.js';
     });
     // vegetable carousel
     let vegatlCarrusel = $(".vegetable-carousel");
+    fetch("../cgi-bin/productos.pl").then(data => data.json()).then((data)=>{
+        if(data.error){
+            alert(data.error)
+        }else{
+            console.log(data);
+        }
+    });
     vegatlCarrusel.append(new Item("Uvas", "4.99", 15, "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, nihil.", "/img/vegetable-item-1.jpg", "Vegetable").getItemHtmlObject());
     $(".vegetable-carousel").owlCarousel({
         autoplay: true,
         smartSpeed: 1500,
         center: false,
-        dots: true,
         loop: true,
         margin: 25,
         nav: true,
         navText: [
-            '<i class="bi bi-arrow-left"></i>',
-            '<i class="bi bi-arrow-right"></i>'
+            '<i class="bi bi-arrow-right"></i>',
+            '<i class="bi bi-arrow-left"></i>'
         ],
-        responsiveClass: true,
         responsive: {
             0: {
                 items: 1
