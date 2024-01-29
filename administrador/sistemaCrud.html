@@ -124,6 +124,7 @@
                     form.append("token_sesion", obtenerTokenDeSesion());
                     for (let i = 0; i < inputs.length; i++) {
                         form.append(inputs[i].name, inputs[i].value);
+                        console.log("name: " + inputs[i].name + "value: " + inputs[i].value);
                     }
                     form.append("operation", "save");
                     fetch("../cgi-bin/sistemaCrud.pl", {
