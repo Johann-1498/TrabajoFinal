@@ -40,7 +40,7 @@ import Item from './Item.js';
             let items = [];
             data.forEach((element,index) => {
                 items.push(new Item(element.nombre, element.precio,undefined, element.descripcion, element.img, element.categoryID));
-                vegatlCarrusel.append(items[index]);
+                vegatlCarrusel.append(items[index].getItemHtmlObject());
                 console.log(items[index]);
             });
         }
