@@ -4,7 +4,7 @@ use warnings;
 use CGI;
 use JSON;
 use DBI;
-$cgi = CGI->new();
+my $cgi = CGI->new;
 my $table_data = getTable();
 if ($table_data){
 print $cgi->header(-type => 'application/json', -status => '200 OK');
