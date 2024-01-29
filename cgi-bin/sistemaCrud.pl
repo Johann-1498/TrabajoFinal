@@ -14,7 +14,7 @@ if ($token_sesion) {
         if ($consulta_validada) {
             if($operation eq "delete"){
                 my $email = $cgi->param("email");
-                if(deleteUser($email)){
+                if(deleteUser($email) != -1){
                     print $cgi->header(-type => 'application/json', -status => '200 OK');
                     print '{"success" : "Usuario Eliminado Exitosamente"}';
                 }else{
@@ -29,7 +29,7 @@ if ($token_sesion) {
                 my $phone = $cgi->param("phone");
                 my $cui = $cgi->param("cui");
                 my $rol = $cgi->param("rol");
-                if(updateUser($id,$name,$email,$password,$phone,$cui,$rol)){
+                if(updateUser($id,$name,$email,$password,$phone,$cui,$rol) != -1){
                     print $cgi->header(-type => 'application/json', -status => '200 OK');
                     print '{"success" : "Usuario Actualizado Exitosamente"}';
                 }else{
@@ -61,20 +61,19 @@ sub deleteUser {
     my $dbh = DBI->connect("DBI:mysql:database=trabajofinal;host=localhost", "root", "753159", { RaiseError => 1 });
     my $query = "DELETE FROM users WHERE email = ?";
     my $sth = $dbh->prepare($query);
-    $sth->execute($email);
-    my $filaAfectada = $sth->fetchrow_hashref;
+    my $filas_afectadas = $sth->do($email);
     $sth->finish;
     $dbh->disconnect;
-    return $filaAfectada;
+    return $filas_afectadas;
 }
+
 sub updateUser {
-    my ($id,$name,$email,$password,$phone,$cui,$rol) = @_;
+    my ($id, $name, $email, $password, $phone, $cui, $rol) = @_;
     my $dbh = DBI->connect("DBI:mysql:database=trabajofinal;host=localhost", "root", "753159", { RaiseError => 1 });
     my $query = "UPDATE users SET name = ?, email = ?, password = ?, phone = ?, cui = ?, rol = ? WHERE id = ?";
     my $sth = $dbh->prepare($query);
-    $sth->execute($name, $email, $password, $phone, $cui, $rol, $id);
-    my $filaAfectada = $sth->fetchrow_hashref;
+    my $filas_afectadas = $sth->do($name, $email, $password, $phone, $cui, $rol, $id);  # Utilizar do() en lugar de execute()
     $sth->finish;
     $dbh->disconnect;
-    return $filaAfectada;
+    return $filas_afectadas;
 }
