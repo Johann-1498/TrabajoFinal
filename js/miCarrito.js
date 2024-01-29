@@ -1,4 +1,4 @@
-import Item from '.Item.js';
+import Item from './Item.js';
 class OptionsForPurchase {
     constructor(id, amount, price) {
         this.id = id;
