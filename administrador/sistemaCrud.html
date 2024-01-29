@@ -126,6 +126,7 @@
                         form.append(inputs[i].name, inputs[i].value);
                         console.log("name: " + inputs[i].name + "value: " + inputs[i].value);
                     }
+                    form.append("id", input.value)
                     form.append("operation", "save");
                     fetch("../cgi-bin/sistemaCrud.pl", {
                         method: "POST",
