@@ -62,8 +62,10 @@ sub deleteUser {
     my $query = "DELETE FROM users WHERE email = ?";
     my $sth = $dbh->prepare($query);
     $sth->execute($email);
+    my $filaAfectada = $sth->fetchrow_hashref;
     $sth->finish;
     $dbh->disconnect;
+    return $filaAfectada;
 }
 sub updateUser {
     my ($id,$name,$email,$password,$phone,$cui,$rol) = @_;
@@ -71,6 +73,8 @@ sub updateUser {
     my $query = "UPDATE users SET name = ?, email = ?, password = ?, phone = ?, cui = ?, rol = ? WHERE id = ?";
     my $sth = $dbh->prepare($query);
     $sth->execute($name, $email, $password, $phone, $cui, $rol, $id);
+    my $filaAfectada = $sth->fetchrow_hashref;
     $sth->finish;
     $dbh->disconnect;
+    return $filaAfectada;
 }
