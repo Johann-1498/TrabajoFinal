@@ -60,20 +60,16 @@ sub deleteUser {
     my ($email) = @_;
     my $dbh = DBI->connect("DBI:mysql:database=trabajofinal;host=localhost", "root", "753159", { RaiseError => 1 });
     my $query = "DELETE FROM users WHERE email = ?";
-    my $sth = $dbh->prepare($query);
-    my $filas_afectadas = $sth->do($email);
-    $sth->finish;
+    my $filas_afectadas = $dbh->do($query, undef, $email); 
     $dbh->disconnect;
-    return $filas_afectadas;
+    return $filas_afectadas; 
 }
 
 sub updateUser {
     my ($id, $name, $email, $password, $phone, $cui, $rol) = @_;
     my $dbh = DBI->connect("DBI:mysql:database=trabajofinal;host=localhost", "root", "753159", { RaiseError => 1 });
     my $query = "UPDATE users SET name = ?, email = ?, password = ?, phone = ?, cui = ?, rol = ? WHERE id = ?";
-    my $sth = $dbh->prepare($query);
-    my $filas_afectadas = $sth->do($name, $email, $password, $phone, $cui, $rol, $id);  # Utilizar do() en lugar de execute()
-    $sth->finish;
+    my $filas_afectadas = $dbh->do($query, undef, $name, $email, $password, $phone, $cui, $rol, $id); 
     $dbh->disconnect;
-    return $filas_afectadas;
+    return $filas_afectadas; 
 }
