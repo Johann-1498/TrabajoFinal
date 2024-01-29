@@ -14,9 +14,13 @@ if ($token_sesion) {
         if ($consulta_validada) {
             if($operation eq "delete"){
                 my $email = $cgi->param("email");
-                deleteUser($email);
-                print $cgi->header(-type => 'application/json', -status => '200 OK');
-                print '{"success" : "Usuario Eliminado Exitosamente"}';
+                if(deleteUser($email)){
+                    print $cgi->header(-type => 'application/json', -status => '200 OK');
+                    print '{"success" : "Usuario Eliminado Exitosamente"}';
+                }else{
+                    print $cgi->header(-type => 'application/json', -status => '200 OK');
+                    print '{"success" : "Hubo Un Error al Borrar Al Usuario"}';
+                }
             }else{
                 my $id = $cgi->param("id");
                 my $name = $cgi->param("name");
@@ -25,9 +29,13 @@ if ($token_sesion) {
                 my $phone = $cgi->param("phone");
                 my $cui = $cgi->param("cui");
                 my $rol = $cgi->param("rol");
-                updateUser($id,$name,$email,$password,$phone,$cui,$rol);
-                print $cgi->header(-type => 'application/json', -status => '200 OK');
-                print '{"success" : "Usuario Actualizado Exitosamente"}';
+                if(updateUser($id,$name,$email,$password,$phone,$cui,$rol);){
+                    print $cgi->header(-type => 'application/json', -status => '200 OK');
+                    print '{"success" : "Usuario Actualizado Exitosamente"}';
+                }else{
+                    print $cgi->header(-type => 'application/json', -status => '200 OK');
+                    print '{"success" : "Hubo Un Error Al Actualizar Al Usuario"}';
+                }
             }
         } else {
             print $cgi->header(-type => 'application/json', -status => '500 Internal Server Error');
