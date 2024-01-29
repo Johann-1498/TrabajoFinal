@@ -125,7 +125,7 @@
                     inputs.forEach((value, index) => {
                         form.append(value.name, value.value);
                     });
-                    form.append("operation", "Save");
+                    form.append("operation", "save");
                     fetch("../cgi-bin/sistemaCrud.pl", {
                         method: "POST",
                         body: form

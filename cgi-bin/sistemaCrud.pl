@@ -12,7 +12,7 @@ my $operation = $cgi->param("operation");
 if ($token_sesion) {
         my $consulta_validada = autenticar_usuario($token_sesion);
         if ($consulta_validada) {
-            if($operation eq"Save"){
+            if($operation eq "delete"){
                 my $email = $cgi->param("email");
                 deleteUser($email);
                 print $cgi->header(-type => 'application/json', -status => '200 OK');
