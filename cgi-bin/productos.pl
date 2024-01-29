@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
+use CGI;
 use JSON;
 use DBI;
 my $table_data = getTable();
