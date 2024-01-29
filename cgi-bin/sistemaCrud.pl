@@ -29,7 +29,7 @@ if ($token_sesion) {
                 my $phone = $cgi->param("phone");
                 my $cui = $cgi->param("cui");
                 my $rol = $cgi->param("rol");
-                if(updateUser($id,$name,$email,$password,$phone,$cui,$rol);){
+                if(updateUser($id,$name,$email,$password,$phone,$cui,$rol)){
                     print $cgi->header(-type => 'application/json', -status => '200 OK');
                     print '{"success" : "Usuario Actualizado Exitosamente"}';
                 }else{
