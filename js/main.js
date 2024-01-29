@@ -33,7 +33,7 @@ import Item from './Item.js';
     });
     // vegetable carousel
     let vegatlCarrusel = $(".vegetable-carousel");
-    fetch("../cgi-bin/productos.pl").then(data => data.json()).then((data)=>{
+    fetch("cgi-bin/productos.pl").then(data => data.json()).then((data)=>{
         if(data.error){
             alert(data.error)
         }else{
