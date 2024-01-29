@@ -7,6 +7,8 @@ import Item from "./Item.js";
     .then((response) =>{
         if (response.name) {
             esValidaLaSesion = true;
+          }else{
+            console.log("no hay sesion");
           }
     });
   // Spinner
