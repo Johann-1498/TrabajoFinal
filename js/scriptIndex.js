@@ -30,14 +30,19 @@ fetch("cgi-bin/productos.pl")
                 for (let i = 0; i < array.length; i++) {
                     (function () {
                         let name = array[i].querySelector("h4").textContent;
-                        console.log(name);
+                        let imgSrc = array[i].querySelector("img").src;
+                        let price = parseFloat(array[i].querySelector("p.price").textContent.match(/[\d\.]+/)[0]);
                         array[i].querySelector("button").addEventListener("click", () => {
                             if (esValidaLaSesion) {
                                 carritoNum.textContent++;
                                 if (carrito[name]) {
-                                    carrito[name]++;
+                                    carrito[name].amount++;
                                 } else {
-                                    carrito[name] = 1;
+                                    carrito[name] = {
+                                        amount: 1,
+                                        imgSrc: imgSrc,
+                                        price: price
+                                    };
                                 }
                                 localStorage.setItem("Carrito", JSON.stringify(carrito));
                                 console.log(localStorage.getItem("Carrito"));

@@ -7,7 +7,7 @@ export default class Item {
         this.amount = amount;
         this.category = category;
     }
-    getItemHtmlObject(llevaBoton) {
+    getItemHtmlObject() {
         let htmlObject = document.createElement("div");
         htmlObject.className = "item border border-primary rounded position-relative vesitable-item";
         htmlObject.innerHTML = `<div class="vesitable-img">
@@ -19,14 +19,11 @@ export default class Item {
         <h4>${this.name}</h4>
         <p>${this.desc}</p>
         <div class="d-flex justify-content-between flex-lg-wrap">
-            <p class="text-dark fs-5 fw-bold mb-0">$${this.price} / kg</p>
+            <p class="price text-dark fs-5 fw-bold mb-0">S/. ${this.price} / kg</p>
             <button class="btn border border-secondary rounded-pill px-3 text-primary"><i
                 class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
         </div>
     </div>`
         return htmlObject;
-    }
-    getPrecioTotal() {
-        return this.amount * this.price
     }
 }
