@@ -31,7 +31,9 @@ fetch("cgi-bin/productos.pl")
                     (function () {
                         let name = array[i].querySelector("h4").textContent;
                         let imgSrc = array[i].querySelector("img").src;
-                        let price = parseFloat(array[i].querySelector("p.price").textContent.match(/[\d\.]+/)[0]);
+                        let priceStr = array[i].querySelector("p.price").textContent.trim();
+                        let resultado = priceStr.match(/[\d\.]+/);
+                        let price = resultado[0];
                         array[i].querySelector("button").addEventListener("click", () => {
                             if (esValidaLaSesion) {
                                 carritoNum.textContent++;
