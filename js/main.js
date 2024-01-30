@@ -83,10 +83,10 @@ import Item from "./Item.js";
           vegatlCarrusel.append(items[index]);
         });
         $(".vegetable-carousel").owlCarousel({
-          autoplay: true,
+          autoplay: false,
           smartSpeed: 1500,
           center: false,
-          loop: true,
+          loop: false,
           margin: 25,
           nav: true,
           navText: [
