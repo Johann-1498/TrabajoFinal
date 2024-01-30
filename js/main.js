@@ -47,42 +47,106 @@ import Item from "./Item.js";
       if (data.error) {
         alert(data.error);
       } else {
-        let vegatlCarrusel = $(".vegetable-carousel");
+        let vegetalCarousel = $(".vegetable-carousel");
+        let fruitsCarousel = $(".fruit-carousel");
+        let meatCarousel = $(".meat-carousel");
+        let abarrotesCarousel = $(".abarrotes-carousel");
         let carritoNum = document.querySelector("#carritoNum");
         carritoNum.textContent = 0;
         let carrito = {};
         if (localStorage.getItem("Carrito")) {
           carrito = JSON.parse(localStorage.getItem("Carrito"));
         }
-        let items = [];
-        data.forEach((element, index) => {
-          items.push(
-            new Item(
-              element.nombre,
-              element.precio,
-              undefined,
-              element.descripcion,
-              element.img,
-              element.categoryID
-            ).getItemHtmlObject()
-          );
-          items[index].querySelector("button").addEventListener("click", () => {
-            if (esValidaLaSesion) {
-              carritoNum.textContent++;
-              if (carrito[element.nombre]) {
-                carrito[element.nombre]++;
+        //Funcion para agregarle evento a los botones
+        function buttonEvent(array) {
+          let name;
+          for (let i = 0; i < array.length; i++) {
+            name = array[i].querySelector("h4").textContent;
+            array[i].querySelector("button").addEventListener("click", () => {
+              if (esValidaLaSesion) {
+                carritoNum.textContent++;
+                if (carrito[name]) {
+                  carrito[name]++;
+                } else {
+                  carrito[name] = 1;
+                }
+                localStorage.setItem("Carrito", JSON.stringify(carrito));
+                console.log(localStorage.getItem("Carrito"));
               } else {
-                carrito[element.nombre] = 1;
+                alert("Inicia Sesion antes de Continuar");
               }
-              localStorage.setItem("Carrito", JSON.stringify(carrito));
-              console.log(localStorage.getItem("Carrito"));
-            } else {
-              alert("Inicia Sesion antes de Continuar");
-            }
-          });
-          vegatlCarrusel.append(items[index]);
+            });
+          }
+        }
+        //Funcion para meter dentro de un div los elemnetos del carrusel
+        function appendIn(carousel, array) {
+          array.forEach(value => carousel.append(value));
+        }
+        let verduras = [];
+        let frutas = [];
+        let carnes = [];
+        let abarrotes = [];
+        data.forEach((element, index) => {
+          let category;
+          switch (element.categoryID) {
+            case 1:
+              category = "Verduras";
+              verduras.push(new Item(
+                element.nombre,
+                element.precio,
+                undefined,
+                element.descripcion,
+                element.img,
+                category
+              ).getItemHtmlObject());
+              break;
+            case 2:
+              category = "Frutas";
+              frutas.push(new Item(
+                element.nombre,
+                element.precio,
+                undefined,
+                element.descripcion,
+                element.img,
+                category
+              ).getItemHtmlObject());
+              break;
+            case 3:
+              category = "Carnes";
+              carnes.push(new Item(
+                element.nombre,
+                element.precio,
+                undefined,
+                element.descripcion,
+                element.img,
+                category
+              ).getItemHtmlObject());
+              break;
+            case 4:
+              category = "Abarrotes";
+              abarrotes.push(new Item(
+                element.nombre,
+                element.precio,
+                undefined,
+                element.descripcion,
+                element.img,
+                category
+              ).getItemHtmlObject());
+              break;
+            default:
+              category = "uncategorized"
+              break;
+          }
         });
-        $(".vegetable-carousel").owlCarousel({
+        buttonEvent(verduras);
+        buttonEvent(carnes);
+        buttonEvent(abarrotes);
+        buttonEvent(frutas);
+        appendIn(vegetalCarousel, verduras);
+        appendIn(fruitsCarousel, frutas);
+        appendIn(meatCarousel, carnes);
+        appendIn(abarrotesCarousel, abarrotes);
+        let carouselOptions = {
           autoplay: false,
           smartSpeed: 1500,
           center: false,
@@ -110,7 +174,11 @@ import Item from "./Item.js";
               items: 4,
             },
           },
-        });
+        };
+        vegetalCarousel.owlCarousel(carouselOptions);
+        fruitsCarousel.owlCarousel(carouselOptions);
+        meatCarousel.owlCarousel(carouselOptions);
+        abarrotesCarousel.owlCarousel(carouselOptions);
       }
     });
   // Product Quantity
