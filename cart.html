@@ -369,6 +369,7 @@
             }));
 
             quantityHtml.addEventListener("input", () => {
+                value.amount = quantityHtml.value;
                 totalpriceHtml.textContent = "S/. " + (price * value.amount).toFixed(2);
             });
 
