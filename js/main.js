@@ -89,6 +89,7 @@ import Item from "./Item.js";
           smartSpeed: 1500,
           center: false,
           loop: true,
+          mouseDrag: false,
           margin: 25,
           nav: true,
           navText: [
