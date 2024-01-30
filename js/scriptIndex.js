@@ -1,5 +1,14 @@
 import Item from "./Item.js";
-
+//Verificando la sesion
+let esValidaLaSesion = false;
+validarSesion()
+    .then((response) => {
+        if (response.name) {
+            esValidaLaSesion = true;
+        } else {
+            console.log("no hay sesion");
+        }
+    });
 fetch("cgi-bin/productos.pl")
     .then((data) => data.json())
     .then((data) => {
