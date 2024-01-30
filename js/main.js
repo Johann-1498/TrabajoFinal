@@ -62,6 +62,7 @@ import Item from "./Item.js";
           let name;
           for (let i = 0; i < array.length; i++) {
             name = array[i].querySelector("h4").textContent;
+            console.log(name);
             array[i].querySelector("button").addEventListener("click", () => {
               if (esValidaLaSesion) {
                 carritoNum.textContent++;
