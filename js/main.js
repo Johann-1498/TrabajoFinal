@@ -4,12 +4,12 @@ import Item from "./Item.js";
   //Verificando la sesion
   let esValidaLaSesion = false;
   validarSesion()
-    .then((response) =>{
-        if (response.name) {
-            esValidaLaSesion = true;
-          }else{
-            console.log("no hay sesion");
-          }
+    .then((response) => {
+      if (response.name) {
+        esValidaLaSesion = true;
+      } else {
+        console.log("no hay sesion");
+      }
     });
   // Spinner
   var spinner = function () {
@@ -48,7 +48,7 @@ import Item from "./Item.js";
         alert(data.error);
       } else {
         let vegatlCarrusel = $(".vegetable-carousel");
-        let carritoNum = document.querySelector("#carritoNum");
+        let carritoNum = $("#carritoNum");
         carritoNum.textContent = 0;
         let carrito = {};
         if (localStorage.getItem("Carrito")) {
@@ -66,7 +66,7 @@ import Item from "./Item.js";
               element.categoryID
             ).getItemHtmlObject()
           );
-          items[index].querySelector("button").click(() => {
+          items[index].querySelector("button").addEventListener("click", () => {
             if (esValidaLaSesion) {
               carritoNum.textContent++;
               if (carrito[element.nombre]) {
@@ -81,14 +81,13 @@ import Item from "./Item.js";
             }
           });
           vegatlCarrusel.append(items[index]);
-
-          console.log(items[index]);
         });
         $(".vegetable-carousel").owlCarousel({
           autoplay: true,
           smartSpeed: 1500,
           center: false,
           loop: true,
+          mouseDrag: false,
           margin: 25,
           nav: true,
           navText: [
