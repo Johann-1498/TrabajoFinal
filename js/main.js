@@ -59,24 +59,25 @@ import Item from "./Item.js";
         }
         //Funcion para agregarle evento a los botones
         function buttonEvent(array) {
-          let name;
           for (let i = 0; i < array.length; i++) {
-            name = array[i].querySelector("h4").textContent;
-            console.log(name);
-            array[i].querySelector("button").addEventListener("click", () => {
-              if (esValidaLaSesion) {
-                carritoNum.textContent++;
-                if (carrito[name]) {
-                  carrito[name]++;
+            (function () {
+              let name = array[i].querySelector("h4").textContent;
+              console.log(name);
+              array[i].querySelector("button").addEventListener("click", () => {
+                if (esValidaLaSesion) {
+                  carritoNum.textContent++;
+                  if (carrito[name]) {
+                    carrito[name]++;
+                  } else {
+                    carrito[name] = 1;
+                  }
+                  localStorage.setItem("Carrito", JSON.stringify(carrito));
+                  console.log(localStorage.getItem("Carrito"));
                 } else {
-                  carrito[name] = 1;
+                  alert("Inicia Sesión antes de Continuar");
                 }
-                localStorage.setItem("Carrito", JSON.stringify(carrito));
-                console.log(localStorage.getItem("Carrito"));
-              } else {
-                alert("Inicia Sesion antes de Continuar");
-              }
-            });
+              });
+            })();
           }
         }
         //Funcion para meter dentro de un div los elemnetos del carrusel
