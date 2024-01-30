@@ -48,7 +48,7 @@ import Item from "./Item.js";
         alert(data.error);
       } else {
         let vegatlCarrusel = $(".vegetable-carousel");
-        let carritoNum = $("#carritoNum");
+        let carritoNum = document.querySelector("#carritoNum");
         carritoNum.textContent = 0;
         let carrito = {};
         if (localStorage.getItem("Carrito")) {
@@ -87,7 +87,6 @@ import Item from "./Item.js";
           smartSpeed: 1500,
           center: false,
           loop: true,
-          mouseDrag: false,
           margin: 25,
           nav: true,
           navText: [
