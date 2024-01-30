@@ -1,4 +1,3 @@
-import Item from "./Item.js";
 (function ($) {
   "use strict";
   //Verificando la sesion

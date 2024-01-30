@@ -1,3 +1,4 @@
+import Item from "./Item.js";
 
 fetch("cgi-bin/productos.pl")
     .then((data) => data.json())
