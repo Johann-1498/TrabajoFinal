@@ -66,7 +66,7 @@ import Item from "./Item.js";
               element.categoryID
             ).getItemHtmlObject()
           );
-          items[index].querySelector("button").on("click", () => {
+          items[index].querySelector("button").addEventListener("click", () => {
             if (esValidaLaSesion) {
               carritoNum.textContent++;
               if (carrito[element.nombre]) {
