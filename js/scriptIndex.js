@@ -31,7 +31,21 @@ fetch("cgi-bin/productos.pl")
                     (function () {
                         let name = array[i].querySelector("h4").textContent;
                         let imgSrc = array[i].querySelector("img").src;
-                        let price = parseFloat(array[i].querySelector("p.price").textContent.match(/[\d\.]+/)[0]);
+                        let priceElement = array[i].querySelector("p.price");
+
+                        if (priceElement) {
+                            let priceText = priceElement.textContent.trim();
+                            let match = priceText.match(/[\d.]+/);
+
+                            if (match) {
+                                let price = parseFloat(match[0]);
+                                console.log(price);
+                            } else {
+                                console.error("No se encontraron números en el texto");
+                            }
+                        } else {
+                            console.error("No se encontró el elemento 'p.price'");
+                        }
                         array[i].querySelector("button").addEventListener("click", () => {
                             if (esValidaLaSesion) {
                                 carritoNum.textContent++;
