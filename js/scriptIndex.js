@@ -33,7 +33,7 @@ fetch("cgi-bin/productos.pl")
                         let imgSrc = array[i].querySelector("img").src;
                         let priceStr = array[i].querySelector("p.price").textContent.trim();
                         let resultado = priceStr.match(/[0-9]+(?:\.[0-9]+)?/);
-                        let price = resultado[0];
+                        let price = +resultado[0];
                         array[i].querySelector("button").addEventListener("click", () => {
                             if (esValidaLaSesion) {
                                 carritoNum.textContent++;

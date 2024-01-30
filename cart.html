@@ -339,22 +339,23 @@
         let carritoInfo = JSON.parse(localStorage.getItem("Carrito"));
         console.log(carritoInfo);
         let productosEnElCarrito = Object.keys(carritoInfo);
-        let value, name, imgSrc, price, producto, amount, totalpriceHtml, quantityHtml, quantityButtons;
+
         productosEnElCarrito.forEach((key, index) => {
-            value = carritoInfo[key];
-            name = key;
-            imgSrc = value.imgSrc;
-            price = value.price;
-            amount = value.amount;
-            producto = new trDetail(name, imgSrc, price, amount).getHtmlObject();
-            totalpriceHtml = producto.querySelector("p.total");
-            quantityHtml = producto.querySelector("input.quantity");
-            quantityButtons = producto.querySelectorAll(".quantity button");
-            quantityButtons.forEach(button => button.addEventListener("click", function () {
+            let value = carritoInfo[key];
+            let name = key;
+            let imgSrc = value.imgSrc;
+            let price = value.price;
+            let amount = value.amount;
+
+            let producto = new trDetail(name, imgSrc, price, amount).getHtmlObject();
+            let totalpriceHtml = producto.querySelector("p.total");
+            let quantityHtml = producto.querySelector("input.quantity");
+            let quantityButtons = producto.querySelectorAll(".quantity button");
+
+            quantityButtons.forEach(button => button.addEventListener("click", () => {
                 var oldValue = value.amount;
                 if (button.classList.contains("btn-plus")) {
                     var newVal = +oldValue + 1;
-                    console.log("xd");
                 } else {
                     if (oldValue > 0) {
                         var newVal = +oldValue - 1;
@@ -366,9 +367,11 @@
                 value.amount = newVal;
                 totalpriceHtml.textContent = "S/. " + (price * value.amount).toFixed(2);
             }));
-            quantityHtml.addEventListener("input", function () {
+
+            quantityHtml.addEventListener("input", () => {
                 totalpriceHtml.textContent = "S/. " + (price * value.amount).toFixed(2);
             });
+
             tBody.append(producto);
         });
     </script>
