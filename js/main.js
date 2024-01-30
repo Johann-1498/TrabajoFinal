@@ -4,12 +4,12 @@ import Item from "./Item.js";
   //Verificando la sesion
   let esValidaLaSesion = false;
   validarSesion()
-    .then((response) =>{
-        if (response.name) {
-            esValidaLaSesion = true;
-          }else{
-            console.log("no hay sesion");
-          }
+    .then((response) => {
+      if (response.name) {
+        esValidaLaSesion = true;
+      } else {
+        console.log("no hay sesion");
+      }
     });
   // Spinner
   var spinner = function () {
@@ -48,7 +48,7 @@ import Item from "./Item.js";
         alert(data.error);
       } else {
         let vegatlCarrusel = $(".vegetable-carousel");
-        let carritoNum = document.querySelector("#carritoNum");
+        let carritoNum = $("#carritoNum");
         carritoNum.textContent = 0;
         let carrito = {};
         if (localStorage.getItem("Carrito")) {
@@ -66,7 +66,7 @@ import Item from "./Item.js";
               element.categoryID
             ).getItemHtmlObject()
           );
-          items[index].querySelector("button").click(() => {
+          items[index].querySelector("button").on("click", () => {
             if (esValidaLaSesion) {
               carritoNum.textContent++;
               if (carrito[element.nombre]) {
