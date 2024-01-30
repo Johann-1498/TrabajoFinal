@@ -81,8 +81,6 @@ import Item from "./Item.js";
             }
           });
           vegatlCarrusel.append(items[index]);
-
-          console.log(items[index]);
         });
         $(".vegetable-carousel").owlCarousel({
           autoplay: true,
