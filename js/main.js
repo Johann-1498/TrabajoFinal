@@ -1,15 +1,5 @@
 (function ($) {
   "use strict";
-  //Verificando la sesion
-  let esValidaLaSesion = false;
-  validarSesion()
-    .then((response) => {
-      if (response.name) {
-        esValidaLaSesion = true;
-      } else {
-        console.log("no hay sesion");
-      }
-    });
   // Spinner
   var spinner = function () {
     setTimeout(function () {
