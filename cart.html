@@ -313,6 +313,8 @@
             }
         }
         //main
+        let cartTotalPrice = document.querySelector(".cartTotalPrice");
+        let finalTotalPrice = document.querySelector(".finalTotalPrice");
         let costoDeEnvio = 3;
         let finalPrice = 0;
         let tBody = document.querySelector("tbody");
@@ -326,7 +328,6 @@
             let imgSrc = value.imgSrc;
             let price = value.price;
             let amount = value.amount;
-            finalPrice = +price + finalPrice;
 
             let producto = new trDetail(name, imgSrc, price, amount).getHtmlObject();
             let totalpriceHtml = producto.querySelector("p.total");
@@ -348,15 +349,27 @@
                 }
                 quantityHtml.value = newVal;
                 value.amount = newVal;
-                totalpriceHtml.textContent = "S/. " + (price * value.amount).toFixed(2);
-            }));
+                carritoInfo[name].amount = value.amount;
+                localStorage.setItem("Carrito", JSON.stringify(carritoInfo));
 
+                totalpriceHtml.textContent = "S/. " + (price * value.amount).toFixed(2);
+                preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
+                cartTotalPrice.textContent = "S/. " + finalPrice.toFixed(2);
+                finalTotalPrice.textContent = "S/. " + (finalPrice + 3).toFixed(2);
+            }));
             quantityHtml.addEventListener("input", () => {
                 value.amount = quantityHtml.value;
                 totalpriceHtml.textContent = "S/. " + (price * value.amount).toFixed(2);
+                preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
+                cartTotalPrice.textContent = "S/. " + finalPrice.toFixed(2);
+                finalTotalPrice.textContent = "S/. " + (finalPrice + 3).toFixed(2);
+                carritoInfo[name].amount = value.amount;
+                localStorage.setItem("Carrito", JSON.stringify(carritoInfo));
+
             });
             deleteButton.addEventListener("click", function () {
                 producto.classList.add("fade-out");
+
                 setTimeout(function () {
                     delete carritoInfo[name];
                     localStorage.setItem("Carrito", JSON.stringify(carritoInfo));
@@ -364,11 +377,14 @@
                 }, 500);
             });
             tBody.append(producto);
+            preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
+            cartTotalPrice.textContent = "S/. " + finalPrice.toFixed(2);
+            finalTotalPrice.textContent = "S/. " + (finalPrice + 3).toFixed(2);
         });
-        let cartTotalPrice = document.querySelector(".cartTotalPrice");
-        cartTotalPrice.textContent = "S/ " + finalPrice;
-        let finalTotalPrice = document.querySelector(".finalTotalPrice");
-        finalTotalPrice.textContent = "S/ " + (finalPrice + 3);
+        let preciosTotales = document.querySelectorAll(".total");
+        preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
+        cartTotalPrice.textContent = "S/. " + finalPrice.toFixed(2);
+        finalTotalPrice.textContent = "S/. " + (finalPrice + 3).toFixed(2);
     </script>
 </body>
 
