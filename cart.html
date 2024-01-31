@@ -374,14 +374,15 @@
             });
             deleteButton.addEventListener("click", function () {
                 producto.classList.add("fade-out");
-                finalPrice = 0;
-                preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
+
                 setTimeout(function () {
-                    delete producto;
+                    preciosTotales.splice(preciosTotales.indexOf(producto.querySelector("p.total")), 1);
                     delete carritoInfo[name];
                     localStorage.setItem("Carrito", JSON.stringify(carritoInfo));
                     producto.remove();
                 }, 500);
+                finalPrice = 0;
+                preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
             });
             tBody.append(producto);
             finalPrice = 0;
