@@ -381,6 +381,7 @@
                     producto.remove();
                 }, 500);
                 setTimeout(function () {
+                    console.log(preciosTotales);
                     finalPrice = 0;
                     preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
                 }, 700);
