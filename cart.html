@@ -374,9 +374,8 @@
             });
             deleteButton.addEventListener("click", function () {
                 producto.classList.add("fade-out");
-
+                preciosTotales.splice(preciosTotales.indexOf(producto.querySelector("p.total")), 1);
                 setTimeout(function () {
-                    preciosTotales.splice(preciosTotales.indexOf(producto.querySelector("p.total")), 1);
                     delete carritoInfo[name];
                     localStorage.setItem("Carrito", JSON.stringify(carritoInfo));
                     producto.remove();
