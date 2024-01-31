@@ -10,7 +10,8 @@ loginForm.addEventListener("submit", function (event) {
         return response.json();
     }).then(data => {
         console.log(data);
-        if (data.success) {
+        if (data.name) {
+            localStorage.setItem('User', JSON.stringify(data));
             window.location.href = 'index.html';
         } else {
             alert("Uusario o contraseña incorrectos")
@@ -28,9 +29,10 @@ registerForm.addEventListener("submit", function (event) {
         return response.json();
     }).then(data => {
         if (data.success) {
-            window.location.href = 'index.html';
+            alert("Usuario registrado correctamente")
+            window.location.reload();
         } else {
-            alert("Ocurrio un error al crear el Usuario")
+            alert(data.error);
         }
     });
 });

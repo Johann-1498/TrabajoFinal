@@ -11,12 +11,6 @@ my $db_user   = 'root';
 my $db_pass   = '753159';
 my $db_host   = 'localhost';
 my $table     = 'users';
-sub generar_token_sesion {
-    my $tiempo_actual = time();
-    my $token = sha1_hex($tiempo_actual, rand());
-    return $token;
-}
-my $token_sesion = generar_token_sesion();
 my $cgi = CGI->new;
 my $name = $cgi->param('name');
 my $password = $cgi->param('password');
@@ -24,14 +18,16 @@ my $email  = $cgi->param('email');
 my $telefono  = $cgi->param('phone');
 my $cui  = $cgi->param('cui');
 my $dbh = DBI->connect("DBI:mysql:database=$db_name;host=$db_host", $db_user, $db_pass);
-my $sql = "INSERT INTO $table (name, email, password, phone, cui, token_sesion) VALUES (?, ?, ?, ?, ?, ?)";
+my $sql = "INSERT INTO $table (name, email, password, phone, cui) VALUES (?, ?, ?, ?, ?)";
 my $sth = $dbh->prepare($sql);
-$sth->execute($name, $email, $password, $telefono, $cui, $token_sesion);
+my $result = $sth->execute($name, $email, $password, $telefono, $cui);
 $dbh->disconnect;
-my $cookie = CGI::Cookie->new(
-    -name    => 'token_sesion',
-    -value   => $token_sesion,
-    -expires => '+1d',
-);
-print $cgi->header(-cookie => $cookie, -type => 'application/json');
+if($result) {
+print $cgi->header(-type => 'application/json');
 print '{"success": true}';
+}
+else{
+    print $cgi->header(-type => 'application/json');
+print '{"error": "Error al crear al Usuario"}';
+}
+

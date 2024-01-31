@@ -38,8 +38,5 @@ if (my $usuario = $sth->fetchrow_hashref) {
         -expires => '+1d',
     );
     print $cgi->header(-cookie => $cookie, -type => 'application/json');
-    print '{"success": true}';
-} else {
-    print $cgi->header(-type => 'application/json');
-    print '{"success": false}';
+    print encode_json-($usuario);
 }
