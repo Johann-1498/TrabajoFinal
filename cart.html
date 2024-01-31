@@ -315,6 +315,7 @@
         //main
         let cartTotalPrice = document.querySelector(".cartTotalPrice");
         let finalTotalPrice = document.querySelector(".finalTotalPrice");
+        let preciosTotales = document.querySelectorAll(".total");
         let costoDeEnvio = 3;
         let finalPrice = 0;
         let tBody = document.querySelector("tbody");
@@ -381,7 +382,6 @@
             cartTotalPrice.textContent = "S/. " + finalPrice.toFixed(2);
             finalTotalPrice.textContent = "S/. " + (finalPrice + 3).toFixed(2);
         });
-        let preciosTotales = document.querySelectorAll(".total");
         preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
         cartTotalPrice.textContent = "S/. " + finalPrice.toFixed(2);
         finalTotalPrice.textContent = "S/. " + (finalPrice + 3).toFixed(2);
