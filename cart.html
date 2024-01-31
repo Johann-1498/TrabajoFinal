@@ -380,11 +380,11 @@
                     localStorage.setItem("Carrito", JSON.stringify(carritoInfo));
                     producto.remove();
                 }, 500);
-                setTimeout(function () {
-                    console.log(preciosTotales);
-                    finalPrice = 0;
-                    preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
-                }, 700);
+                console.log(preciosTotales);
+                finalPrice = 0;
+                preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
+                cartTotalPrice.textContent = "S/. " + finalPrice.toFixed(2);
+                finalTotalPrice.textContent = "S/. " + (finalPrice + 3).toFixed(2);
 
             });
             tBody.append(producto);
