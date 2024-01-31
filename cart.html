@@ -327,7 +327,7 @@
             let value = carritoInfo[key];
             let name = key;
             let imgSrc = value.imgSrc;
-            let price = value.price;
+            let price = value.price.toFixed(2);
             let amount = value.amount;
 
             let producto = new trDetail(name, imgSrc, price, amount).getHtmlObject();
