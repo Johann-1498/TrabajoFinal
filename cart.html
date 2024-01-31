@@ -315,7 +315,7 @@
         //main
         let cartTotalPrice = document.querySelector(".cartTotalPrice");
         let finalTotalPrice = document.querySelector(".finalTotalPrice");
-        let preciosTotales = document.querySelectorAll(".total");
+        let preciosTotales = [];
         let costoDeEnvio = 3;
         let finalPrice = 0;
         let tBody = document.querySelector("tbody");
@@ -332,6 +332,7 @@
 
             let producto = new trDetail(name, imgSrc, price, amount).getHtmlObject();
             let totalpriceHtml = producto.querySelector("p.total");
+            preciosTotales.append(totalpriceHtml);
             let quantityHtml = producto.querySelector("input.quantity");
             let quantityButtons = producto.querySelectorAll(".quantity button");
             let deleteButton = producto.querySelector("button.deleteItem");
