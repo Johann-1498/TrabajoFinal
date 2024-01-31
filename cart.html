@@ -355,6 +355,7 @@
                 localStorage.setItem("Carrito", JSON.stringify(carritoInfo));
 
                 totalpriceHtml.textContent = "S/. " + (price * value.amount).toFixed(2);
+                finalPrice = 0;
                 preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
                 cartTotalPrice.textContent = "S/. " + finalPrice.toFixed(2);
                 finalTotalPrice.textContent = "S/. " + (finalPrice + 3).toFixed(2);
@@ -362,6 +363,8 @@
             quantityHtml.addEventListener("input", () => {
                 value.amount = quantityHtml.value;
                 totalpriceHtml.textContent = "S/. " + (price * value.amount).toFixed(2);
+                finalPrice = 0;
+
                 preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
                 cartTotalPrice.textContent = "S/. " + finalPrice.toFixed(2);
                 finalTotalPrice.textContent = "S/. " + (finalPrice + 3).toFixed(2);
@@ -371,18 +374,23 @@
             });
             deleteButton.addEventListener("click", function () {
                 producto.classList.add("fade-out");
-
+                finalPrice = 0;
+                preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
                 setTimeout(function () {
+                    delete producto;
                     delete carritoInfo[name];
                     localStorage.setItem("Carrito", JSON.stringify(carritoInfo));
                     producto.remove();
                 }, 500);
             });
             tBody.append(producto);
+            finalPrice = 0;
             preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
             cartTotalPrice.textContent = "S/. " + finalPrice.toFixed(2);
             finalTotalPrice.textContent = "S/. " + (finalPrice + 3).toFixed(2);
         });
+        finalPrice = 0;
+
         preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
         cartTotalPrice.textContent = "S/. " + finalPrice.toFixed(2);
         finalTotalPrice.textContent = "S/. " + (finalPrice + 3).toFixed(2);
