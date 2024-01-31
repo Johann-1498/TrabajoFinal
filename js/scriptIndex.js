@@ -125,7 +125,7 @@ fetch("cgi-bin/productos.pl")
             break;
           case 5:
             category = "Limpieza";
-            abarrotes.push(
+            limpieza.push(
               new Item(
                 element.nombre,
                 element.precio,
@@ -138,7 +138,7 @@ fetch("cgi-bin/productos.pl")
             break;
           case 6:
             category = "Bebidas";
-            abarrotes.push(
+            bebidas.push(
               new Item(
                 element.nombre,
                 element.precio,
@@ -151,7 +151,7 @@ fetch("cgi-bin/productos.pl")
             break;
           case 7:
             category = "Panaderia";
-            abarrotes.push(
+            panaderia.push(
               new Item(
                 element.nombre,
                 element.precio,
