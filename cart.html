@@ -374,7 +374,9 @@
             });
             deleteButton.addEventListener("click", function () {
                 producto.classList.add("fade-out");
+                finalPrice = 0;
 
+                preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
                 setTimeout(function () {
                     delete carritoInfo[name];
                     localStorage.setItem("Carrito", JSON.stringify(carritoInfo));
