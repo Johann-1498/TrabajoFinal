@@ -332,7 +332,7 @@
 
             let producto = new trDetail(name, imgSrc, price, amount).getHtmlObject();
             let totalpriceHtml = producto.querySelector("p.total");
-            preciosTotales.append(totalpriceHtml);
+            preciosTotales.push(totalpriceHtml);
             let quantityHtml = producto.querySelector("input.quantity");
             let quantityButtons = producto.querySelectorAll(".quantity button");
             let deleteButton = producto.querySelector("button.deleteItem");
