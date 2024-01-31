@@ -380,9 +380,10 @@
                     delete carritoInfo[name];
                     localStorage.setItem("Carrito", JSON.stringify(carritoInfo));
                     producto.remove();
+                    finalPrice = 0;
+                    preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
                 }, 500);
-                finalPrice = 0;
-                preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
+
             });
             tBody.append(producto);
             finalPrice = 0;
