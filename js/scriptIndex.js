@@ -136,7 +136,7 @@ fetch("cgi-bin/productos.pl")
               ).getItemHtmlObject()
             );
             break;
-          case 4:
+          case 6:
             category = "Bebidas";
             abarrotes.push(
               new Item(
@@ -149,7 +149,7 @@ fetch("cgi-bin/productos.pl")
               ).getItemHtmlObject()
             );
             break;
-          case 4:
+          case 7:
             category = "Panaderia";
             abarrotes.push(
               new Item(
