@@ -23,6 +23,7 @@
     transition: 0.5s;
     background: var(--bs-white);
     border: 0;
+    box-shadow: 0px 0px 20px -6px #5a624b44;
 }
  .back-to-top {
     position: fixed;
@@ -48,7 +49,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f9f4;
+    background-color: #ffffff;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -84,10 +85,10 @@ main {
     height: 500px;
     display: flex;
     flex-direction: column;
-    background-color: #d3e8db;
+    background-color: #ffffff;
     align-items: center;
     border-radius: 6px;
-    box-shadow: 7px 5px 8px 0px #56967b;
+    box-shadow: 0px 0px 30px -6px #5a624b44;
     padding: 30px;
 }
 
@@ -149,12 +150,12 @@ label {
 .containers-LoginRegister .front form .login-icon {
     position: absolute;
     top: 30px;
-    color: #75b5a0;
+    color: #81c408;
 }
 
 .login-input {
     border: none;
-    border-bottom: 2px solid #d3e8db;
+    border-bottom: 2px solid #dbd1bea0;
     background: none;
     padding: 10px;
     padding-left: 24px;
@@ -167,7 +168,7 @@ label {
 .login-input:focus,
 .login-input:hover {
     outline: none;
-    border-bottom-color: #56967b;
+    border-bottom-color: #4f504f;
 }
 #registerCui {
     margin-bottom: 0px ;
@@ -179,14 +180,14 @@ label {
     margin-top: 30px;
     padding: 16px 20px;
     border-radius: 26px;
-    border: 1px solid #d3e8db;
+    border: 1px solid #81c408;
     text-transform: uppercase;
     font-weight: 700;
     display: flex;
     align-items: center;
     width: 100%;
-    color: #489d71;
-    box-shadow: 0px 2px 2px #56967b;
+    color: #81c408;
+    box-shadow: 0px 2px 2px #81c408;
     cursor: pointer;
     transition: .2s;
 }
@@ -197,14 +198,14 @@ label {
 .login-submit:active,
 .login-submit:focus,
 .login-submit:hover {
-    border-color: #679e81;
+    border-color: #81c408;
     outline: none;
 }
 
 .button-icon {
     font-size: 24px;
     margin-left: auto;
-    color: #75b5a0;
+    color: #81c408;
 }
 
 .containers-LoginRegister .back {
@@ -235,7 +236,7 @@ label {
 .containers-LoginRegister .back form .login-icon {
     position: absolute;
     top: 20px;
-    color: #75b5a0;
+    color: #81c408;
 }
 
 #checkbox:checked~.containers-LoginRegister .front {
