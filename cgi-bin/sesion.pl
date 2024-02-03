@@ -12,12 +12,12 @@ if ($token_sesion) {
             print $cgi->header(-type => 'application/json', -status => '200 OK');
             print encode_json($datos_usuario);
         } else {
-            print $cgi->header(-type => 'text/plain', -status => '500 Internal Server Error');
-            print "Error al cargar datos del usuario";
+            print $cgi->header(-type => 'application/json');
+            print '{"error": "No se encontro un usuario con el token"}';
         }
 }else{
-    print $cgi->header(-type => 'text/plain', -status => '500 Internal Server Error');
-    print "Error al obtener el token";
+    print $cgi->header(-type => 'application/json');
+    print '{"error": "No se recibio el token"}';
 }
 sub cargar_datos_de_tabla {
     my ($token) = @_;

@@ -3,18 +3,21 @@ import Item from "./Item.js";
 let esValidaLaSesion = false;
 function validandoLaSesion() {
   if (localStorage.getItem("User") !== null) {
-    validarSesion().then((response) => {
-      if (response.name === JSON.parse(localStorage.getItem("User")).name) {
-        console.log(response.name);
-        esValidaLaSesion = true;
-      } else {
-        console.log("No hay sesion")
-        localStorage.clear();
-        eliminarCookie();
-        //alert("Su sesion a terminado");
-        //setTimeout(() => window.location.reload(), 500);
-      }
-    });
+    if (obtenerTokenDeSesion()) {
+      validarSesion().then((response) => {
+        if (response.name === JSON.parse(localStorage.getItem("User")).name) {
+          console.log(response.name);
+          esValidaLaSesion = true;
+        } else {
+          console.log("No hay sesion" + response.error);
+          localStorage.clear();
+          eliminarCookie();
+          //alert("Su sesion a terminado");
+          //setTimeout(() => window.location.reload(), 500);
+        }
+      });
+    }
+
   }
 }
 validandoLaSesion();

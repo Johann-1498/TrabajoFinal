@@ -38,5 +38,5 @@ function obtenerTokenDeSesion() {
     if (nombre.trim() === 'token_sesion') {
         return valor.trim();
     }
-    return null;
+    return undefined;
 }
