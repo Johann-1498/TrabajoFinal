@@ -5,6 +5,7 @@ function validandoLaSesion() {
   if (localStorage.getItem("User") !== null) {
     validarSesion().then((response) => {
       if (response.name === JSON.parse(localStorage.getItem("User")).name) {
+        console.log(response.name);
         esValidaLaSesion = true;
       } else {
         console.log("No hay sesion")
