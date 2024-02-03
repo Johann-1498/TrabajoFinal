@@ -16,6 +16,8 @@ function validandoLaSesion() {
           //setTimeout(() => window.location.reload(), 500);
         }
       });
+    } else {
+      console.log("No hay token");
     }
 
   }
