@@ -8,6 +8,7 @@ function validandoLaSesion() {
         esValidaLaSesion = true;
       } else {
         console.log("No hay sesion")
+        localStorage.clear();
         eliminarCookie();
         //alert("Su sesion a terminado");
         //setTimeout(() => window.location.reload(), 500);
