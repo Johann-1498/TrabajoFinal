@@ -14,7 +14,7 @@ loginForm.addEventListener("submit", function (event) {
             localStorage.setItem('User', JSON.stringify(data));
             window.location.href = 'index.html';
         } else {
-            alert("Uusario o contraseña incorrectos")
+            alert("Usuario o contraseña incorrectos")
         }
     });
 

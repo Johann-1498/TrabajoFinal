@@ -1,13 +1,22 @@
 import Item from "./Item.js";
 //Verificando la sesion
 let esValidaLaSesion = false;
-validarSesion().then((response) => {
-  if (response.name) {
-    esValidaLaSesion = true;
-  } else {
-    console.log("no hay sesion");
+function validandoLaSesion() {
+  if (localStorage.getItem("User") !== null) {
+    validarSesion().then((response) => {
+      if (response.name === JSON.parse(localStorage.getItem("User")).name) {
+        esValidaLaSesion = true;
+      } else {
+        console.log("No hay sesion")
+        eliminarCookie();
+        //alert("Su sesion a terminado");
+        //setTimeout(() => window.location.reload(), 500);
+      }
+    });
   }
-});
+}
+validandoLaSesion();
+
 fetch("cgi-bin/productos.pl")
   .then((data) => data.json())
   .then((data) => {
