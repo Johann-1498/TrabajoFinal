@@ -22,6 +22,9 @@ function validandoLaSesion() {
           console.log("No hay sesion" + response.error);
           localStorage.clear();
           eliminarCookie();
+          closeSession.style.display = "none";
+          cartButton.style.display = "none";
+          perfilButton.style.display = "none";
           //alert("Su sesion a terminado");
           //setTimeout(() => window.location.reload(), 500);
         }
