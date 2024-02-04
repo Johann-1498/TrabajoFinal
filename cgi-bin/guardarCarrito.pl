@@ -35,17 +35,18 @@ sub cargar_datos_a_tabla {
     my $sthUpdateCarrito = $dbh->prepare($queryUpdateCarrito);
     my $filas_afectadas_update = $sthUpdateCarrito->execute($carrito, $id);
 
-    if ($filas_afectadas_update) {
+    if ($filas_afectadas_update && $filas_afectadas_update != 0) {
         $dbh->disconnect();
-        return $filas_afectadas_update;
+        return 1;  # Devuelve true si al menos una fila fue afectada
     }
 
     my $queryCreateCarrito = "INSERT INTO carrito (clientID, content) VALUES (?, ?)";
     my $sthCreateCarrito = $dbh->prepare($queryCreateCarrito);
-    my $filas_afectadas_insert = $sthCreateCarrito->execute(int($id), $carrito);
+    $sthCreateCarrito->execute(int($id), $carrito);
+
+    my $filas_afectadas_insert = $sthCreateCarrito->rows;
 
     $dbh->disconnect();
-    if($filas_afectadas_insert === "0E0")
 
-    return $filas_afectadas_insert;
+    return $filas_afectadas_insert;  # Devuelve el resultado de la operación de inserción
 }
