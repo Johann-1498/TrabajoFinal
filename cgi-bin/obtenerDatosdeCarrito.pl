@@ -31,13 +31,13 @@ sub cargar_datos_de_tabla {
     $sth2->execute($id);
     my $carrito = $sth2->fetchrow_hashref;
     if($carrito){
-        dbh->disconnect;
+        dbh->disconnect();
         return $carrito;
     }
     my $queryCreateCarrito = "INSERT INTO carrito (clientID, content) VALUES (?, ?)";
     my $sthCreateCarrito = $dbh->prepare($queryCreateCarrito);
     $sthCreateCarrito->execute(int($id), "");
     my $filas_afectadas_insert = $sthCreateCarrito->rows;
-    $dbh->disconnect;
+    $dbh->disconnect();
     return $filas_afectadas_insert;
 }
