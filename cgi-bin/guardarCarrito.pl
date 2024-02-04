@@ -31,7 +31,7 @@ sub cargar_datos_a_tabla {
     $sth->execute($token);
     my ($id) = $sth->fetchrow_array;
 
-    my $queryUpdateCarrito = "UPDATE carrito SET carrito = ? WHERE clientID = ?";
+    my $queryUpdateCarrito = "UPDATE carrito SET content = ? WHERE clientID = ?";
     my $sthUpdateCarrito = $dbh->prepare($queryUpdateCarrito);
     my $filas_afectadas_update = $sthUpdateCarrito->execute($carrito, $id);
 
@@ -40,7 +40,7 @@ sub cargar_datos_a_tabla {
         return $filas_afectadas_update;
     }
 
-    my $queryCreateCarrito = "INSERT INTO carrito (clientID, carrito) VALUES (?, ?)";
+    my $queryCreateCarrito = "INSERT INTO carrito (clientID, content) VALUES (?, ?)";
     my $sthCreateCarrito = $dbh->prepare($queryCreateCarrito);
     my $filas_afectadas_insert = $sthCreateCarrito->execute($id, $carrito);
 
