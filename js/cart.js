@@ -57,6 +57,7 @@ let costoDeEnvio = 3;
 let finalPrice = 0;
 let tBody = document.querySelector("tbody");
 let carritoInfo = {};
+let carritoJsonString = JSON.stringify(carritoInfo);
 fetch("cgi-bin/obtenerDatosdeCarrito.pl?token=" + obtenerTokenDeSesion()).then(response => response.json()).then((data) => {
     carritoInfo = JSON.parse(data.content);
     console.log(carritoInfo);
@@ -91,7 +92,15 @@ fetch("cgi-bin/obtenerDatosdeCarrito.pl?token=" + obtenerTokenDeSesion()).then(r
             quantityHtml.value = newVal;
             value.amount = newVal;
             carritoInfo[name].amount = value.amount;
-
+            carritoJsonString = JSON.stringify(carritoInfo);
+            fetch(
+                "cgi-bin/guardarCarrito.pl?token_sesion=" +
+                obtenerTokenDeSesion() +
+                "&carrito=" +
+                carritoJsonString
+            )
+                .then((resolve) => resolve.json())
+                .then((data) => console.log(data.success));
             totalpriceHtml.textContent = "S/. " + (price * value.amount).toFixed(2);
             finalPrice = 0;
             preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
@@ -107,6 +116,15 @@ fetch("cgi-bin/obtenerDatosdeCarrito.pl?token=" + obtenerTokenDeSesion()).then(r
             cartTotalPrice.textContent = "S/. " + finalPrice.toFixed(2);
             finalTotalPrice.textContent = "S/. " + (finalPrice + 3).toFixed(2);
             carritoInfo[name].amount = value.amount;
+            carritoJsonString = JSON.stringify(carritoInfo);
+            fetch(
+                "cgi-bin/guardarCarrito.pl?token_sesion=" +
+                obtenerTokenDeSesion() +
+                "&carrito=" +
+                carritoJsonString
+            )
+                .then((resolve) => resolve.json())
+                .then((data) => console.log(data.success));
 
         });
         deleteButton.addEventListener("click", function () {
@@ -114,6 +132,15 @@ fetch("cgi-bin/obtenerDatosdeCarrito.pl?token=" + obtenerTokenDeSesion()).then(r
             preciosTotales.splice(preciosTotales.indexOf(producto.querySelector("p.total")), 1);
             setTimeout(function () {
                 delete carritoInfo[name];
+                carritoJsonString = JSON.stringify(carritoInfo);
+                fetch(
+                    "cgi-bin/guardarCarrito.pl?token_sesion=" +
+                    obtenerTokenDeSesion() +
+                    "&carrito=" +
+                    carritoJsonString
+                )
+                    .then((resolve) => resolve.json())
+                    .then((data) => console.log(data.success));
                 producto.remove();
             }, 500);
             console.log(preciosTotales);
