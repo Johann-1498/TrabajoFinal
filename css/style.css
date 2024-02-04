@@ -144,17 +144,18 @@
     margin-left: 8px;
 }
 
-#closeSession {
+.button-S-IoR {
     --color: #81c408;
     font-family: inherit;
     display: inline-block;
     text-align: center;
-    width: 6em;
+    width: auto;
     height: 2.6em;
     line-height: 2.5em;
     overflow: hidden;
     cursor: pointer;
     margin: 20px;
+    padding: 0px 10px;
     font-size: 17px;
     z-index: 1;
     background-color: rgba(250, 250, 250, 0);
@@ -164,27 +165,27 @@
     position: relative;
   }
   
-  #closeSession::before {
+  .button-S-IoR::before {
     position: absolute;
     content: "";
     background: var(--color);
-    width: 150px;
-    height: 200px;
+    width: 270px;
+    height: 150px;
     z-index: -1;
     border-radius: 50%;
   }
   
-  #closeSession:hover {
+  .button-S-IoR:hover {
     color: white;
   }
   
-  #closeSession:before {
+  .button-S-IoR:before {
     top: 100%;
     left: 100%;
     transition: 0.3s all;
   }
   
-  #closeSession:hover::before {
+  .button-S-IoR:hover::before {
     top: -30px;
     left: -30px;
   }

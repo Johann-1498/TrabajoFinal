@@ -1,4 +1,7 @@
 let closeSession = document.querySelector("#closeSession");
+let loginOrRegister = document.querySelector("#loginOrRegister");
+let esValidaLaSesion = false;
+
 function eliminarCookie() {
     var fechaExpiracion = new Date();
     fechaExpiracion.setFullYear(fechaExpiracion.getFullYear() - 1);
@@ -8,6 +11,30 @@ closeSession.addEventListener("click", () => {
     eliminarCookie();
     window.location.reload();
 });
+loginOrRegister.addEventListener("click", () => {
+        window.location.href = "login_Register.html";
+});
+function validandoLaSesion() {
+    if (localStorage.getItem("User") !== null) {
+      if (obtenerTokenDeSesion()) {
+        validarSesion().then((response) => {
+          if (response.name === JSON.parse(localStorage.getItem("User")).name) {
+            console.log(response.name);
+            esValidaLaSesion = true;
+          } else {
+            console.log("No hay sesion" + response.error);
+            localStorage.clear();
+            eliminarCookie();
+            alert("Su sesion a terminado");
+            setTimeout(() => window.location.reload(), 500);
+          }
+        });
+      } else {
+        console.log("No hay token");
+      }
+  
+    }
+  }
 function ifPageIsNecesaryValidate() {
     let tokenSesion = obtenerTokenDeSesion();
     if (tokenSesion == null) {
