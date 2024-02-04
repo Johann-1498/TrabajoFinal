@@ -36,7 +36,7 @@ sub cargar_datos_de_tabla {
     }
     my $queryCreateCarrito = "INSERT INTO carrito (clientID, content) VALUES (?, ?)";
     my $sthCreateCarrito = $dbh->prepare($queryCreateCarrito);
-    $sthCreateCarrito->execute(int($id), "");
+    $sthCreateCarrito->execute(int($id), "{}");
     my $filas_afectadas_insert = $sthCreateCarrito->rows;
     $dbh->disconnect();
     return $filas_afectadas_insert;

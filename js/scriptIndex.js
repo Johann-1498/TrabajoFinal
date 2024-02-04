@@ -17,7 +17,7 @@ function validandoLaSesion() {
           closeSession.style.display = "block";
           cartButton.style.display = "block";
           perfilButton.style.display = "block";
-          fetch("cgi-bin/obtenerDatosdeCarrito.pl?token=" + obtenerTokenDeSesion()).then(response => response.json()).then(data => carrito = data.content);
+          fetch("cgi-bin/obtenerDatosdeCarrito.pl?token=" + obtenerTokenDeSesion()).then(response => response.json()).then(data => carrito = JSON.parse(data.content));
           console.log(carrito);
         } else {
           console.log("No hay sesion" + response.error);
