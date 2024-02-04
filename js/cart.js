@@ -60,82 +60,79 @@ let carritoInfo = {};
 fetch("cgi-bin/obtenerDatosdeCarrito.pl?token=" + obtenerTokenDeSesion()).then(response => response.json()).then((data) => {
     carritoInfo = JSON.parse(data.content);
     console.log(carritoInfo);
-});
 
-let productosEnElCarrito = Object.keys(carritoInfo);
+    let productosEnElCarrito = Object.keys(carritoInfo);
+    productosEnElCarrito.forEach((key, index) => {
+        let value = carritoInfo[key];
+        let name = key;
+        let imgSrc = value.imgSrc;
+        let price = value.price.toFixed(2);
+        let amount = value.amount;
 
-productosEnElCarrito.forEach((key, index) => {
-    let value = carritoInfo[key];
-    let name = key;
-    let imgSrc = value.imgSrc;
-    let price = value.price.toFixed(2);
-    let amount = value.amount;
-
-    let producto = new trDetail(name, imgSrc, price, amount).getHtmlObject();
-    let totalpriceHtml = producto.querySelector("p.total");
-    preciosTotales.push(totalpriceHtml);
-    let quantityHtml = producto.querySelector("input.quantity");
-    let quantityButtons = producto.querySelectorAll(".quantity button");
-    let deleteButton = producto.querySelector("button.deleteItem");
+        let producto = new trDetail(name, imgSrc, price, amount).getHtmlObject();
+        let totalpriceHtml = producto.querySelector("p.total");
+        preciosTotales.push(totalpriceHtml);
+        let quantityHtml = producto.querySelector("input.quantity");
+        let quantityButtons = producto.querySelectorAll(".quantity button");
+        let deleteButton = producto.querySelector("button.deleteItem");
 
 
-    quantityButtons.forEach(button => button.addEventListener("click", () => {
-        var oldValue = value.amount;
-        if (button.classList.contains("btn-plus")) {
-            var newVal = +oldValue + 1;
-        } else {
-            if (oldValue > 0) {
-                var newVal = +oldValue - 1;
+        quantityButtons.forEach(button => button.addEventListener("click", () => {
+            var oldValue = value.amount;
+            if (button.classList.contains("btn-plus")) {
+                var newVal = +oldValue + 1;
             } else {
-                newVal = 0;
+                if (oldValue > 0) {
+                    var newVal = +oldValue - 1;
+                } else {
+                    newVal = 0;
+                }
             }
-        }
-        quantityHtml.value = newVal;
-        value.amount = newVal;
-        carritoInfo[name].amount = value.amount;
-        localStorage.setItem("Carrito", JSON.stringify(carritoInfo));
+            quantityHtml.value = newVal;
+            value.amount = newVal;
+            carritoInfo[name].amount = value.amount;
 
-        totalpriceHtml.textContent = "S/. " + (price * value.amount).toFixed(2);
+            totalpriceHtml.textContent = "S/. " + (price * value.amount).toFixed(2);
+            finalPrice = 0;
+            preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
+            cartTotalPrice.textContent = "S/. " + finalPrice.toFixed(2);
+            finalTotalPrice.textContent = "S/. " + (finalPrice + 3).toFixed(2);
+        }));
+        quantityHtml.addEventListener("input", () => {
+            value.amount = quantityHtml.value;
+            totalpriceHtml.textContent = "S/. " + (price * value.amount).toFixed(2);
+            finalPrice = 0;
+
+            preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
+            cartTotalPrice.textContent = "S/. " + finalPrice.toFixed(2);
+            finalTotalPrice.textContent = "S/. " + (finalPrice + 3).toFixed(2);
+            carritoInfo[name].amount = value.amount;
+
+        });
+        deleteButton.addEventListener("click", function () {
+            producto.classList.add("fade-out");
+            preciosTotales.splice(preciosTotales.indexOf(producto.querySelector("p.total")), 1);
+            setTimeout(function () {
+                delete carritoInfo[name];
+                producto.remove();
+            }, 500);
+            console.log(preciosTotales);
+            finalPrice = 0;
+            preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
+            cartTotalPrice.textContent = "S/. " + finalPrice.toFixed(2);
+            finalTotalPrice.textContent = "S/. " + (finalPrice + 3).toFixed(2);
+
+        });
+        tBody.append(producto);
         finalPrice = 0;
         preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
         cartTotalPrice.textContent = "S/. " + finalPrice.toFixed(2);
         finalTotalPrice.textContent = "S/. " + (finalPrice + 3).toFixed(2);
-    }));
-    quantityHtml.addEventListener("input", () => {
-        value.amount = quantityHtml.value;
-        totalpriceHtml.textContent = "S/. " + (price * value.amount).toFixed(2);
-        finalPrice = 0;
-
-        preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
-        cartTotalPrice.textContent = "S/. " + finalPrice.toFixed(2);
-        finalTotalPrice.textContent = "S/. " + (finalPrice + 3).toFixed(2);
-        carritoInfo[name].amount = value.amount;
-        localStorage.setItem("Carrito", JSON.stringify(carritoInfo));
-
     });
-    deleteButton.addEventListener("click", function () {
-        producto.classList.add("fade-out");
-        preciosTotales.splice(preciosTotales.indexOf(producto.querySelector("p.total")), 1);
-        setTimeout(function () {
-            delete carritoInfo[name];
-            localStorage.setItem("Carrito", JSON.stringify(carritoInfo));
-            producto.remove();
-        }, 500);
-        console.log(preciosTotales);
-        finalPrice = 0;
-        preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
-        cartTotalPrice.textContent = "S/. " + finalPrice.toFixed(2);
-        finalTotalPrice.textContent = "S/. " + (finalPrice + 3).toFixed(2);
 
-    });
-    tBody.append(producto);
     finalPrice = 0;
+
     preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
     cartTotalPrice.textContent = "S/. " + finalPrice.toFixed(2);
     finalTotalPrice.textContent = "S/. " + (finalPrice + 3).toFixed(2);
 });
-finalPrice = 0;
-
-preciosTotales.forEach(value => finalPrice += +value.textContent.substr(4));
-cartTotalPrice.textContent = "S/. " + finalPrice.toFixed(2);
-finalTotalPrice.textContent = "S/. " + (finalPrice + 3).toFixed(2);
