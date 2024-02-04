@@ -64,7 +64,7 @@ fetch("cgi-bin/productos.pl")
                     price: price,
                   };
                 }
-                carritoJsonString = JSON.stringify(carrito);
+                let carritoJsonString = JSON.stringify(carrito);
                 localStorage.setItem("Carrito", carritoJsonString);
                 fetch("cgi-bin/guardarCarrito.pl?token_sesion =" + obtenerTokenDeSesion() + "&carrito=" + carritoJsonString).then(resolve => resolve.json()).then(data => console.log(data.success));
                 console.log(localStorage.getItem("Carrito"));
