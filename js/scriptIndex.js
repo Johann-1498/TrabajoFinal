@@ -3,7 +3,6 @@ import Item from "./Item.js";
 let esValidaLaSesion = false;
 let loginOrRegister = document.querySelector("#loginOrRegister");
 let closeSession = document.querySelector("#closeSession");
-let buscarButton = document.querySelector("#buscarButton");
 let cartButton = document.querySelector("#cartButton");
 function validandoLaSesion() {
   if (localStorage.getItem("User") !== null) {
@@ -13,17 +12,15 @@ function validandoLaSesion() {
           console.log(response.name);
           esValidaLaSesion = true;
           loginOrRegister.style.display = "none";
-          closeSession.style.display = "none";
-          buscarButton.style.display = "none";
-          cartButton.style.display = "none";
+          closeSession.style.display = "block";
+          cartButton.style.display = "block";
         } else {
           console.log("No hay sesion" + response.error);
           localStorage.clear();
           eliminarCookie();
           loginOrRegister.style.display = "block";
-          closeSession.style.display = "block";
-          buscarButton.style.display = "block";
-          cartButton.style.display = "block";
+          closeSession.style.display = "none";
+          cartButton.style.display = "none";
           
           //alert("Su sesion a terminado");
           //setTimeout(() => window.location.reload(), 500);
