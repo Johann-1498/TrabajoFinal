@@ -12,7 +12,7 @@ if ($token_sesion && $carrito) {
     my $success = cargar_datos_a_tabla($token_sesion, $carrito);
     if ($success) {
         print $cgi->header(-type => 'application/json', -status => '200 OK');
-        print '{"success": true}';
+        print '{"success": true' .$success.'}';
     } else {
         print $cgi->header(-type => 'application/json', -status => '500 Internal Server Error');
         print '{"success": "Error en la conexion a bd"}';
