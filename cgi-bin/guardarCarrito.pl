@@ -45,6 +45,7 @@ sub cargar_datos_a_tabla {
     my $filas_afectadas_insert = $sthCreateCarrito->execute(int($id), $carrito);
 
     $dbh->disconnect();
+    if($filas_afectadas_insert === "0E0")
 
     return $filas_afectadas_insert;
 }
