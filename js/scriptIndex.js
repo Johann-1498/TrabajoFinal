@@ -4,6 +4,7 @@ let esValidaLaSesion = false;
 let loginOrRegister = document.querySelector("#loginOrRegister");
 let closeSession = document.querySelector("#closeSession");
 let cartButton = document.querySelector("#cartButton");
+let perfilButton = document.querySelector("#perfilButton");
 function validandoLaSesion() {
   if (localStorage.getItem("User") !== null) {
     if (obtenerTokenDeSesion()) {
@@ -14,6 +15,7 @@ function validandoLaSesion() {
           loginOrRegister.style.display = "none";
           closeSession.style.display = "block";
           cartButton.style.display = "block";
+          perfilButton.style.display = "block";
         } else {
           console.log("No hay sesion" + response.error);
           localStorage.clear();
@@ -21,6 +23,7 @@ function validandoLaSesion() {
           loginOrRegister.style.display = "block";
           closeSession.style.display = "none";
           cartButton.style.display = "none";
+          perfilButton.style.display = "none";
           
           //alert("Su sesion a terminado");
           //setTimeout(() => window.location.reload(), 500);
