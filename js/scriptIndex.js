@@ -5,6 +5,7 @@ let loginOrRegister = document.querySelector("#loginOrRegister");
 let closeSession = document.querySelector("#closeSession");
 let cartButton = document.querySelector("#cartButton");
 let perfilButton = document.querySelector("#perfilButton");
+let carrito = {};
 function validandoLaSesion() {
   if (localStorage.getItem("User") !== null) {
     if (obtenerTokenDeSesion()) {
@@ -16,11 +17,11 @@ function validandoLaSesion() {
           closeSession.style.display = "block";
           cartButton.style.display = "block";
           perfilButton.style.display = "block";
+          fetch("cgi-bin/obtenerDatosdeCarrito.pl?token=" + obtenerTokenDeSesion()).then(response => response.json()).then(data => carrito = JSON.parse(data));
         } else {
           console.log("No hay sesion" + response.error);
           localStorage.clear();
           eliminarCookie();
-
           //alert("Su sesion a terminado");
           //setTimeout(() => window.location.reload(), 500);
         }
@@ -52,10 +53,6 @@ fetch("cgi-bin/productos.pl")
       let panaderiaCarousel = $(".panaderia-carousel");
       let carritoNum = document.querySelector("#carritoNum");
       carritoNum.textContent = 0;
-      let carrito = {};
-      if (localStorage.getItem("Carrito")) {
-        carrito = JSON.parse(localStorage.getItem("Carrito"));
-      }
       //Funcion para agregarle evento a los botones
       function buttonEvent(array) {
         for (let i = 0; i < array.length; i++) {
@@ -78,16 +75,14 @@ fetch("cgi-bin/productos.pl")
                   };
                 }
                 let carritoJsonString = JSON.stringify(carrito);
-                localStorage.setItem("Carrito", carritoJsonString);
                 fetch(
                   "cgi-bin/guardarCarrito.pl?token_sesion=" +
-                    obtenerTokenDeSesion() +
-                    "&carrito=" +
-                    carritoJsonString
+                  obtenerTokenDeSesion() +
+                  "&carrito=" +
+                  carritoJsonString
                 )
                   .then((resolve) => resolve.json())
                   .then((data) => console.log(data.success));
-                console.log(localStorage.getItem("Carrito"));
               } else {
                 alert("Inicia Sesión antes de Continuar");
               }
