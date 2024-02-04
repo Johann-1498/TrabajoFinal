@@ -69,10 +69,10 @@ fetch("cgi-bin/productos.pl")
             array[i].querySelector("button").addEventListener("click", () => {
               if (esValidaLaSesion) {
                 carritoNum.textContent++;
-                if (carrito.name) {
-                  carrito.name.amount++;
+                if (carrito[name]) {
+                  carrito[name].amount++;
                 } else {
-                  carrito.name = {
+                  carrito[name] = {
                     amount: 1,
                     imgSrc: imgSrc,
                     price: price,
