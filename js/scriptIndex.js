@@ -20,20 +20,21 @@ function validandoLaSesion() {
           console.log("No hay sesion" + response.error);
           localStorage.clear();
           eliminarCookie();
-          loginOrRegister.style.display = "block";
-          closeSession.style.display = "none";
-          cartButton.style.display = "none";
-          perfilButton.style.display = "none";
-          
+
           //alert("Su sesion a terminado");
           //setTimeout(() => window.location.reload(), 500);
         }
       });
     } else {
       console.log("No hay token");
+      loginOrRegister.style.display = "block";
+      closeSession.style.display = "none";
+      cartButton.style.display = "none";
+      perfilButton.style.display = "none";
     }
   }
 }
+
 validandoLaSesion();
 
 fetch("cgi-bin/productos.pl")
