@@ -57,8 +57,11 @@ let costoDeEnvio = 3;
 let finalPrice = 0;
 let tBody = document.querySelector("tbody");
 let carritoInfo = {};
-fetch("cgi-bin/obtenerDatosdeCarrito.pl?token=" + obtenerTokenDeSesion()).then(response => response.json()).then(data => carritoInfo = data);
-console.log(carritoInfo);
+fetch("cgi-bin/obtenerDatosdeCarrito.pl?token=" + obtenerTokenDeSesion()).then(response => response.json()).then((data) => {
+    carritoInfo = JSON.parse(data.content);
+    console.log(carritoInfo);
+});
+
 let productosEnElCarrito = Object.keys(carritoInfo);
 
 productosEnElCarrito.forEach((key, index) => {
