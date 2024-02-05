@@ -427,8 +427,9 @@
             let totalPrice = document.querySelectorAll(".total");
             totalPrice.forEach(value => totalPriceint += +value.textContent.substring(4))
             console.log(totalPriceint);
-            
+
             let datosSesion = obtenerTokenDeSesion();
+            console.log(obtenerTokenDeSesion());
             document.getElementById('contName').value = datosSesion.nombre;
             document.getElementById('contAddress').value = datosSesion.direccion;
             document.getElementById('contPhone').value = datosSesion.telefono;
