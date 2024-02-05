@@ -428,18 +428,19 @@
             totalPrice.forEach(value => totalPriceint += +value.textContent.substring(4))
             console.log(totalPriceint);
 
-            let datosSesion = JSON.parse(localstorage.getItem("User"));
-            console.log(datosSesion);
-            document.getElementById('contName').value = datosSesion.nombre;
-            document.getElementById('contAddress').value = datosSesion.direccion;
-            document.getElementById('contPhone').value = datosSesion.telefono;
-            document.getElementById('contEmail').value = datosSesion.correo;
+           
             
             let subTotal = document.querySelector(".subTotal");
             let finalPrice = document.querySelector(".finalPrice");
             subTotal.textContent = "S/. " + totalPriceint.toFixed(2);
             finalPrice.textContent = "S/. " + (totalPriceint + 3).toFixed(2);
         });
+        let datosSesion = JSON.parse(localstorage.getItem("User"));
+            console.log(datosSesion);
+            document.getElementById('contName').value = datosSesion.name;
+            document.getElementById('contAddress').value = datosSesion.direccion;
+            document.getElementById('contPhone').value = datosSesion.phone;
+            document.getElementById('contEmail').value = datosSesion.email;
     </script>
     </body>
 
