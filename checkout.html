@@ -429,7 +429,7 @@
             console.log(totalPriceint);
 
             let datosSesion = JSON.parse(localstorage.getItem("User"));
-            console.log(obtenerTokenDeSesion());
+            console.log(datosSesion);
             document.getElementById('contName').value = datosSesion.nombre;
             document.getElementById('contAddress').value = datosSesion.direccion;
             document.getElementById('contPhone').value = datosSesion.telefono;
