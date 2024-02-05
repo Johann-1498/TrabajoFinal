@@ -435,12 +435,13 @@
             subTotal.textContent = "S/. " + totalPriceint.toFixed(2);
             finalPrice.textContent = "S/. " + (totalPriceint + 3).toFixed(2);
         });
-        let datosSesion = JSON.parse(localstorage.getItem("User"));
-            console.log(datosSesion);
+
+            validarSesion().then(response => {
+            datos = response;
             document.getElementById('contName').value = datosSesion.name;
-            document.getElementById('contAddress').value = datosSesion.direccion;
             document.getElementById('contPhone').value = datosSesion.phone;
             document.getElementById('contEmail').value = datosSesion.email;
+            });
     </script>
     </body>
 
