@@ -64,31 +64,28 @@ section {
     background-color: #fff;
     border-bottom: 1px solid #ddd;
     padding: 15px;
-    border: 3px solid black;
+    
+   
 }
-
-
-
 
 main {
    
     position: relative;
     top: 100px;
-    margin-bottom: 250px;
+    margin-bottom: 650px;
     justify-content: center;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
-#accountSettings{
-    
+#accountSettings, #billingSettings{
+        
         position: absolute;
         top: 70px;
         padding: 20px;
         height: auto;
         width: 60%;
-        
         background-color: white;
         border-radius: 12px;
         box-shadow: 0 0 0 1px rgba(56, 60, 67, .05), 0 1px 3px 0 rgba(56, 60, 67, .15);

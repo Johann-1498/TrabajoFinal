@@ -80,7 +80,6 @@
                         </a>
                     </div>
                     <button id="closeSession" class="button-S-IoR">Salir</button>
-                    <button id="loginOrRegister" class="button-S-IoR">Inicia sesion o Registrate</button>
                 </div>
             </nav>
         </div>
@@ -128,21 +127,21 @@
                         <div class="form-item">
                             <div class="form-item w-100">
                                 <label class="form-label my-3">Nombre<sup>*</sup></label>
-                                <input type="text" value="Juan Pedro Ruiz" class="form-control">
+                                <input type="text" class="form-control" id="contName">
                             </div>
                         </div>
                         <div class="form-item">
                             <label class="form-label my-3">Direccion
                                 <sup>*</sup></label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" id="contAddress">
                         </div>
                         <div class="form-item">
                             <label class="form-label my-3">Telefono<sup>*</sup></label>
-                            <input type="tel" class="form-control">
+                            <input type="tel" class="form-control" id="contPhone">
                         </div>
                         <div class="form-item">
                             <label class="form-label my-3">Correo<sup>*</sup></label>
-                            <input type="email" class="form-control">
+                            <input type="email" class="form-control" id="contEmail"> 
                         </div>
                         <hr>
 
@@ -376,6 +375,18 @@
             let totalPrice = document.querySelectorAll(".total");
             totalPrice.forEach(value => totalPriceint += +value.textContent.substring(4))
             console.log(totalPriceint);
+            let contName = document.querySelector("#contName");
+            let contAddress = document.querySelector("#contAddress");
+            let contPhone = document.querySelector("#contPhone");
+            let contEmail = document.querySelector("#contEmail")
+            validarSesion().then(response => {
+                datos = response;
+                userEmail.innerHTML = datos.email;
+                userName.innerHTML = datos.name;
+                userPhone.innerHTML = datos.phone;
+
+            
+            })
             let subTotal = document.querySelector(".subTotal");
             let finalPrice = document.querySelector(".finalPrice");
             subTotal.textContent = "S/. " + totalPriceint.toFixed(2);
