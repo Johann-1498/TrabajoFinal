@@ -427,7 +427,12 @@
             let totalPrice = document.querySelectorAll(".total");
             totalPrice.forEach(value => totalPriceint += +value.textContent.substring(4))
             console.log(totalPriceint);
-
+            validarSesion().then(response => {
+            datosSesion = response;
+            document.getElementById('contName').value = datosSesion.name;
+            document.getElementById('contPhone').value = datosSesion.phone;
+            document.getElementById('contEmail').value = datosSesion.email;
+            });
            
             
             let subTotal = document.querySelector(".subTotal");
@@ -436,12 +441,7 @@
             finalPrice.textContent = "S/. " + (totalPriceint + 3).toFixed(2);
         });
 
-            validarSesion().then(response => {
-            datosSesion = response;
-            document.getElementById('contName').value = datosSesion.name;
-            document.getElementById('contPhone').value = datosSesion.phone;
-            document.getElementById('contEmail').value = datosSesion.email;
-            });
+            
     </script>
     </body>
 
