@@ -427,18 +427,13 @@
             let totalPrice = document.querySelectorAll(".total");
             totalPrice.forEach(value => totalPriceint += +value.textContent.substring(4))
             console.log(totalPriceint);
-            let contName = document.querySelector("#contName");
-            let contAddress = document.querySelector("#contAddress");
-            let contPhone = document.querySelector("#contPhone");
-            let contEmail = document.querySelector("#contEmail")
-            validarSesion().then(response => {
-                datos = response;
-                userEmail.innerHTML = datos.email;
-                userName.innerHTML = datos.name;
-                userPhone.innerHTML = datos.phone;
-
             
-            })
+            let datosSesion = obtenerTokenDeSesion();
+            document.getElementById('contName').value = datosSesion.nombre;
+            document.getElementById('contAddress').value = datosSesion.direccion;
+            document.getElementById('contPhone').value = datosSesion.telefono;
+            document.getElementById('contEmail').value = datosSesion.correo;
+            
             let subTotal = document.querySelector(".subTotal");
             let finalPrice = document.querySelector(".finalPrice");
             subTotal.textContent = "S/. " + totalPriceint.toFixed(2);
