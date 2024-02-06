@@ -365,13 +365,13 @@
                 return htmlObject;
             }
         }
-        let datosUser = JSON.parse(localStorage.getItem("User"));
         let tBody = document.querySelector("tbody");
         let tBodyFirstChild = tBody.firstChild;
         let carritoInfo = {};
         let carritoJsonString = JSON.stringify(carritoInfo);
         fetch("cgi-bin/obtenerDatosdeCarrito.pl?token=" + obtenerTokenDeSesion()).then(response => response.json()).then((data) => {
             carritoInfo = JSON.parse(data.content);
+            carritoJsonString = JSON.stringify(carritoInfo);
             console.log(carritoInfo);
             let productosKey = Object.keys(carritoInfo);
             for (let i = 0; i < productosKey.length; i++) {
