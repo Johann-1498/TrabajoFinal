@@ -7,8 +7,6 @@ use DBI;
 my $cgi = CGI->new;
 my $token_sesion = $cgi->param('token_sesion');
 my $operation = $cgi->param("operation");
-
-
 if ($token_sesion) {
         my $consulta_validada = autenticar_usuario($token_sesion);  
         if ($consulta_validada) {
