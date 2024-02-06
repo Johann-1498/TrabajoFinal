@@ -394,7 +394,7 @@
             subTotal.textContent = "S/. " + totalPriceint.toFixed(2);
             finalPrice.textContent = "S/. " + (totalPriceint + 3).toFixed(2);
             document.querySelector(".btnRealizarPedido").addEventListener("click", () => {
-                let form = new FormData(document.querySelector(".infoForm"));
+                let form = new FormData(document.querySelector("#infoForm"));
                 form.append("detalles", notasPedidoElement.value);
                 form.append("productos", carritoJsonString);
                 form.append("clientID", datosUser.id);
@@ -414,7 +414,6 @@
         contPhoneElement.value = datosUser.phone;
         contEmailElement.value = datosUser.email;
         contAddressElement.value = datosUser.direccion;
-        notasPedidoElement.value = datosUser.direccion;
 
 
 
