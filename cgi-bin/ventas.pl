@@ -31,13 +31,16 @@ my $cgi = CGI->new;
     my $sth  = $dbh->prepare($sql);
     my $result = $sth->execute($productos, $fecha, $clientID, $paymentID, $detalles, $name, $direccion, $telefono, $email);
 
-    $sth->finish;
-    $dbh->disconnect;
-
     if ($result) {
+        my $sql2 = "DELETE FROM carrito WHERE clientID = ?";
+        my $sth2  = $dbh->prepare($sql2);
+        my $result = $sth2->execute($clientID);
         print $cgi->header(-type => 'application/json', -status => 200);
         print '{"success": true}';
     } else {
         print $cgi->header(-type => 'application/json');
         print '{"success": error al crear la venta}';
     }
+    $sth->finish;
+    $dbh->disconnect;
+
