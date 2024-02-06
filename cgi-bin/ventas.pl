@@ -15,7 +15,6 @@ my $table     = 'ventas';
 my $cgi = CGI->new;
 
 # Manejar errores
-eval {
     my $name      = $cgi->param('name');
     my $email     = $cgi->param('email');
     my $telefono  = $cgi->param('phone');
@@ -32,19 +31,13 @@ eval {
     my $sth  = $dbh->prepare($sql);
     my $result = $sth->execute($productos, $fecha, $clientID, $paymentID, $detalles, $name, $direccion, $telefono, $email);
 
+    $sth->finish;
     $dbh->disconnect;
 
-    # if ($result) {
-    #     print $cgi->header(-type => 'application/json', -status => 200);
-    #     print '{"success": true}';
-    # } else {
-    #     die "Error al crear el usuario";
-    # }
-};
-
-if ($@) {
-    # Capturar errores y proporcionar una respuesta JSON con información detallada
-    my $error_message = $@;
-    print $cgi->header(-type => 'application/json', -status => 500);
-    print '{"error": "', $error_message, '"}';
-}
+    if ($result) {
+        print $cgi->header(-type => 'application/json', -status => 200);
+        print '{"success": true}';
+    } else {
+        print $cgi->header(-type => 'application/json');
+        print '{"success": error al crear la venta}';
+    }
