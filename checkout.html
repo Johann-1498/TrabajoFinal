@@ -404,16 +404,18 @@
                     body: form
                 }).then(response => response.json()).then(data => console.log(data));
             });
+            let datosUser = JSON.parse(localStorage.getItem("User"));
+            var contNameElement = document.getElementById('contName');
+            var contPhoneElement = document.getElementById('contPhone');
+            var contEmailElement = document.getElementById('contEmail');
+            var contAddressElement = document.getElementById('contAddress');
+            var notasPedidoElement = document.getElementById('notasPedido');
+            contNameElement.value = datosUser.name;
+            contPhoneElement.value = datosUser.phone;
+            contEmailElement.value = datosUser.email;
+            contAddressElement.value = datosUser.direccion;
         });
-        var contNameElement = document.getElementById('contName');
-        var contPhoneElement = document.getElementById('contPhone');
-        var contEmailElement = document.getElementById('contEmail');
-        var contAddressElement = document.getElementById('contAddress');
-        var notasPedidoElement = document.getElementById('notasPedido');
-        contNameElement.value = datosUser.name;
-        contPhoneElement.value = datosUser.phone;
-        contEmailElement.value = datosUser.email;
-        contAddressElement.value = datosUser.direccion;
+
 
 
 
