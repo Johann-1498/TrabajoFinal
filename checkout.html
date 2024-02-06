@@ -402,7 +402,7 @@
                 fetch("cgi-bin/ventas.pl", {
                     method: 'POST',
                     body: form
-                })
+                }).then(response => response.json()).then(data => console.log(data));
             });
         });
         var contNameElement = document.getElementById('contName');
