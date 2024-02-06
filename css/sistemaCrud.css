@@ -180,7 +180,7 @@ input {
     max-width: 150px;
 }
 
-button {
+.buttonEdit, .buttonDelete, .buttonEdit{
     all: unset;
     width: 30px;
     height: 30px;
