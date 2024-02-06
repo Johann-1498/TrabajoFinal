@@ -122,33 +122,33 @@
     <div class="container-fluid py-5">
         <div class="container py-5">
             <h1 class="mb-4">Detalles de facturación</h1>
-            <form action="#">
+            <form id="infoForm" action="#">
                 <div class="row g-5">
                     <div class="col-md-12 col-lg-6 col-xl-7">
                         <div class="form-item">
                             <div class="form-item w-100">
                                 <label class="form-label my-3">Nombre<sup>*</sup></label>
-                                <input type="text" class="form-control" id="contName">
+                                <input name="name" type="text" class="form-control" id="contName">
                             </div>
                         </div>
                         <div class="form-item">
                             <label class="form-label my-3">Direccion
                                 <sup>*</sup></label>
-                            <input type="text" class="form-control" id="contAddress">
+                            <input name="direccion" type="text" class="form-control" id="contAddress">
                         </div>
                         <div class="form-item">
                             <label class="form-label my-3">Telefono<sup>*</sup></label>
-                            <input type="tel" class="form-control" id="contPhone">
+                            <input name="phone" type="tel" class="form-control" id="contPhone">
                         </div>
                         <div class="form-item">
                             <label class="form-label my-3">Correo<sup>*</sup></label>
-                            <input type="email" class="form-control" id="contEmail">
+                            <input name="email" type="email" class="form-control" id="contEmail">
                         </div>
                         <hr>
 
                         <div class="form-item">
-                            <textarea name="text" class="form-control" spellcheck="false" cols="30" rows="11"
-                                placeholder="Notas de pedido (opcional)"></textarea>
+                            <textarea id="notasPedido" name="text" class="form-control" spellcheck="false" cols="30"
+                                rows="11" placeholder="Notas de pedido (opcional)"></textarea>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-5">
@@ -168,11 +168,11 @@
                                     <tr>
                                         <th scope="row">
                                         </th>
-                                        <td class="py-5"></td>
-                                        <td class="py-5"></td>
                                         <td class="py-5">
                                             <p class="mb-0 text-dark py-3">Subtotal</p>
                                         </td>
+                                        <td class="py-5"></td>
+                                        <td class="py-5"></td>
                                         <td class="py-5">
                                             <div class="py-3 border-bottom border-top">
                                                 <p class="subTotal mb-0 text-dark">$414.00</p>
@@ -217,24 +217,15 @@
                                 <div class="form-check text-start my-3">
                                     <input type="checkbox" class="form-check-input bg-primary border-0" id="Transfer-1"
                                         name="Transfer" value="Transfer">
-                                    <label class="form-check-label" for="Transfer-1">Transferencia
-                                        bancaria
-                                        directa</label>
+                                    <label class="form-check-label" for="Transfer-1">Pago con Tarjeta</label>
                                 </div>
                                 <p class="text-start text-dark">Realice su
-                                    pago directamente en nuestra cuenta
-                                    bancaria.
-                                    Por favor
-                                    utilice su ID de pedido como referencia
-                                    de pago. Su pedido no será enviado hasta
-                                    el
-                                    Los fondos se han liquidado en nuestra
-                                    cuenta..</p>
+                                    pago usando la tarjeta registrada en su cuenta</p>
                             </div>
                         </div>
                         <div class="row g-4 text-center align-items-center justify-content-center pt-4">
                             <button type="button"
-                                class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Realizar
+                                class="btnRealizarPedido btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Realizar
                                 pedido</button>
                         </div>
                     </div>
@@ -374,6 +365,7 @@
                 return htmlObject;
             }
         }
+        let datosUser = JSON.parse(localStorage.getItem("User"));
         let tBody = document.querySelector("tbody");
         let tBodyFirstChild = tBody.firstChild;
         let carritoInfo = {};
@@ -401,12 +393,29 @@
             let finalPrice = document.querySelector(".finalPrice");
             subTotal.textContent = "S/. " + totalPriceint.toFixed(2);
             finalPrice.textContent = "S/. " + (totalPriceint + 3).toFixed(2);
+            document.querySelector(".btnRealizarPedido").addEventListener("click", () => {
+                let form = new FormData(document.querySelector(".infoForm"));
+                form.append("detalles", notasPedidoElement.value);
+                form.append("productos", carritoJsonString);
+                form.append("clientID", datosUser.id);
+                form.append("paymentID", 123);
+                fetch("cgi-bin/ventas.pl", {
+                    method: 'POST',
+                    body: form
+                })
+            });
         });
-        let datosUser = JSON.parse(localStorage.getItem("User"));
-        document.getElementById('contName').value = datosUser.name;
-        document.getElementById('contPhone').value = datosUser.phone;
-        document.getElementById('contEmail').value = datosUser.email;
-        document.getElementById('contAddress').value = datosUser.direccion;
+        var contNameElement = document.getElementById('contName');
+        var contPhoneElement = document.getElementById('contPhone');
+        var contEmailElement = document.getElementById('contEmail');
+        var contAddressElement = document.getElementById('contAddress');
+        var notasPedidoElement = document.getElementById('notasPedido');
+        contNameElement.value = datosUser.name;
+        contPhoneElement.value = datosUser.phone;
+        contEmailElement.value = datosUser.email;
+        contAddressElement.value = datosUser.direccion;
+        notasPedidoElement.value = datosUser.direccion;
+
 
 
 
