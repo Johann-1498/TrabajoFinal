@@ -85,14 +85,13 @@ section {
     border-bottom: 1px solid #ddd;
     padding: 15px;
     
-   
 }
 
 main {
    
     position: relative;
     top: 100px;
-    margin-bottom: 650px;
+    margin-bottom: 750px;
     justify-content: center;
     display: flex;
     align-items: center;
@@ -100,12 +99,11 @@ main {
 }
 
 #accountSettings, #billingSettings{
-        
         position: absolute;
         top: 70px;
         padding: 20px;
-        height: auto;
-        width: 60%;
+        height: 500px;
+        width: 50%;
         background-color: white;
         border-radius: 12px;
         box-shadow: 0 0 0 1px rgba(56, 60, 67, .05), 0 1px 3px 0 rgba(56, 60, 67, .15);
@@ -166,6 +164,7 @@ main {
 .informationContainer {
     text-align: start;
     width: 100%;
+    
     padding: 15px;
     position: relative;
 }
