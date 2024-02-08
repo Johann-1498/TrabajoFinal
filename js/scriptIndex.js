@@ -68,11 +68,11 @@ fetch("cgi-bin/productos.pl")
       fetch("cgi-bin/obtenerCategorias.pl").then(response => response.json()).then((dataCategorias) => {
         let carritoNum = document.querySelector("#carritoNum");
         carritoNum.textContent = 0;
-        let htmlObjects = [];
-        let carousels = [];
+        let categoriesNames = new Map();
         let categories = new Map();
         dataCategorias.forEach((value) => {
           categories.set(value.id, []);
+          categoriesNames.set(value.id, value.name);
         });
         dataPL.forEach((element) => {
           if (categories.has(element.categoryID)) {
@@ -82,7 +82,7 @@ fetch("cgi-bin/productos.pl")
               undefined,
               element.descripcion,
               element.img,
-              category
+              categoriesNames.get(element.categoryID)
             ).getItemHtmlObject()
             );
           }
