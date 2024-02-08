@@ -45,7 +45,7 @@ class CarouselHtml {
     this.contenedorPrincipal = document.createElement("div");
     this.contenedorPrincipal.classList.add("container-fluid", "vesitable");
     this.contenedorSecundario = document.createElement("div");
-    this.contenedorSecundario.classList.add("container ", "py-5");
+    this.contenedorSecundario.classList.add("container", "py-5");
     this.h1 = document.createElement("h1");
     this.h1.classList.add("mb-0");
     this.h1.textContent = name;
