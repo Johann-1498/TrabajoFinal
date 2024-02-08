@@ -1,4 +1,51 @@
-import Item from "./Item.js";
+class Item {
+  constructor(name, price, amount, desc, imgSrc, category) {
+    this.name = name;
+    this.price = price;
+    this.desc = desc;
+    this.imgSrc = imgSrc;
+    this.amount = amount;
+    this.category = category;
+  }
+  getItemHtmlObject() {
+    let htmlObject = document.createElement("div");
+    htmlObject.className = "item border border-primary rounded position-relative vesitable-item";
+    htmlObject.innerHTML = `<div class="vesitable-img">
+      <img src="${this.imgSrc}" class="img-fluid w-100 rounded-top" alt="">
+  </div>
+  <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
+      style="top: 10px; right: 10px;">${this.category}</div>
+  <div class="p-4 rounded-bottom">
+      <h4>${this.name}</h4>
+      <p>${this.desc}</p>
+      <div class="d-flex justify-content-between flex-lg-wrap">
+          <p class="price text-dark fs-5 fw-bold mb-0">S/. ${this.price} / kg</p>
+          <button class="btn border border-secondary rounded-pill px-3 text-primary"><i
+              class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
+      </div>
+  </div>`
+    return htmlObject;
+  }
+}
+class CarouselHtml {
+  constructor(name, array) {
+    this.contenedorPrincipal = document.createElement("div");
+    this.contenedorPrincipal.classList.add("container-fluid", "vesitable");
+    this.contenedorSecundario = document.createElement("div");
+    this.contenedorSecundario.classList.add("container", "py-5");
+    this.h1 = document.createElement("h1");
+    this.h1.classList.add("mb-0");
+    this.h1.textContent = name;
+    this.contenedorCarousel = document.createElement("div");
+    this.contenedorCarousel.classList.add("owl-carousel", name + "-carousel", "justify-content-center");
+    array.forEach((value) => this.contenedorCarousel.append(value));
+    this.contenedorSecundario.append(this.h1, this.contenedorCarousel);
+    this.contenedorPrincipal.append(this.contenedorSecundario);
+  }
+  getItemHtmlObject() {
+    return this.contenedorPrincipal;
+  }
+}
 //Verificando la sesion
 let esValidaLaSesion = false;
 let loginOrRegister = document.querySelector("#loginOrRegister");
@@ -40,25 +87,7 @@ function validandoLaSesion() {
   }
 }
 validandoLaSesion();
-class CarouselHtml {
-  constructor(name, array) {
-    this.contenedorPrincipal = document.createElement("div");
-    this.contenedorPrincipal.classList.add("container-fluid", "vesitable");
-    this.contenedorSecundario = document.createElement("div");
-    this.contenedorSecundario.classList.add("container", "py-5");
-    this.h1 = document.createElement("h1");
-    this.h1.classList.add("mb-0");
-    this.h1.textContent = name;
-    this.contenedorCarousel = document.createElement("div");
-    this.contenedorCarousel.classList.add("owl-carousel", name + "-carousel", "justify-content-center");
-    array.forEach((value) => this.contenedorCarousel.append(value));
-    this.contenedorSecundario.append(this.h1, this.contenedorCarousel);
-    this.contenedorPrincipal.append(this.contenedorSecundario);
-  }
-  getItemHtmlObject() {
-    return this.contenedorPrincipal;
-  }
-}
+
 fetch("cgi-bin/productos.pl")
   .then((response) => response.json())
   .then((dataPL) => {
