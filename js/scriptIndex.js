@@ -43,14 +43,14 @@ validandoLaSesion();
 class CarouselHtml {
   constructor(name, array) {
     this.contenedorPrincipal = document.createElement("div");
-    this.contenedorPrincipal.classList.add("container-fluid vesitable");
+    this.contenedorPrincipal.classList.add("container-fluid", "vesitable");
     this.contenedorSecundario = document.createElement("div");
-    this.contenedorSecundario.classList.add("container py-5");
+    this.contenedorSecundario.classList.add("container ", "py-5");
     this.h1 = document.createElement("h1");
     this.h1.classList.add("mb-0");
     this.h1.textContent = name;
     this.contenedorCarousel = document.createElement("div");
-    this.contenedorCarousel.classList.add(`owl-carousel ${name}-carousel justify-content-center`);
+    this.contenedorCarousel.classList.add("owl-carousel", name + "-carousel", "justify-content-center");
     array.forEach((value) => this.contenedorCarousel.append(value));
     this.contenedorSecundario.append(this.h1, this.contenedorCarousel);
     this.contenedorPrincipal.append(this.contenedorSecundario);
