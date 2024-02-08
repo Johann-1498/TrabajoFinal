@@ -41,7 +41,7 @@ function validandoLaSesion() {
 }
 
 validandoLaSesion();
-fetch("cgi-bin/obetenerCategorias.pl").then(response => response.json()).then((data) => {
+fetch("cgi-bin/obtenerCategorias.pl").then(response => response.json()).then((data) => {
   console.log(data);
   fetch("cgi-bin/productos.pl")
     .then((data) => data.json())
