@@ -42,7 +42,9 @@ function validandoLaSesion() {
 
 validandoLaSesion();
 fetch("cgi-bin/obtenerCategorias.pl").then(response => response.json()).then((data) => {
-  console.log(data);
+  data.forEach((value) => {
+    console.log(value);
+  });
   fetch("cgi-bin/productos.pl")
     .then((data) => data.json())
     .then((data) => {
