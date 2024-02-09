@@ -193,7 +193,7 @@
             }
         }
         let tabla = document.querySelector("#tabla-content");
-        fetch("cgi-bin/obtenerRegistroDeCompras.pl?email=" + datosUsr.email).then(response => response.json()).then(data => console.log(data));
+        fetch("cgi-bin/obtenerRegistroDeCompras.pl?email=" + datosUsr.email).then(data => console.log(data));
     </script>
 </body>
 
