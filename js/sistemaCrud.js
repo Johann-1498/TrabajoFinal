@@ -1,11 +1,11 @@
 class trUser {
-    constructor(id, name, email, password, phone, cui, rol, tokenSesion) {
+    constructor(id, name, email, password, phone, direccion, rol, tokenSesion) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.phone = phone;
-        this.cui = cui;
+        this.direccion = direccion;
         this.rol = rol;
         this.tokenSesion = tokenSesion;
     }
@@ -96,7 +96,7 @@ fetch("../cgi-bin/adminTabla.pl?token=" + obtenerTokenDeSesion())
         let user;
         for (let index in data) {
             json = data[index];
-            user = new trUser(json["id"], json["name"], json["email"], json["password"], json["phone"], json["cui"], json["rol"], json["token_sesion"]);
+            user = new trUser(json["id"], json["name"], json["email"], json["password"], json["phone"], json["direccion"], json["rol"], json["token_sesion"]);
             users.push(user);
             tabla.append(user.getTrHtmlObject());
         }

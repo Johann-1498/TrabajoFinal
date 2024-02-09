@@ -25,9 +25,9 @@ if ($token_sesion) {
                 my $email = $cgi->param("email");
                 my $password = $cgi->param("password");
                 my $phone = int($cgi->param("phone"));
-                my $cui = int($cgi->param("cui"));
+                my $direccion = int($cgi->param("direccion"));
                 my $rol = $cgi->param("rol");
-                if(updateUser($id,$name,$email,$password,$phone,$cui,$rol) > 0){
+                if(updateUser($id,$name,$email,$password,$phone,$direccion,$rol) > 0){
                     print $cgi->header(-type => 'application/json', -status => '200 OK');
                     print '{"success" : "Usuario Actualizado Exitosamente"}';
                 }else{
@@ -64,15 +64,15 @@ sub deleteUser {
     return $filaAfectada;
 }
 sub updateUser {
-    my ($id, $name, $email, $password, $phone, $cui, $rol) = @_;
+    my ($id, $name, $email, $password, $phone, $direccion, $rol) = @_;
     my $dbh = DBI->connect("DBI:mysql:database=trabajofinal;host=localhost", "root", "753159", { RaiseError => 1 });
-    my $query = "UPDATE users SET name = ?, email = ?, password = ?, phone = ?, cui = ?, rol = ? WHERE id = ?";
+    my $query = "UPDATE users SET name = ?, email = ?, password = ?, phone = ?, direccion = ?, rol = ? WHERE id = ?";
     my $sth = $dbh->prepare($query);
     $sth->bind_param(1, $name);
     $sth->bind_param(2, $email);
     $sth->bind_param(3, $password);
     $sth->bind_param(4, $phone);
-    $sth->bind_param(5, $cui);
+    $sth->bind_param(5, $direccion);
     $sth->bind_param(6, $rol);
     $sth->bind_param(7, $id);
     my $filas_afectadas = $sth->execute();
