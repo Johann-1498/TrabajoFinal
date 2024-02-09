@@ -25,7 +25,7 @@ if ($token_sesion) {
                 my $email = $cgi->param("email");
                 my $password = $cgi->param("password");
                 my $phone = int($cgi->param("phone"));
-                my $direccion = int($cgi->param("direccion"));
+                my $direccion = $cgi->param("direccion");
                 my $rol = $cgi->param("rol");
                 if(updateUser($id,$name,$email,$password,$phone,$direccion,$rol) > 0){
                     print $cgi->header(-type => 'application/json', -status => '200 OK');
