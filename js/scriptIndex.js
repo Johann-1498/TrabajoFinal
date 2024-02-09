@@ -123,11 +123,12 @@ fetch("cgi-bin/productos.pl")
         categories.forEach((valor) => {
           buttonEvent(valor);
         });
+        let nodo = document.querySelector("HERO");
         let carousel = [];
         let i = 0;
         dataCategorias.forEach((value) => {
           carousel.push(new CarouselHtml(value.nombre, categories.get(value.id)))
-          document.body.append(carousel[i].getItemHtmlObject());
+          nodo.parentNode.insertBefore(carousel[i].getItemHtmlObject(), node.nextSibling);
           i++;
         });
         carousel.forEach((value) => {
