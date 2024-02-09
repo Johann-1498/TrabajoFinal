@@ -42,12 +42,11 @@ my $cgi = CGI->new;
         $sth3->execute($paymentID);
         my $fila3 =  $sth3->fetchrow_arrayref;
         $sth3->finish;
-
         my $amount = $fila3->[0];
         $amount = $amount - $finalPrice;
         my $sql4 = "UPDATE billing_card SET amount = ? WHERE cardnumber = ?";
         my $sth4 = $dbh->prepare($sql4);
-        my $rows_affected = $sth->execute($amount, $paymentID);
+        my $rows_affected = $sth4->execute($amount, $paymentID);
         $sth4->finish;
         if($rows_affected){
             print $cgi->header(-type => 'application/json', -status => 200);
