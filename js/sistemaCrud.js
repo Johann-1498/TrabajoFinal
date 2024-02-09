@@ -79,7 +79,7 @@ class trUser {
             })
                 .then(response => response.json())
                 .then((data) => {
-                    alert(data.succes);
+                    alert(data.success);
                     window.location.reload();
                 })
         });
