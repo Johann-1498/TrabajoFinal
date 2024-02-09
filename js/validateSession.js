@@ -1,5 +1,5 @@
 let closeSession = document.querySelector("#closeSession");
-let loginOrRegister = document.querySelector("#loginOrRegister");
+let loginOrRegisterJS = document.querySelector("#loginOrRegister");
 
 function eliminarCookie() {
   var fechaExpiracion = new Date();
@@ -10,8 +10,8 @@ closeSession.addEventListener("click", () => {
   eliminarCookie();
   window.location.reload();
 });
-if (loginOrRegister) {
-  loginOrRegister.addEventListener("click", () => {
+if (loginOrRegisterJS) {
+  loginOrRegisterJS.addEventListener("click", () => {
     window.location.href = "login_Register.html";
   });
 }
