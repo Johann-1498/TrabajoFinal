@@ -8,7 +8,7 @@ function eliminarCookie() {
 }
 closeSessionJS.addEventListener("click", () => {
   eliminarCookie();
-  window.location.href("index.html");
+  window.location.href = "index.html";
 });
 if (loginOrRegisterJS) {
   loginOrRegisterJS.addEventListener("click", () => {
