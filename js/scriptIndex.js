@@ -108,7 +108,7 @@ fetch("cgi-bin/productos.pl")
         let categories = new Map();
         dataCategorias.forEach((value) => {
           categories.set(value.id, []);
-          categoriesNames.set(value.id, value.name);
+          categoriesNames.set(value.id, value.nombre);
         });
         dataPL.forEach((element) => {
           if (categories.has(element.categoryID)) {
