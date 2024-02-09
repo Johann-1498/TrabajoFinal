@@ -184,16 +184,31 @@
     <script>
         ifPageIsNecesaryValidate();
         let datosUsr = JSON.parse(localStorage.getItem("User"));
-        class irItem {
-            constructor() {
-
+        class trItem {
+            constructor(name, productos, fecha, direccion) {
+                this.name = name;
+                this.productos = productos;
+                this.fecha = fecha;
+                this.direccion = direccion;
             }
             getHtmlObject() {
-
+                let tr = document.createElement("tr");
+                tr.innerHTML = `
+                                    <td>${this.name}</td>
+                                    <td>${this.productos}</td>
+                                    <td>${this.fecha}</td>
+                                    <td>${this.direccion}</td>
+                                `;
+                return tr;
             }
         }
         let tabla = document.querySelector("#tabla-content");
-        fetch("cgi-bin/obtenerRegistroDeCompras.pl?email=" + datosUsr.email).then(response => response.json()).then(data => console.log(data));
+        fetch("cgi-bin/obtenerRegistroDeCompras.pl?email=" + datosUsr.email).then(response => response.json()).then((data) => {
+            data.forEach(element => {
+                tabla.append(new trItem(element.name, element.productos, element.date, element.direccion).getHtmlObject());
+            });
+
+        });
     </script>
 </body>
 
