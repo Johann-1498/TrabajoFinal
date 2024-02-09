@@ -112,7 +112,7 @@ fetch("cgi-bin/productos.pl")
         });
         dataPL.forEach((element) => {
           if (categories.has(element.categoryID)) {
-            console.log(categoriesNames.get(element.categoryID));
+            console.log(categoriesNames);
             categories.get(element.categoryID).push(new Item(
               element.nombre,
               element.precio,
