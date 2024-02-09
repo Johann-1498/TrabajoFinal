@@ -216,6 +216,7 @@ class LiResult {
   getItemHtmlObject() {
     let li = document.createElement("li");
     li.innerHTML = `<p>${this.name}</p><p class="price text-dark fs-5 fw-bold mb-0">S/. ${this.price} / kg</p>`;
+    return li;
   }
 }
 buttonSearch.addEventListener("click", () => {
