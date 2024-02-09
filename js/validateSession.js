@@ -7,6 +7,7 @@ function eliminarCookie() {
   document.cookie = "token_sesion" + "=; expires=" + fechaExpiracion.toUTCString() + "; path=/";
 }
 closeSessionJS.addEventListener("click", () => {
+  localStorage.clear();
   eliminarCookie();
   window.location.href = "index.html";
 });
