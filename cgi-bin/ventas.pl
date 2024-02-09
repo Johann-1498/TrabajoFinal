@@ -36,7 +36,7 @@ my $cgi = CGI->new;
         my $sth2  = $dbh->prepare($sql2);
         my $result = $sth2->execute($clientID);
         my $sql3 = "SELECT amount FROM billing_card WHERE cardnumber = ?";
-        my $sth3  = $dbh->prepare($sql2);
+        my $sth3  = $dbh->prepare($sql3);
         $sth3->execute($paymentID);
         my $fila3 =  $sth3->fetchrow_arrayref;
         my $amount = $fila3->[0];
