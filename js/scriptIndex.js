@@ -258,6 +258,6 @@ buttonSearch.addEventListener("click", () => {
   ulResults.textContent = "";
   console.log(inputSearch.value);
   fetch("cgi-bin/resultadosDeBusqueda.pl?search=" + inputSearch.value).then(response => response.json()).then(data => data.forEach((value) => {
-    ulResults.append(buttonEventItem(new LiResult(value.img, value.precio, value.nombre).getItemHtmlObject()));
+    ulResults.append(buttonEventItem(new LiResult(value.img, value.precio, value.nombre).getItemHtmlObject()), document.createElement("hr"));
   }));
 });
