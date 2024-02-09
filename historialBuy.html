@@ -202,7 +202,7 @@
                 Object.keys(jsonProductos).forEach((clave) => {
                     htmlOptionSelect += `<div style="widht:100%; display:flex;">
     <img src="${jsonProductos[clave].imgSrc}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
-<p class="nameItem text-dark fs-5 fw-bold mb-0">${clave}</p><p class="nameItem text-dark fs-5 fw-bold mb-0">${jsonProductos[clave].amount}</p><p class="nameItem text-dark fs-5 fw-bold mb-0">${jsonProductos[clave].price}</p></div>`;
+<p style="margin: 4px;" class="nameItem text-dark fs-5 fw-bold mb-0">${clave}</p><p style="margin: 4px;" class="nameItem text-dark fs-5 fw-bold mb-0">${jsonProductos[clave].amount}</p><p style="margin: 4px;" class="nameItem text-dark fs-5 fw-bold mb-0">${jsonProductos[clave].price}</p></div>`;
                 });
                 tr.innerHTML = `
                                     <td>${this.name}</td>
