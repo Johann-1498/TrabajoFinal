@@ -513,6 +513,7 @@ ul {
     padding: 10px;
     list-style: none;
     position: absolute;
+    z-index: 99;
 }
 
 ul li {
