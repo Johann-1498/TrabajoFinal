@@ -2,14 +2,14 @@ ifPageIsNecesaryValidate();
 let userEmail = document.getElementById("userEmail");
 let userName = document.getElementById("userName");
 let userPhone = document.getElementById("userPhone");
-let userCui = document.getElementById("userCui");
+let userDireccion = document.getElementById("userDireccion");
 let datos;
 validarSesion().then(response => {
     datos = response;
     userEmail.innerHTML = datos.email;
     userName.innerHTML = datos.name;
     userPhone.innerHTML = datos.phone;
-    userCui.innerHTML = datos.cui;
+    userDireccion.innerHTML = datos.direccion;
     buttonsEventListener();
 });
 let accountSettings = document.querySelector("#accountSettings");
@@ -20,7 +20,6 @@ let changeSettingBilling = document.querySelector("#changeSettingBilling");
 changeSettingAccount.addEventListener("click", () => {
     accountSettings.style.zIndex = "1";
     billingSettings.style.zIndex = "0";
-
     changeSettingAccount.classList.add("selected");
     changeSettingBilling.classList.remove("selected");
     billingSettings.classList.add("hidden");
@@ -31,8 +30,6 @@ changeSettingAccount.addEventListener("click", () => {
         if (accountSettings.style.transform) {
             // accountSettings.style.transform = "translateX(50px)";
         }
-
-
     }, 500);
 })
 changeSettingBilling.addEventListener("click", () => {
