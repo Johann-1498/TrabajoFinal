@@ -202,6 +202,37 @@ function buttonEvent(array) {
       });
     })();
   }
+} function buttonEvent(item) {
+  let name = item.querySelector(".nameItem").textContent;
+  let priceStr = item.querySelector("p.price").textContent.trim();
+  let resultado = priceStr.match(/[0-9]+(?:\.[0-9]+)?/);
+  let price = +resultado[0];
+  item.querySelector("button").addEventListener("click", () => {
+    if (esValidaLaSesion) {
+      carritoNum.textContent++;
+      if (carrito[name]) {
+        carrito[name].amount++;
+      } else {
+        carrito[name] = {
+          amount: 1,
+          imgSrc: imgSrc,
+          price: price,
+        };
+      }
+      let carritoJsonString = JSON.stringify(carrito);
+      fetch(
+        "cgi-bin/guardarCarrito.pl?token_sesion=" +
+        obtenerTokenDeSesion() +
+        "&carrito=" +
+        carritoJsonString
+      )
+        .then((resolve) => resolve.json())
+        .then((data) => console.log(data.success));
+    } else {
+      alert("Inicia Sesión antes de Continuar");
+    }
+  });
+  return item;
 }
 //CODIGO PARA LA BUSQUEDA DE ELEMENTOS
 let inputSearch = document.querySelector("#searchPl");
@@ -215,7 +246,7 @@ class LiResult {
   }
   getItemHtmlObject() {
     let li = document.createElement("li");
-    li.innerHTML = `<p class="text-dark fs-5 fw-bold mb-0">${this.name}</p><p class="price text-dark fs-5 fw-bold mb-0">S/. ${this.price} / kg</p><button class="btn border border-secondary rounded-pill px-3 text-primary"><i
+    li.innerHTML = `<p class="nameItem text-dark fs-5 fw-bold mb-0">${this.name}</p><p class="price text-dark fs-5 fw-bold mb-0">S/. ${this.price} / kg</p><button class="btn border border-secondary rounded-pill px-3 text-primary"><i
     class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>`;
     return li;
   }
@@ -224,6 +255,6 @@ buttonSearch.addEventListener("click", () => {
   ulResults.textContent = "";
   console.log(inputSearch.value);
   fetch("cgi-bin/resultadosDeBusqueda.pl?search=" + inputSearch.value).then(response => response.json()).then(data => data.forEach((value) => {
-    ulResults.append(new LiResult(value.img, value.precio, value.nombre).getItemHtmlObject());
+    ulResults.append(buttonEvent(new LiResult(value.img, value.precio, value.nombre).getItemHtmlObject()));
   }));
 });
