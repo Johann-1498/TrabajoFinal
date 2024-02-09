@@ -5,15 +5,12 @@ use CGI;
 use CGI::Cookie;
 use DBI;
 use JSON;
-
 my $db_name   = 'trabajofinal';
 my $db_user   = 'root';
 my $db_pass   = '753159';
 my $db_host   = 'localhost';
 my $table     = 'ventas';
-
 my $cgi = CGI->new;
-
 # Manejar errores
     my $name      = $cgi->param('name');
     my $email     = $cgi->param('email');
@@ -39,7 +36,7 @@ my $cgi = CGI->new;
         print '{"success": true}';
     } else {
         print $cgi->header(-type => 'application/json');
-        print '{"success": error al crear la venta}';
+        print '{"success": "error al crear la venta"}';
     }
     $sth->finish;
     $dbh->disconnect;
