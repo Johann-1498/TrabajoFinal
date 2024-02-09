@@ -31,19 +31,24 @@ my $cgi = CGI->new;
     my $sql  = "INSERT INTO $table (productos, date, clientID, paymentID, detalles, name, direccion, phone, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     my $sth  = $dbh->prepare($sql);
     my $result = $sth->execute($productos, $fecha, $clientID, $paymentID, $detalles, $name, $direccion, $telefono, $email);
+    $sth->finish;
     if ($result) {
         my $sql2 = "DELETE FROM carrito WHERE clientID = ?";
         my $sth2  = $dbh->prepare($sql2);
         my $result = $sth2->execute($clientID);
+        $sth2->finish;
         my $sql3 = "SELECT amount FROM billing_card WHERE cardnumber = ?";
         my $sth3  = $dbh->prepare($sql3);
         $sth3->execute($paymentID);
         my $fila3 =  $sth3->fetchrow_arrayref;
+        $sth3->finish;
+
         my $amount = $fila3->[0];
         $amount = $amount - $finalPrice;
         my $sql4 = "UPDATE billing_card SET amount = ? WHERE cardnumber = ?";
         my $sth4 = $dbh->prepare($sql4);
         my $rows_affected = $sth->execute($amount, $paymentID);
+        $sth4->finish;
         if($rows_affected){
             print $cgi->header(-type => 'application/json', -status => 200);
             print '{"success": true}';
@@ -56,5 +61,6 @@ my $cgi = CGI->new;
         print '{"success": "error al crear la venta"}';
     }
     $sth->finish;
+
     $dbh->disconnect;
 
