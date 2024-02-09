@@ -257,7 +257,7 @@ class LiResult {
     return li;
   }
 }
-buttonSearch.addEventListener("click", () => {
+inputSearch.addEventListener("input", () => {
   ulResults.textContent = "";
   console.log(inputSearch.value);
   fetch("cgi-bin/resultadosDeBusqueda.pl?search=" + inputSearch.value).then(response => response.json()).then(data => data.forEach((value) => {
