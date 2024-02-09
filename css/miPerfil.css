@@ -2,8 +2,9 @@
     height: 100px;
     border-bottom: 1px solid rgba(255, 255, 255, .1);
 }
+
 .navbar .navbar-nav .nav-link {
-    
+
     padding: 10px 15px;
     font-size: 16px;
     transition: .5s;
@@ -24,6 +25,7 @@
     vertical-align: middle;
     margin-left: 8px;
 }
+
 @media (min-width: 1200px) {
     .navbar .nav-item .dropdown-menu {
         display: block;
@@ -55,14 +57,16 @@
 #searchModal .modal-content {
     background: rgba(255, 255, 255, .8);
 }
+
 /*** Navbar End ***/
- .fixed-top {
+.fixed-top {
     transition: 0.5s;
     background: var(--bs-white);
     border: 0;
     box-shadow: 0px 0px 20px -6px #5a624b44;
 }
- .back-to-top {
+
+.back-to-top {
     position: fixed;
     right: 30px;
     bottom: 30px;
@@ -80,11 +84,11 @@ section {
     background-color: #fff;
     border-bottom: 1px solid #ddd;
     padding: 15px;
-    
+
 }
 
 main {
-   
+
     position: relative;
     top: 100px;
     margin-bottom: 750px;
@@ -94,7 +98,8 @@ main {
     flex-direction: column;
 }
 
-#accountSettings, #billingSettings{
+#accountSettings,
+#billingSettings {
     position: absolute;
     top: 70px;
     padding: 20px;
@@ -103,8 +108,9 @@ main {
     background-color: white;
     border-radius: 12px;
     box-shadow: 0 0 0 1px rgba(56, 60, 67, .05), 0 1px 3px 0 rgba(56, 60, 67, .15);
-    
+
 }
+
 #closeSession {
     --color: #81c408;
     font-family: inherit;
@@ -123,9 +129,9 @@ main {
     border: 2px solid var(--color);
     border-radius: 6px;
     position: relative;
-  }
-  
-  #closeSession::before {
+}
+
+#closeSession::before {
     position: absolute;
     content: "";
     background: var(--color);
@@ -133,34 +139,38 @@ main {
     height: 200px;
     z-index: -1;
     border-radius: 50%;
-  }
-  
-  #closeSession:hover {
+}
+
+#closeSession:hover {
     color: white;
-  }
-  
-  #closeSession:before {
+}
+
+#closeSession:before {
     top: 100%;
     left: 100%;
     transition: 0.3s all;
-  }
-  
-  #closeSession:hover::before {
+}
+
+#closeSession:hover::before {
     top: -30px;
     left: -30px;
-  }
-.informationContainer {
+}
+
+.informationContainer,
+.informationContainerxd {
     text-align: start;
     width: 100%;
     padding: 15px;
     position: relative;
 }
 
-.informationContainer h4 {
+.informationContainer h4,
+.informationContainerxd h4 {
     margin-bottom: 10px;
 }
 
-.informationContainer p {
+.informationContainer p,
+.informationContainerxd p {
     font-weight: 500;
     margin-bottom: 10px;
     font-size: 14px;
@@ -191,6 +201,7 @@ main .control span {
     top: 30px;
     right: 30px;
 }
+
 /*** Footer Start ***/
 .footer .footer-item .btn-link {
     line-height: 35px;

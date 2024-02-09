@@ -6,6 +6,7 @@ let userDireccion = document.getElementById("userDireccion");
 let cardNumber = document.getElementById("cardNumber");
 let cardDate = document.getElementById("cardDate");
 let cardCvc = document.getElementById("cardCvc");
+let cardAmount = document.getElementById("cardAmount");
 let datos;
 let userID;
 validarSesion().then(response => {
@@ -15,8 +16,15 @@ validarSesion().then(response => {
     userPhone.innerHTML = datos.phone;
     userDireccion.innerHTML = datos.direccion;
     userID = datos.id;
-    buttonsEventListener();
+    fetch("cgi-bin/obtenerDatosDeTarjeta.pl?userID=" + userID).then(response => response.json()).then((data) => {
+        cardNumber.innerHTML = data.cardnumber;
+        cardDate.innerHTML = data.carddate;
+        cardCvc.textContent = data.cardcvc;
+        cardAmount.textContent = data.amount;
+        buttonsEventListener();
+    });
 });
+
 
 let editButtons = document.querySelectorAll(".editInformationButton");
 let informationContainer = document.querySelectorAll(".informationContainer");
