@@ -16,7 +16,7 @@ if ($token_sesion) {
                     print $cgi->header(-type => 'application/json', -status => '200 OK');
                     print '{"success" : "Usuario Eliminado Exitosamente"}';
                 }else{
-                    print $cgi->header(-type => 'application/json', -status => '200 OK');
+                    print $cgi->header(-type => 'application/json', -status => '500 Internal Server Error');
                     print '{"success" : "Hubo Un Error al Borrar Al Usuario"}';
                 }
             }else{
@@ -31,7 +31,7 @@ if ($token_sesion) {
                     print $cgi->header(-type => 'application/json', -status => '200 OK');
                     print '{"success" : "Usuario Actualizado Exitosamente"}';
                 }else{
-                    print $cgi->header(-type => 'application/json', -status => '200 OK');
+                    print $cgi->header(-type => 'application/json', -status => '500 Internal Server Error');
                     print '{"success" : "Hubo Un Error Al Actualizar Al Usuario"}';
                 }
             }
