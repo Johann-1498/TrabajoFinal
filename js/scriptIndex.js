@@ -77,8 +77,6 @@ function validandoLaSesion() {
           closeSession.style.display = "none";
           cartButton.style.display = "none";
           perfilButton.style.display = "none";
-          //alert("Su sesion a terminado");
-          //setTimeout(() => window.location.reload(), 500);
         }
       });
     } else {
@@ -88,6 +86,11 @@ function validandoLaSesion() {
       cartButton.style.display = "none";
       perfilButton.style.display = "none";
     }
+  } else {
+    loginOrRegister.style.display = "block";
+    closeSession.style.display = "none";
+    cartButton.style.display = "none";
+    perfilButton.style.display = "none";
   }
 }
 validandoLaSesion();
