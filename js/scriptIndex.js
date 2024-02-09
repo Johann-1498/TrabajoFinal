@@ -94,7 +94,7 @@ function validandoLaSesion() {
   }
 }
 validandoLaSesion();
-
+//codigo para la peticion de productos 
 fetch("cgi-bin/productos.pl")
   .then((response) => response.json())
   .then((dataPL) => {
@@ -112,6 +112,7 @@ fetch("cgi-bin/productos.pl")
         });
         dataPL.forEach((element) => {
           if (categories.has(element.categoryID)) {
+            console.log(categoriesNames.get(element.categoryID));
             categories.get(element.categoryID).push(new Item(
               element.nombre,
               element.precio,
