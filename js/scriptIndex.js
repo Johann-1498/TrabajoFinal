@@ -123,7 +123,7 @@ fetch("cgi-bin/productos.pl")
         categories.forEach((valor) => {
           buttonEvent(valor);
         });
-        let nodo = document.querySelector("HERO");
+        let nodo = document.querySelector(".HERO");
         let carousel = [];
         let i = 0;
         dataCategorias.forEach((value) => {
