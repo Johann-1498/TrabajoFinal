@@ -208,5 +208,5 @@ let inputSearch = document.querySelector("#searchPl");
 let buttonSearch = document.querySelector("#buttonSearch");
 buttonSearch.addEventListener("click", () => {
   console.log(inputSearch.value);
-  fetch("cgi-bin/resultadosDeBusqueda.pl?seach=" + inputSearch.value).then(response => response.json()).then(data => data.forEach(value => console.log(value)));
+  fetch("cgi-bin/resultadosDeBusqueda.pl?search=" + inputSearch.value).then(response => response.json()).then(data => data.forEach(value => console.log(value)));
 });
