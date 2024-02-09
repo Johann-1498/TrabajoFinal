@@ -509,8 +509,10 @@
 
 /*** testimonial End ***/
 ul {
+    background-color: white;
+    padding: 10px;
     list-style: none;
-    position: relative;
+    position: absolute;
 }
 
 ul li {
@@ -524,7 +526,6 @@ ul li {
     left: 15px;
     background-color: white;
     border-radius: 6px;
-
 }
 
 /*** Single Page Start ***/
