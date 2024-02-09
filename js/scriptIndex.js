@@ -128,7 +128,7 @@ fetch("cgi-bin/productos.pl")
         let i = 0;
         dataCategorias.forEach((value) => {
           carousel.push(new CarouselHtml(value.nombre, categories.get(value.id)))
-          nodo.parentNode.insertBefore(carousel[i].getItemHtmlObject(), nodo.nextSibling);
+          nodo.parentNode.insertBefore(carousel[i].getItemHtmlObject(), nodo);
           i++;
         });
         carousel.forEach((value) => {
