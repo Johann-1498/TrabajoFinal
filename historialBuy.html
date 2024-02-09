@@ -183,6 +183,11 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script>
         ifPageIsNecesaryValidate();
+        <select>
+            <option value="opcion1">Opción 1</option>
+            <option value="opcion2">Opción 2</option>
+            <option value="opcion3">Opción 3</option>
+        </select>
         let datosUsr = JSON.parse(localStorage.getItem("User"));
         class trItem {
             constructor(name, productos, fecha, direccion) {
@@ -191,11 +196,20 @@
                 this.fecha = fecha;
                 this.direccion = direccion;
             }
+
             getHtmlObject() {
                 let tr = document.createElement("tr");
+                let jsonProductos = JSON.parse(this.productos);
+                let optionsSelect = [];
+                let htmlOptionSelect = "";
+                jsonProductos.forEach((clave, valor) => {
+                    htmlOptionSelect += `<option><div class="vesitable-img">
+    <img src="${valor.imgSrc}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
+</div><p class="nameItem text-dark fs-5 fw-bold mb-0">${clave}</p><p class="nameItem text-dark fs-5 fw-bold mb-0">${valor.amount}</p><p class="nameItem text-dark fs-5 fw-bold mb-0">${valor.price}</p></option>`;
+                });
                 tr.innerHTML = `
                                     <td>${this.name}</td>
-                                    <td>${this.productos}</td>
+                                    <td><select>${htmlOptionSelect}</select></td>
                                     <td>${this.fecha}</td>
                                     <td>${this.direccion}</td>
                                 `;
