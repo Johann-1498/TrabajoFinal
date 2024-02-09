@@ -203,3 +203,8 @@ function buttonEvent(array) {
     })();
   }
 }
+//CODIGO PARA LA BUSQUEDA DE ELEMENTOS
+let inputSearch = document.querySelector("#searchPL");
+inputSearch.addEventListener("input", () => {
+  fetch("cgi-bin/resultadosDeBusqueda.pl?seach=" + inputSearch.value).then(response => response.json()).then(data => data.forEach(value => console.log(value)));
+});
