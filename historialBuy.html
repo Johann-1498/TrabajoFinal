@@ -82,8 +82,9 @@
                 <thead class="tabla-head">
                     <tr>
                         <th>User</th>
-                        <th>Producto</th>
+                        <th>Productos</th>
                         <th>Fecha</th>
+                        <th>Direccion</th>
                     </tr>
                 </thead>
                 <tbody id="tabla-content">
@@ -173,7 +174,6 @@
     </div>
     <!-- Footer End -->
     <script src="js/validateSession.js"></script>
-    <script src="js/sistemaCrud.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -181,6 +181,20 @@
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script>
+        ifPageIsNecesaryValidate();
+        let datosUsr = JSON.parse(localStorage.getItem("User"));
+        class irItem {
+            constructor() {
+
+            }
+            getHtmlObject() {
+
+            }
+        }
+        let tabla = document.querySelector("#tabla-content");
+        fetch("cgi-bin/obtenerRegistroDeCompras.pl?email=" + datosUsr.email).then(response => response.json()).then(data => console.log(data));
+    </script>
 </body>
 
 </html>
