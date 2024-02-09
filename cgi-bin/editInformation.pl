@@ -43,7 +43,7 @@ sub cargar_datos_a_tabla {
         $dbh->disconnect();
         return $filas_afectadas;
     }
-    my $queryCreateCard = "INSERT INTO billing_Card (id_cliente, $columna) VALUES (?, ?)";
+    my $queryCreateCard = "INSERT INTO billing_Card (id_cliente, $columna, amount) VALUES (?, ?, 3000)";
     my $sthCreateCard = $dbh->prepare($queryCreateCard);
     $sthCreateCard->execute($userID, $valor);
     my $filas_afectadas_insert = $sthCreateCard->rows;
