@@ -41,7 +41,7 @@ function buttonsEventListener() {
         editButtons[i].addEventListener("click", () => {
             editButtons[i].style.display = "none";
             informationContainer[i].append(inputs[i], saveButtons[i]);
-            if (editButtons[i].id.substring(0, 4) === "card") {
+            if (editButtons[i].id.substring(0, 4).toLowerCase() === "card") {
                 console.log("Xd");
                 inputs[i].value = data[inputs[i].name];
             } else {
