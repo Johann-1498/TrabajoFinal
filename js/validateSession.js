@@ -40,7 +40,7 @@ function ifPageIsNecesaryValidate() {
   if (tokenSesion == null) {
     window.location.href = "login_Register.html"
   }
-  validarSesion().then(response => response.json()).then((data) => {
+  validarSesion().then((data) => {
     if (data.name === undefined) {
       window.location.href = "login_Register.html"
     }
