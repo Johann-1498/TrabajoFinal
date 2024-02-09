@@ -1,6 +1,5 @@
 let closeSession = document.querySelector("#closeSession");
 let loginOrRegister = document.querySelector("#loginOrRegister");
-let esValidaLaSesion = false;
 
 function eliminarCookie() {
   var fechaExpiracion = new Date();
@@ -22,7 +21,6 @@ function validandoLaSesion() {
       validarSesion().then((response) => {
         if (response.name === JSON.parse(localStorage.getItem("User")).name) {
           console.log(response.name);
-          esValidaLaSesion = true;
         } else {
           console.log("No hay sesion" + response.error);
           localStorage.clear();
