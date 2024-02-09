@@ -200,13 +200,13 @@
                 let optionsSelect = [];
                 let htmlOptionSelect = "";
                 Object.keys(jsonProductos).forEach((clave) => {
-                    htmlOptionSelect += `<div>
+                    htmlOptionSelect += `<div style="widht:100%; display:flex;">
     <img src="${jsonProductos[clave].imgSrc}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
 <p class="nameItem text-dark fs-5 fw-bold mb-0">${clave}</p><p class="nameItem text-dark fs-5 fw-bold mb-0">${jsonProductos[clave].amount}</p><p class="nameItem text-dark fs-5 fw-bold mb-0">${jsonProductos[clave].price}</p></div>`;
                 });
                 tr.innerHTML = `
                                     <td>${this.name}</td>
-                                    <td style="width:200px"><div class="dropdown">${htmlOptionSelect}</div></td>
+                                    <td style="width:400px"><div class="dropdown">${htmlOptionSelect}</div></td>
                                     <td>${this.fecha}</td>
                                     <td>${this.direccion}</td>
                                 `;
