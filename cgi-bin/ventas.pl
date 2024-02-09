@@ -25,7 +25,6 @@ my $cgi = CGI->new;
     my $json_data = decode_json($productos);
     my $finalPrice = 0;
     while (my ($clave, $valor) = each %$json_data) {
-        $valor = decode_json($valor);
         $finalPrice += $valor->{amount} * $valor->{price};
     }
     my $dbh = DBI->connect("DBI:mysql:database=$db_name;host=$db_host", $db_user, $db_pass);
