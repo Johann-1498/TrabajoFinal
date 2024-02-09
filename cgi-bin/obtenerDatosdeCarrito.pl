@@ -26,10 +26,12 @@ sub cargar_datos_de_tabla {
     my $sth = $dbh->prepare($selectUser);
     $sth->execute($token);
     my ($id) = $sth->fetchrow_array;
+    $sth->finish;
     my $query = "SELECT content FROM carrito WHERE clientID = ?";
     my $sth2 = $dbh->prepare($query);
     $sth2->execute($id);
     my $carrito = $sth2->fetchrow_hashref;
+    $sth2->finish;
     if($carrito){
         $dbh->disconnect();
         return $carrito;
