@@ -35,9 +35,9 @@ sub cargar_datos_a_tabla {
     my $sthUpdateCarrito = $dbh->prepare($queryUpdateCarrito);
     my $filas_afectadas_update = $sthUpdateCarrito->execute($carrito, $id);
 
-    if ($filas_afectadas_update && $filas_afectadas_update != 0) {
+    if ($filas_afectadas_update != 0) {
         $dbh->disconnect();
-        return 1;  # Devuelve true si al menos una fila fue afectada
+        return 1;
     }
 
     my $queryCreateCarrito = "INSERT INTO carrito (clientID, content) VALUES (?, ?)";
@@ -48,5 +48,5 @@ sub cargar_datos_a_tabla {
 
     $dbh->disconnect();
 
-    return $filas_afectadas_insert;  # Devuelve el resultado de la operación de inserción
+    return $filas_afectadas_insert;
 }

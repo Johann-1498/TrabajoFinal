@@ -4,12 +4,14 @@ let userName = document.getElementById("userName");
 let userPhone = document.getElementById("userPhone");
 let userDireccion = document.getElementById("userDireccion");
 let datos;
+let userID;
 validarSesion().then(response => {
     datos = response;
     userEmail.innerHTML = datos.email;
     userName.innerHTML = datos.name;
     userPhone.innerHTML = datos.phone;
     userDireccion.innerHTML = datos.direccion;
+    userID = datos.id;
     buttonsEventListener();
 });
 
@@ -36,6 +38,12 @@ function buttonsEventListener() {
             form.append("columna", inputs[i].name);
             form.append("valor", inputs[i].value);
             form.append("token_sesion", obtenerTokenDeSesion());
+            if (inputs[i].name.substring(0, 4) === "card") {
+                form.append("tabla", "billing_Card");
+                form.append("userID", userID);
+            } else {
+                form.append("tabla", "users");
+            }
             fetch("cgi-bin/editInformation.pl", {
                 method: 'POST',
                 body: form
