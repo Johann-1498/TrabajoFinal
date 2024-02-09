@@ -41,7 +41,11 @@ function buttonsEventListener() {
         editButtons[i].addEventListener("click", () => {
             editButtons[i].style.display = "none";
             informationContainer[i].append(inputs[i], saveButtons[i]);
-            inputs[i].value = datos[inputs[i].name];
+            if (editButtons[i].id.substring(0, 4) === "card") {
+                inputs[i].value = data[inputs[i].name];
+            } else {
+                inputs[i].value = datos[inputs[i].name];
+            }
             p[i].style.display = "none";
         });
         saveButtons[i].addEventListener("click", () => {
