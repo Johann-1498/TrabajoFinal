@@ -1,4 +1,4 @@
-let closeSession = document.querySelector("#closeSession");
+let closeSessionJS = document.querySelector("#closeSession");
 let loginOrRegisterJS = document.querySelector("#loginOrRegister");
 
 function eliminarCookie() {
@@ -6,7 +6,7 @@ function eliminarCookie() {
   fechaExpiracion.setFullYear(fechaExpiracion.getFullYear() - 1);
   document.cookie = "token_sesion" + "=; expires=" + fechaExpiracion.toUTCString() + "; path=/";
 }
-closeSession.addEventListener("click", () => {
+closeSessionJS.addEventListener("click", () => {
   eliminarCookie();
   window.location.reload();
 });
