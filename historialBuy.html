@@ -197,10 +197,10 @@
                 let jsonProductos = JSON.parse(this.productos);
                 let optionsSelect = [];
                 let htmlOptionSelect = "";
-                jsonProductos.forEach((clave, valor) => {
+                Object.keys(jsonProductos).forEach((clave) => {
                     htmlOptionSelect += `<option><div class="vesitable-img">
-    <img src="${valor.imgSrc}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
-</div><p class="nameItem text-dark fs-5 fw-bold mb-0">${clave}</p><p class="nameItem text-dark fs-5 fw-bold mb-0">${valor.amount}</p><p class="nameItem text-dark fs-5 fw-bold mb-0">${valor.price}</p></option>`;
+    <img src="${jsonProductos[clave].imgSrc}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
+</div><p class="nameItem text-dark fs-5 fw-bold mb-0">${clave}</p><p class="nameItem text-dark fs-5 fw-bold mb-0">${jsonProductos[clave].amount}</p><p class="nameItem text-dark fs-5 fw-bold mb-0">${jsonProductos[clave].price}</p></option>`;
                 });
                 tr.innerHTML = `
                                     <td>${this.name}</td>
