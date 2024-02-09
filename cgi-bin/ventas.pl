@@ -42,7 +42,7 @@ eval {
     } else {
         $response = {
             success => 0,
-            error   => "Error al crear la venta.",
+            error   => "Error al crear la venta: " . $sth->errstr,
         };
     }
     $sth->finish;
