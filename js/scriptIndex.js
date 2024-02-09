@@ -204,6 +204,7 @@ function buttonEvent(array) {
   }
 } function buttonEventItem(item) {
   let name = item.querySelector(".nameItem").textContent;
+  let imgSrc = item.querySelector("img").src;
   let priceStr = item.querySelector("p.price").textContent.trim();
   let resultado = priceStr.match(/[0-9]+(?:\.[0-9]+)?/);
   let price = +resultado[0];
