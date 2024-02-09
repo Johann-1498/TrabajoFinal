@@ -248,7 +248,7 @@ class LiResult {
   getItemHtmlObject() {
     let li = document.createElement("li");
     li.innerHTML = `<div class="vesitable-img">
-    <img src="${this.imgSrc}" class="img-fluid w-100 rounded-top" alt="">
+    <img src="${this.imgSrc}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
 </div><p class="nameItem text-dark fs-5 fw-bold mb-0">${this.name}</p><p class="price text-dark fs-5 fw-bold mb-0">S/. ${this.price} / kg</p><button class="btn border border-secondary rounded-pill px-3 text-primary"><i
     class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>`;
     return li;
