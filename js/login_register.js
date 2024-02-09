@@ -11,7 +11,7 @@ loginForm.addEventListener("submit", function (event) {
     }).then(data => {
         console.log(data);
         if (data.name) {
-            let userID = data.id;
+            let userID = +data.id;
             fetch("cgi-bin/obtenerDatosDeTarjeta.pl?userID=" + userID).then(response => response.json()).then((cardData) => {
                 localStorage.setItem("Payment", JSON.stringify(cardData));
             })
