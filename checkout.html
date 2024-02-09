@@ -374,7 +374,7 @@
                 form.append("detalles", notasPedidoElement.value);
                 form.append("productos", carritoJsonString);
                 form.append("clientID", datosUser.id);
-                form.append("paymentID", localStorage.getItem(""));
+                form.append("paymentID", JSON.parse(localStorage.getItem("Payment")).cardnumber);
                 fetch("cgi-bin/ventas.pl", {
                     method: 'POST',
                     body: form
