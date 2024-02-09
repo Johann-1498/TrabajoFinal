@@ -1,3 +1,4 @@
+ifPageIsNecesaryValidate();
 class Item {
   constructor(name, price, amount, desc, imgSrc, category) {
     this.name = name;

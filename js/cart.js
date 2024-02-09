@@ -1,4 +1,4 @@
-
+ifPageIsNecesaryValidate();
 class trDetail {
     constructor(name, img, price, quantity) {
         this.name = name;

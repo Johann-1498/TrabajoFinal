@@ -8,7 +8,7 @@ function eliminarCookie() {
 }
 closeSessionJS.addEventListener("click", () => {
   eliminarCookie();
-  window.location.reload();
+  window.location.href("index.html");
 });
 if (loginOrRegisterJS) {
   loginOrRegisterJS.addEventListener("click", () => {
@@ -40,7 +40,11 @@ function ifPageIsNecesaryValidate() {
   if (tokenSesion == null) {
     window.location.href = "login_Register.html"
   }
-  validarSesion();
+  validarSesion().then(response => response.json()).then((data) => {
+    if (data.name === undefined) {
+      window.location.href = "login_Register.html"
+    }
+  });
 }
 function validarSesion() {
   return new Promise((resolve) => {
