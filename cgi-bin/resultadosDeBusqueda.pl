@@ -19,7 +19,7 @@ sub searchTable {
     my $query = "SELECT * FROM productos
 WHERE LOWER(nombre) LIKE LOWER(?);";
     my $sth = $dbh->prepare($query);
-    my $parametro_busqueda = '%' . $value . '%';
+    my $parametro_busqueda = $value;
     $sth->execute($parametro_busqueda);
     my @resultado;  
     while(my $fila = $sth->fetchrow_hashref) {
