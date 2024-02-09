@@ -11,6 +11,10 @@ loginForm.addEventListener("submit", function (event) {
     }).then(data => {
         console.log(data);
         if (data.name) {
+            fetch("cgi-bin/obtenerDatosDeTarjeta.pl?userID=" + userID).then(response => response.json()).then((cardData) => {
+                localStorage.setItem("Payment", JSON.stringify(cardData));
+            })
+
             localStorage.setItem('User', JSON.stringify(data));
             window.location.href = 'index.html';
         } else {

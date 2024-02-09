@@ -349,6 +349,9 @@
         let tBodyFirstChild = tBody.firstChild;
         let carritoInfo = {};
         let carritoJsonString = JSON.stringify(carritoInfo);
+        fetch("cgi-bin/obtenerDatosDeTarjeta.pl?userID=" + userID).then(response => response.json()).then((cardData) => {
+            localStorage.setItem("Payment", JSON.stringify(cardData));
+        })
         fetch("cgi-bin/obtenerDatosdeCarrito.pl?token=" + obtenerTokenDeSesion()).then(response => response.json()).then((data) => {
             carritoInfo = JSON.parse(data.content);
             carritoJsonString = JSON.stringify(carritoInfo);
