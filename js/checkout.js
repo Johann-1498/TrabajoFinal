@@ -56,7 +56,11 @@ fetch("cgi-bin/obtenerDatosDeTarjeta.pl?userID=" + userID).then(response => resp
             fetch("cgi-bin/ventas.pl", {
                 method: 'POST',
                 body: form
-            }).then(response => response.json()).then(data => console.log(data));
+            }).then(response => response.json()).then((data) => {
+                if (data.success) {
+                    window.location.href = "index.html"
+                }
+            });
         });
         let datosUser = JSON.parse(localStorage.getItem("User"));
         var contNameElement = document.getElementById('contName');
