@@ -202,7 +202,7 @@ function buttonEvent(array) {
       });
     })();
   }
-} function buttonEvent(item) {
+} function buttonEventItem(item) {
   let name = item.querySelector(".nameItem").textContent;
   let priceStr = item.querySelector("p.price").textContent.trim();
   let resultado = priceStr.match(/[0-9]+(?:\.[0-9]+)?/);
@@ -255,6 +255,6 @@ buttonSearch.addEventListener("click", () => {
   ulResults.textContent = "";
   console.log(inputSearch.value);
   fetch("cgi-bin/resultadosDeBusqueda.pl?search=" + inputSearch.value).then(response => response.json()).then(data => data.forEach((value) => {
-    ulResults.append(buttonEvent(new LiResult(value.img, value.precio, value.nombre).getItemHtmlObject()));
+    ulResults.append(buttonEventItem(new LiResult(value.img, value.precio, value.nombre).getItemHtmlObject()));
   }));
 });
