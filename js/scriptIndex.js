@@ -221,6 +221,6 @@ class LiResult {
 buttonSearch.addEventListener("click", () => {
   console.log(inputSearch.value);
   fetch("cgi-bin/resultadosDeBusqueda.pl?search=" + inputSearch.value).then(response => response.json()).then(data => data.forEach((value) => {
-    ulResults.append(new LiResult(value.img, value.precio, value.nombre));
+    ulResults.append(new LiResult(value.img, value.precio, value.nombre).getItemHtmlObject());
   }));
 });
