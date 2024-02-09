@@ -3,6 +3,9 @@ let userEmail = document.getElementById("userEmail");
 let userName = document.getElementById("userName");
 let userPhone = document.getElementById("userPhone");
 let userDireccion = document.getElementById("userDireccion");
+let cardNumber = document.getElementById("cardNumber");
+let cardDate = document.getElementById("cardDate");
+let cardCvc = document.getElementById("cardCvc");
 let datos;
 let userID;
 validarSesion().then(response => {
