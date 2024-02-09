@@ -7,16 +7,18 @@ let cardNumber = document.getElementById("cardNumber");
 let cardDate = document.getElementById("cardDate");
 let cardCvc = document.getElementById("cardCvc");
 let cardAmount = document.getElementById("cardAmount");
-let datos;
+let datosUsuario;
+let datosTarjeta;
 let userID;
 validarSesion().then(response => {
-    datos = response;
-    userEmail.innerHTML = datos.email;
-    userName.innerHTML = datos.name;
-    userPhone.innerHTML = datos.phone;
-    userDireccion.innerHTML = datos.direccion;
-    userID = datos.id;
+    datosUsuario = response;
+    userEmail.innerHTML = datosUsuario.email;
+    userName.innerHTML = datosUsuario.name;
+    userPhone.innerHTML = datosUsuario.phone;
+    userDireccion.innerHTML = datosUsuario.direccion;
+    userID = datosUsuario.id;
     fetch("cgi-bin/obtenerDatosDeTarjeta.pl?userID=" + userID).then(response => response.json()).then((data) => {
+        datosTarjeta = data;
         cardNumber.innerHTML = data.cardnumber;
         cardDate.innerHTML = data.carddate;
         cardCvc.textContent = data.cardcvc;
@@ -41,11 +43,12 @@ function buttonsEventListener() {
         editButtons[i].addEventListener("click", () => {
             editButtons[i].style.display = "none";
             informationContainer[i].append(inputs[i], saveButtons[i]);
+            console.log(editButtons[i].id.substring(4, 8).toLowerCase());
             if (editButtons[i].id.substring(4, 8).toLowerCase() === "card") {
                 console.log("Xd");
-                inputs[i].value = data[inputs[i].name];
+                inputs[i].value = datosTarjeta[inputs[i].name];
             } else {
-                inputs[i].value = datos[inputs[i].name];
+                inputs[i].value = datosUsuario[inputs[i].name];
             }
             p[i].style.display = "none";
         });
