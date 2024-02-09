@@ -1,4 +1,3 @@
-ifPageIsNecesaryValidate();
 class trUser {
     constructor(id, name, email, password, phone, direccion, rol, tokenSesion) {
         this.id = id;
