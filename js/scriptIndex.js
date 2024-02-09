@@ -206,7 +206,21 @@ function buttonEvent(array) {
 //CODIGO PARA LA BUSQUEDA DE ELEMENTOS
 let inputSearch = document.querySelector("#searchPl");
 let buttonSearch = document.querySelector("#buttonSearch");
+let ulResults = document.querySelector("#results");
+class LiResult {
+  constructor(imgSrc, price, name) {
+    this.price = price;
+    this.imgSrc = imgSrc;
+    this.name = name;
+  }
+  getItemHtmlObject() {
+    let li = document.createElement("li");
+    li.innerHTML = `<p>${this.name}</p><p class="price text-dark fs-5 fw-bold mb-0">S/. ${this.price} / kg</p>`;
+  }
+}
 buttonSearch.addEventListener("click", () => {
   console.log(inputSearch.value);
-  fetch("cgi-bin/resultadosDeBusqueda.pl?search=" + inputSearch.value).then(response => response.json()).then(data => data.forEach(value => console.log(value)));
+  fetch("cgi-bin/resultadosDeBusqueda.pl?search=" + inputSearch.value).then(response => response.json()).then(data => data.forEach((value) => {
+    ulResults.append(new LiResult(value.img, value.precio, value.nombre));
+  }));
 });
