@@ -349,6 +349,7 @@
         let tBodyFirstChild = tBody.firstChild;
         let carritoInfo = {};
         let carritoJsonString = JSON.stringify(carritoInfo);
+        let userID = localStorage.getItem("User").id;
         fetch("cgi-bin/obtenerDatosDeTarjeta.pl?userID=" + userID).then(response => response.json()).then((cardData) => {
             localStorage.setItem("Payment", JSON.stringify(cardData));
         })
