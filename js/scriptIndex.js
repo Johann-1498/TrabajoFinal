@@ -45,6 +45,10 @@ class CarouselHtml {
   getItemHtmlObject() {
     return this.contenedorPrincipal;
   }
+  getJQueryObject() {
+    let jQueryObject = $(this.contenedorCarousel);
+    return jQueryObject;
+  }
 }
 //Verificando la sesion
 let esValidaLaSesion = false;
@@ -127,7 +131,7 @@ fetch("cgi-bin/productos.pl")
           i++;
         });
         carousel.forEach((value) => {
-          value.contenedorCarousel.owlCarousel(carouselOptions);
+          value.getJQueryObject().owlCarousel(carouselOptions);
         })
       });
     }
