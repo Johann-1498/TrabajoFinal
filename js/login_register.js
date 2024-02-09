@@ -14,9 +14,9 @@ loginForm.addEventListener("submit", function (event) {
             let userID = +data.id;
             fetch("cgi-bin/obtenerDatosDeTarjeta.pl?userID=" + userID).then(response => response.json()).then((cardData) => {
                 localStorage.setItem("Payment", JSON.stringify(cardData));
+                localStorage.setItem('User', JSON.stringify(data));
+                window.location.href = 'index.html';
             })
-            localStorage.setItem('User', JSON.stringify(data));
-            window.location.href = 'index.html';
         } else {
             alert("Usuario o contraseña incorrectos")
         }
